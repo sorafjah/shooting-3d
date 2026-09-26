@@ -27,17 +27,31 @@ html,body{margin:0;height:100%;overflow:hidden;touch-action:manipulation;overscr
 #bossBar{position:absolute;left:50%;top:44px;transform:translateX(-50%);width:min(56vw,520px);height:16px;border-radius:8px;background:rgba(21,48,79,.55);border:2px solid #fff;display:none;overflow:hidden}
 #bossBar i{display:block;height:100%;width:100%;background:linear-gradient(90deg,#ff4d4d,#ffbe0b);transition:width .15s}
 #qbtn{position:fixed;right:14px;top:12px;width:58px;height:58px;border-radius:50%;border:3px solid #15304f;background:#fff;font-size:30px;font-weight:700;color:#15304f;font-family:inherit;padding:0;z-index:5}
-#lockbtn{position:absolute;right:22px;bottom:22px;width:132px;height:132px;border-radius:50%;pointer-events:auto;border:none;padding:0;font-family:inherit;--g:0;background:conic-gradient(#ffbe0b calc(var(--g) * 1turn),rgba(21,48,79,.55) 0);display:grid;place-items:center;touch-action:none}
-#lockbtn span{width:106px;height:106px;border-radius:50%;background:#15304f;color:#9fb3c9;display:grid;place-items:center;font-size:19px;font-weight:700;line-height:1.25;text-align:center;white-space:pre-line}
-#lockbtn.ready span{background:#ff8c1a;color:#fff;animation:pulse .5s infinite alternate}
-@keyframes pulse{to{transform:scale(1.08);box-shadow:0 0 26px #ffd24a}}
+#lockbtn{position:absolute;right:34px;bottom:170px;width:116px;height:116px;border-radius:50%;pointer-events:auto;border:none;padding:0;font-family:inherit;--g:0;background:conic-gradient(#ffd23f calc(var(--g) * 1turn),rgba(21,48,79,.55) 0);display:grid;place-items:center;touch-action:none}
+#lockbtn span{width:94px;height:94px;border-radius:50%;background:#15304f;color:#9fb3c9;display:grid;place-items:center;font-size:17px;font-weight:700;line-height:1.2;text-align:center;white-space:pre-line}
+#lockbtn.ready span{background:#3f5f8f;color:#fff}
+#lockbtn.go span{background:#ffc400;color:#15304f;animation:pulse .45s infinite alternate}
+@keyframes pulse{to{transform:scale(1.08);box-shadow:0 0 26px #ffe14d}}
+#shotbtn{position:absolute;right:22px;bottom:22px;width:134px;height:134px;border-radius:50%;pointer-events:auto;border:5px solid #fff;background:#ff4d6d;color:#fff;font-family:inherit;font-size:22px;font-weight:700;padding:0;box-shadow:0 6px 0 #a3203b,0 0 0 2px #15304f;touch-action:none}
+#shotbtn.on{transform:translateY(4px);box-shadow:0 2px 0 #a3203b,0 0 0 2px #15304f;background:#ff7088}
+#stick{position:absolute;left:14px;bottom:14px;width:200px;height:200px;pointer-events:auto;touch-action:none}
+#stickBase{position:absolute;left:50%;top:50%;width:150px;height:150px;margin:-75px 0 0 -75px;border-radius:50%;border:4px solid rgba(255,255,255,.95);background:rgba(21,48,79,.28);box-shadow:0 0 0 2px rgba(21,48,79,.4)}
+#stickBase i{position:absolute;width:0;height:0;border:9px solid transparent}
+#stickBase .u{left:50%;top:6px;margin-left:-9px;border-bottom:12px solid #fff;border-top:0}
+#stickBase .d{left:50%;bottom:6px;margin-left:-9px;border-top:12px solid #fff;border-bottom:0}
+#stickBase .l{top:50%;left:6px;margin-top:-9px;border-right:12px solid #fff;border-left:0}
+#stickBase .r{top:50%;right:6px;margin-top:-9px;border-left:12px solid #fff;border-right:0}
+#stickKnob{position:absolute;left:50%;top:50%;width:70px;height:70px;margin:-35px 0 0 -35px;border-radius:50%;background:#fff;border:4px solid #15304f;box-shadow:0 4px 0 rgba(21,48,79,.4)}
 #reticle{position:absolute;left:0;top:0;width:54px;height:54px;margin:-27px 0 0 -27px;border:4px solid #fff;border-radius:50%;box-shadow:0 0 0 2px rgba(21,48,79,.6);transition:border-color .1s,transform .1s}
 #reticle::before{content:"";position:absolute;left:50%;top:50%;width:8px;height:8px;margin:-4px 0 0 -4px;border-radius:50%;background:#fff;box-shadow:0 0 0 2px rgba(21,48,79,.6)}
 #reticle.on{border-color:#ff8c1a;transform:scale(.8)}
-#lockCircle{position:absolute;left:0;top:0;border:3px dashed rgba(255,190,11,.95);border-radius:50%;display:none;box-shadow:0 0 0 2px rgba(21,48,79,.25)}
-.lockmark{position:absolute;left:0;top:0;width:44px;height:44px;margin:-22px 0 0 -22px;border:4px solid #ff8c1a;background:rgba(255,140,26,.18);display:none}
-.lockmark.show{display:block;animation:lockin .18s ease-out}
-@keyframes lockin{from{transform:rotate(45deg) scale(2.2);opacity:0}to{transform:rotate(45deg) scale(1);opacity:1}}
+#lockFrame{position:absolute;left:0;top:0;border:4px dashed rgba(255,255,255,.45);border-radius:22px;transition:border-color .15s,box-shadow .15s}
+#lockFrame.ready{border:4px solid #ffd23f;box-shadow:0 0 0 2px rgba(21,48,79,.35),0 0 18px rgba(255,210,63,.6)}
+#lockFrame b{position:absolute;left:50%;top:-32px;transform:translateX(-50%);font-size:18px;color:#fff;text-shadow:0 2px 0 #15304f,0 0 6px #15304f;white-space:nowrap}
+.lockmark{position:absolute;left:0;top:0;width:44px;height:44px;margin:-22px 0 0 -22px;border:4px solid #ffc400;background:rgba(255,196,0,.2);display:none;transform:rotate(45deg);box-shadow:0 0 0 2px rgba(21,48,79,.5)}
+.lockmark b{position:absolute;left:34px;top:-22px;transform:rotate(-45deg);font-size:18px;color:#fff;text-shadow:0 2px 0 #15304f}
+.lockmark.show{display:block;animation:lockin .2s ease-out}
+@keyframes lockin{from{transform:rotate(45deg) scale(2.4);opacity:0}to{transform:rotate(45deg) scale(1);opacity:1}}
 .lockmark{transform:rotate(45deg)}
 .popup{position:absolute;left:0;top:0;font-size:22px;font-weight:700;color:#fff;text-shadow:0 2px 0 #15304f,0 0 6px #15304f;white-space:nowrap;transform:translate(-50%,-50%);opacity:0}
 .popup.go{animation:pop .9s ease-out forwards}
@@ -53,8 +67,6 @@ html,body{margin:0;height:100%;overflow:hidden;touch-action:manipulation;overscr
 #banner.go{animation:ban 2.4s ease-out forwards}
 @keyframes ban{0%{opacity:0;transform:translate(-50%,-50%) scaleX(1.8)}10%{opacity:1;transform:translate(-50%,-50%) scaleX(1)}80%{opacity:1}100%{opacity:0}}
 #flash{position:fixed;inset:0;background:#fff;opacity:0;pointer-events:none}
-#stickBase{position:absolute;width:128px;height:128px;margin:-64px 0 0 -64px;border-radius:50%;border:3px solid rgba(255,255,255,.9);background:rgba(255,255,255,.2);display:none}
-#stickKnob{position:absolute;width:60px;height:60px;margin:-30px 0 0 -30px;border-radius:50%;background:rgba(255,255,255,.85);border:3px solid #15304f;display:none}
 #ver{position:fixed;left:8px;bottom:6px;font-size:12px;color:#fff;text-shadow:0 1px 2px #15304f;pointer-events:none;z-index:6}
 .ov{position:fixed;inset:0;background:rgba(21,48,79,.5);display:none;align-items:center;justify-content:center;padding:14px;z-index:4}
 .ov.show{display:flex}
@@ -92,7 +104,7 @@ h3{margin:16px 0 8px;font-size:21px}
 </script>
 </head>
 <body>
-<!-- build: 2026-09-26 -->
+<!-- build: 2026-09-26b -->
 <canvas id="c"></canvas>
 
 <div id="hud" class="off">
@@ -102,11 +114,12 @@ h3{margin:16px 0 8px;font-size:21px}
     <div id="powers"></div>
     <div id="stageLbl" class="num"></div>
     <div id="bossBar"><i id="bossFill"></i></div>
-    <div id="lockCircle"></div>
+    <div id="lockFrame"><b id="lockCount"></b></div>
     <div id="reticle"></div>
     <div id="marks"></div>
-    <div id="stickBase"></div><div id="stickKnob"></div>
-    <button id="lockbtn" aria-label="ロックオン"><span id="lockTxt">ためる</span></button>
+    <div id="stick"><div id="stickBase"><i class="u"></i><i class="d"></i><i class="l"></i><i class="r"></i></div><div id="stickKnob"></div></div>
+    <button id="shotbtn" aria-label="ショット">ショット</button>
+    <button id="lockbtn" aria-label="かみなり"><span id="lockTxt">チャージ</span></button>
   </div>
   <div id="pops"></div>
   <div id="chain"><b id="chainNum">×8</b><span id="chainTxt">れんけつ！</span></div>
@@ -121,36 +134,44 @@ h3{margin:16px 0 8px;font-size:21px}
   <div class="panel scroll">
     <h1 class="title">スカイ <i>ロックオン</i></h1>
     <p class="lead">そらを とびながら、てきを まとめて うちおとそう！</p>
-    <svg class="map" viewBox="0 0 400 210" aria-hidden="true">
-      <rect x="4" y="4" width="392" height="202" rx="18" fill="#bfe6ff" stroke="#15304f" stroke-width="4"/>
-      <rect x="10" y="10" width="166" height="190" rx="12" fill="#d7f2c6"/>
-      <rect x="182" y="10" width="208" height="190" rx="12" fill="#ffe4c4"/>
-      <text x="93" y="40" text-anchor="middle" font-size="20" font-weight="700" fill="#15304f">いどう</text>
-      <circle cx="93" cy="125" r="44" fill="#fff" stroke="#15304f" stroke-width="3"/>
-      <circle cx="108" cy="112" r="20" fill="#15304f"/>
-      <path d="M93 72 l-8 10 h16z M93 178 l-8 -10 h16z M40 125 l10 -8 v16z M146 125 l-10 -8 v16z" fill="#15304f"/>
-      <text x="262" y="40" text-anchor="middle" font-size="20" font-weight="700" fill="#15304f">ねらう・うつ</text>
-      <circle cx="262" cy="88" r="20" fill="none" stroke="#ff8c1a" stroke-width="5"/>
-      <path d="M262 60v12M262 104v12M234 88h12M278 88h12" stroke="#ff8c1a" stroke-width="5"/>
-      <path d="M262 118 v22" stroke="#15304f" stroke-width="3" stroke-dasharray="4 4"/>
-      <ellipse cx="262" cy="160" rx="16" ry="22" fill="#f2c9a0" stroke="#15304f" stroke-width="3"/>
-      <circle cx="352" cy="164" r="32" fill="#ff8c1a" stroke="#15304f" stroke-width="3"/>
-      <text x="352" y="170" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">ロック</text>
-      <circle cx="370" cy="32" r="15" fill="#fff" stroke="#15304f" stroke-width="3"/>
-      <text x="370" y="39" text-anchor="middle" font-size="18" font-weight="700" fill="#15304f">？</text>
+    <svg class="map" viewBox="0 0 400 230" aria-hidden="true">
+      <rect x="4" y="4" width="392" height="222" rx="18" fill="#bfe6ff" stroke="#15304f" stroke-width="4"/>
+      <rect x="140" y="30" width="120" height="80" rx="12" fill="none" stroke="#e0a800" stroke-width="4"/>
+      <path d="M170 56l12-8 12 8-12 8z M214 70l12-8 12 8-12 8z" fill="#ff5a5f" stroke="#15304f" stroke-width="2"/>
+      <path d="M182 42l8 14-8 14-8-14z M226 56l8 14-8 14-8-14z" fill="none" stroke="#ffc400" stroke-width="3"/>
+      <path d="M176 6 L186 22 L176 32 L184 48" fill="none" stroke="#ffc400" stroke-width="5" stroke-linejoin="bevel"/>
+      <path d="M176 6 L186 22 L176 32 L184 48" fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="bevel"/>
+      <path d="M234 6 L222 26 L232 40 L226 62" fill="none" stroke="#ffc400" stroke-width="5" stroke-linejoin="bevel"/>
+      <path d="M234 6 L222 26 L232 40 L226 62" fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="bevel"/>
+      <text x="200" y="128" text-anchor="middle" font-size="13" font-weight="700" fill="#15304f">ロックオンの わく</text>
+      <path d="M200 150 l-24 20 h48z" fill="#fff" stroke="#15304f" stroke-width="3"/>
+      <path d="M200 144 v-8" stroke="#fff27a" stroke-width="4"/>
+      <circle cx="62" cy="168" r="42" fill="rgba(21,48,79,.25)" stroke="#fff" stroke-width="4"/>
+      <circle cx="74" cy="160" r="18" fill="#fff" stroke="#15304f" stroke-width="3"/>
+      <text x="62" y="112" text-anchor="middle" font-size="15" font-weight="700" fill="#15304f">いどう</text>
+      <circle cx="350" cy="182" r="32" fill="#ff4d6d" stroke="#fff" stroke-width="4"/>
+      <text x="350" y="188" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">ショット</text>
+      <circle cx="350" cy="108" r="27" fill="#ffc400" stroke="#15304f" stroke-width="3"/>
+      <text x="350" y="113" text-anchor="middle" font-size="12" font-weight="700" fill="#15304f">かみなり</text>
+      <circle cx="370" cy="30" r="15" fill="#fff" stroke="#15304f" stroke-width="3"/>
+      <text x="370" y="37" text-anchor="middle" font-size="18" font-weight="700" fill="#15304f">？</text>
     </svg>
     <div class="grid">
       <div class="card">
-        <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="26" fill="#d7f2c6" stroke="#15304f" stroke-width="3"/><circle cx="40" cy="26" r="11" fill="#15304f"/><path d="M32 3l-5 6h10zM32 61l-5-6h10zM3 32l6-5v10zM61 32l-6-5v10z" fill="#15304f"/></svg>
-        <div><b><ruby>左<rt>ひだり</rt></ruby>がわを ドラッグ</b><br>ひこうきが うごく</div>
+        <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="27" fill="#d6e8f5" stroke="#15304f" stroke-width="3"/><circle cx="40" cy="26" r="12" fill="#fff" stroke="#15304f" stroke-width="3"/><path d="M32 3l-5 6h10zM32 61l-5-6h10zM3 32l6-5v10zM61 32l-6-5v10z" fill="#15304f"/></svg>
+        <div><b><ruby>左<rt>ひだり</rt></ruby>の コントローラー</b><br>ゆびで うごかすと ひこうきが うごく</div>
       </div>
       <div class="card">
-        <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="16" fill="none" stroke="#ff8c1a" stroke-width="5"/><path d="M32 4v14M32 46v14M4 32h14M46 32h14" stroke="#ff8c1a" stroke-width="5"/><circle cx="32" cy="32" r="4" fill="#15304f"/></svg>
-        <div><b><ruby>右<rt>みぎ</rt></ruby>がわに <ruby>指<rt>ゆび</rt></ruby>を おく</b><br><ruby>指<rt>ゆび</rt></ruby>の すこし <ruby>上<rt>うえ</rt></ruby>を ねらって ショット</div>
+        <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="27" fill="#ff4d6d" stroke="#15304f" stroke-width="3"/><path d="M24 40l8-18 8 18" fill="none" stroke="#fff" stroke-width="5"/></svg>
+        <div><b>ショットボタン</b><br>おして いる あいだ、ひこうきの <ruby>前<rt>まえ</rt></ruby>に たまが でる</div>
       </div>
       <div class="card">
-        <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="27" fill="#15304f"/><path d="M32 5a27 27 0 1 1 -26 34" fill="none" stroke="#ffbe0b" stroke-width="6"/><circle cx="32" cy="32" r="18" fill="#ff8c1a"/><path d="M24 32l8-8 8 8-8 8z" fill="none" stroke="#fff" stroke-width="3"/></svg>
-        <div><b>ゲージが たまったら ロックオン！</b><br><ruby>円<rt>えん</rt></ruby>の <ruby>中<rt>なか</rt></ruby>の てきを まとめて たおす。いっしょに たおすほど <ruby>点<rt>てん</rt></ruby>が ふえる</div>
+        <svg viewBox="0 0 64 64"><rect x="8" y="10" width="48" height="44" rx="8" fill="none" stroke="#e0a800" stroke-width="4"/><path d="M32 22l10 10-10 10-10-10z" fill="none" stroke="#ffc400" stroke-width="4"/></svg>
+        <div><b>ロックオンの わく</b><br>ひこうきの <ruby>前<rt>まえ</rt></ruby>に でる わく。わくが きいろに なったら、てきを わくに いれて あつめる</div>
+      </div>
+      <div class="card">
+        <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="27" fill="#ffc400" stroke="#15304f" stroke-width="3"/><path d="M36 10L22 34h10l-4 20 16-26H34z" fill="#fff" stroke="#15304f" stroke-width="2.5" stroke-linejoin="round"/></svg>
+        <div><b>かみなりボタン</b><br>あつめた てきに かみなりが つぎつぎ おちる。いっしょに たおすほど <ruby>点<rt>てん</rt></ruby>が ふえる</div>
       </div>
       <div class="card">
         <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="27" fill="none" stroke="#19c7ff" stroke-width="3" stroke-dasharray="6 5"/><path d="M32 16l14 8v16l-14 8-14-8V24z" fill="#6b7a99" stroke="#15304f" stroke-width="3"/></svg>
@@ -167,7 +188,7 @@ h3{margin:16px 0 8px;font-size:21px}
     </div>
     <h3>アイテム（<ruby>近<rt>ちか</rt></ruby>づくと すいよせられる）</h3>
     <div class="items">
-      <div class="item"><span class="chip" style="background:#3a86ff">ロック+</span>いちどに ねらえる かずが ふえる</div>
+      <div class="item"><span class="chip" style="background:#3a86ff">ロック+</span>わくで あつめられる かずが ふえる</div>
       <div class="item"><span class="chip" style="background:#ff4d4d">れんしゃ</span>しばらく ショットが はやく ひろがる</div>
       <div class="item"><span class="chip" style="background:#1fb89a">シールド</span>2かい まもって くれる</div>
       <div class="item"><span class="chip" style="background:#f4a300">ボム</span>がめんの てきに だいダメージ</div>
@@ -181,7 +202,7 @@ h3{margin:16px 0 8px;font-size:21px}
         <button class="dbtn" data-d="hard">むずかしい<small>ライフ3・てきが つよい</small></button>
       </div>
     </div>
-    <p class="pc">パソコン：WASDキーで いどう ／ マウスで ねらう・クリックで ショット ／ スペースキーで ロックオン</p>
+    <p class="pc">パソコン：WASDキーで いどう ／ Zキー または クリックで ショット ／ スペースキーで かみなり</p>
     <button class="btn" id="startBtn">はじめる</button>
   </div>
 </div>
@@ -216,7 +237,7 @@ h3{margin:16px 0 8px;font-size:21px}
 import * as THREE from 'three';
 
 /* =========================================================
-   スカイ ロックオン  v2026-09-26
+   スカイ ロックオン  v2026-09-26b
    ---------------------------------------------------------
    テスト用フック：window.__G
    - 敵・アイテム・リングの位置は mesh.position を直接動かさず、
@@ -225,7 +246,7 @@ import * as THREE from 'three';
    - __G.frames / __G.elapsed はゲームループ内で毎フレーム更新される。
    ========================================================= */
 
-const VERSION = 'v2026-09-26';
+const VERSION = 'v2026-09-26b';
 const $ = id => document.getElementById(id);
 $('ver').textContent = VERSION;
 const TAU = Math.PI * 2, UP = new THREE.Vector3(0, 1, 0);
@@ -250,9 +271,9 @@ document.addEventListener('dblclick', e => e.preventDefault());
 
 /* ---------- むずかしさ ---------- */
 const DIFFS = {
-  easy:   { key: 'easy',   name: 'やさしい',   life: Infinity, spd: 0.8,  rate: 0.45, bs: 0.62, assist: 95, lockR: 230, need: 18, hp: 0.75, mul: 1.0 },
-  normal: { key: 'normal', name: 'ふつう',     life: 5,        spd: 0.95, rate: 0.8,  bs: 0.85, assist: 55, lockR: 190, need: 26, hp: 1.0,  mul: 1.2 },
-  hard:   { key: 'hard',   name: 'むずかしい', life: 3,        spd: 1.12, rate: 1.35, bs: 1.12, assist: 30, lockR: 165, need: 32, hp: 1.3,  mul: 1.6 },
+  easy:   { key: 'easy',   name: 'やさしい',   life: Infinity, spd: 0.8,  rate: 0.45, bs: 0.62, assist: 70, lockR: 150, need: 18, rech: 3, hp: 0.75, mul: 1.0 },
+  normal: { key: 'normal', name: 'ふつう',     life: 5,        spd: 0.95, rate: 0.8,  bs: 0.85, assist: 40, lockR: 125, need: 26, rech: 4.5, hp: 1.0,  mul: 1.2 },
+  hard:   { key: 'hard',   name: 'むずかしい', life: 3,        spd: 1.12, rate: 1.35, bs: 1.12, assist: 22, lockR: 105, need: 32, rech: 6, hp: 1.3,  mul: 1.6 },
 };
 let D = DIFFS.normal;
 
@@ -285,8 +306,6 @@ function resize() {
   const w = innerWidth, h = innerHeight;
   renderer.setSize(w, h);
   camera.aspect = w / h; camera.fov = w < h ? 80 : 62; camera.updateProjectionMatrix();
-  const lc = $('lockCircle'); lc.style.width = lc.style.height = (D.lockR * 2) + 'px';
-  lc.style.marginLeft = lc.style.marginTop = (-D.lockR) + 'px';
 }
 addEventListener('resize', resize);
 
@@ -481,19 +500,66 @@ const ebMat = new THREE.SpriteMaterial({ map: ballTex('#ff2f6d', '#4a0020'), tra
 const eBullets = [];
 for (let i = 0; i < 140; i++) { const s = new THREE.Sprite(ebMat); s.scale.setScalar(1.3); s.visible = false; scene.add(s); eBullets.push({ s, on: false, x: 0, y: 0, z: 0, vx: 0, vy: 0, vz: 0, life: 0 }); }
 
-/* ---------- ホーミングレーザー ---------- */
-const LTRAIL = 27, LASER_DMG = 6;
-const lasers = [];
-for (let i = 0; i < 16; i++) {
+/* ---------- かみなり（カメラの方を向く帯で描く） ---------- */
+const BOLT_DMG = 6, BPTS = 16;
+const bolts = [];
+function makeRibbon(color, opacity) {
   const geo = new THREE.BufferGeometry();
-  const pos = new Float32Array(LTRAIL * 3), col = new Float32Array(LTRAIL * 3);
-  geo.setAttribute('position', new THREE.BufferAttribute(pos, 3)); geo.setAttribute('color', new THREE.BufferAttribute(col, 3));
-  const mat = new THREE.PointsMaterial({ size: 1.1, map: glowTex, vertexColors: true, transparent: true, depthWrite: false, fog: false });
-  const pts = new THREE.Points(geo, mat); pts.frustumCulled = false; pts.visible = false; scene.add(pts);
-  const trail = []; for (let k = 0; k < LTRAIL; k++) trail.push(new THREE.Vector3());
-  for (let k = 0; k < LTRAIL; k++) { const f = k / (LTRAIL - 1); col[k * 3] = 0.1 + f * 0.7; col[k * 3 + 1] = 0.85 + f * 0.12; col[k * 3 + 2] = 1; }
-  col[0] = col[1] = col[2] = 1;
-  lasers.push({ pts, pos, trail, on: false, done: false, t: 0, fade: 0, p: new THREE.Vector3(), v: new THREE.Vector3(), target: null, volley: null });
+  const pos = new Float32Array(BPTS * 2 * 3); const idx = [];
+  for (let i = 0; i < BPTS - 1; i++) { const a = i * 2; idx.push(a, a + 1, a + 2, a + 1, a + 3, a + 2); }
+  geo.setAttribute('position', new THREE.BufferAttribute(pos, 3)); geo.setIndex(idx);
+  const mat = new THREE.MeshBasicMaterial({ color, transparent: true, opacity, depthWrite: false, depthTest: false, side: THREE.DoubleSide, fog: false });
+  const m = new THREE.Mesh(geo, mat); m.frustumCulled = false; m.visible = false; m.renderOrder = 5; scene.add(m);
+  return { m, pos, geo, base: opacity };
+}
+for (let i = 0; i < 36; i++) {
+  const pts = []; for (let k = 0; k < BPTS; k++) pts.push(new THREE.Vector3());
+  bolts.push({ on: false, life: 0, max: 0.3, jit: 0, n: BPTS, w: 0.5, a: new THREE.Vector3(), b: new THREE.Vector3(), off: new THREE.Vector3(), target: null, follow: false, pts,
+    outer: makeRibbon(0xffd23f, 0.9), core: makeRibbon(0xffffff, 1) });
+}
+const _t = new THREE.Vector3(), _w = new THREE.Vector3(), _r = new THREE.Vector3();
+function jagged(B) {
+  const n = B.n, d = _t.subVectors(B.b, B.a); const len = d.length() || 1; d.divideScalar(len);
+  const amp = Math.min(len * 0.075, 2.6);
+  B.pts[0].copy(B.a); B.pts[n - 1].copy(B.b);
+  for (let i = 1; i < n - 1; i++) {
+    const t = i / (n - 1);
+    _r.set(rand(-1, 1), rand(-1, 1), rand(-1, 1)); _r.addScaledVector(d, -_r.dot(d));
+    B.pts[i].copy(B.a).lerp(B.b, t).addScaledVector(_r, amp * (0.35 + Math.sin(t * Math.PI) * 0.65));
+  }
+}
+function ribbon(R, B, width) {
+  const n = B.n, cp = camera.position;
+  for (let i = 0; i < BPTS; i++) {
+    const k = Math.min(i, n - 1), p = B.pts[k];
+    const p0 = B.pts[Math.max(k - 1, 0)], p1 = B.pts[Math.min(k + 1, n - 1)];
+    _t.subVectors(p1, p0); _w.subVectors(cp, p); const dist = _w.length(); _r.crossVectors(_t, _w).normalize().multiplyScalar(width * clamp(dist / 14, 1, 6) * (1 - 0.35 * k / (n - 1)));
+    R.pos[i * 6] = p.x + _r.x; R.pos[i * 6 + 1] = p.y + _r.y; R.pos[i * 6 + 2] = p.z + _r.z;
+    R.pos[i * 6 + 3] = p.x - _r.x; R.pos[i * 6 + 4] = p.y - _r.y; R.pos[i * 6 + 5] = p.z - _r.z;
+  }
+  R.geo.attributes.position.needsUpdate = true;
+  R.geo.setDrawRange(0, (n - 1) * 6);
+}
+function spawnBolt(a, b, w, life, n, target) {
+  const B = bolts.find(x => !x.on); if (!B) return null;
+  B.on = true; B.life = B.max = life; B.jit = 0; B.w = w; B.n = n; B.a.copy(a); B.b.copy(b); B.target = target; B.follow = !!target; B.off.subVectors(a, b);
+  jagged(B); B.outer.m.visible = B.core.m.visible = true;
+  return B;
+}
+function updateBolts(dt) {
+  for (const B of bolts) {
+    if (!B.on) continue;
+    B.life -= dt;
+    if (B.life <= 0) { B.on = false; B.outer.m.visible = B.core.m.visible = false; continue; }
+    if (B.follow) {
+      if (B.target && !B.target.dead) B.b.set(B.target.x, B.target.y, B.target.z); else B.b.z += WS * 0.3 * dt;
+      B.a.copy(B.b).add(B.off);
+    } else { B.a.z += WS * 0.3 * dt; B.b.z += WS * 0.3 * dt; }
+    B.jit -= dt; if (B.jit <= 0) { B.jit = 0.035; jagged(B); }
+    const k = B.life / B.max, flick = 0.65 + Math.random() * 0.35;
+    B.outer.m.material.opacity = B.outer.base * k * flick; B.core.m.material.opacity = k;
+    ribbon(B.outer, B, B.w); ribbon(B.core, B, B.w * 0.32);
+  }
 }
 
 /* ---------- 音（Web Audio） ---------- */
@@ -534,7 +600,8 @@ const sfx = {
   brk() { noise(0.35, { vol: 0.25, freq: 3000, type: 'highpass' }); tone(1600, 0.3, { type: 'triangle', vol: 0.1, to: 400 }); },
   boom(size = 1) { noise(0.25 + size * 0.15, { vol: 0.22 * Math.min(1.6, size), freq: 1800, to: 180 }); tone(140, 0.3 + size * 0.1, { type: 'sine', vol: 0.25, to: 40 }); },
   lock(i) { const f = SCALE[i % SCALE.length]; tone(f, 0.16, { type: 'triangle', vol: 0.14 }); tone(f * 2, 0.08, { type: 'sine', vol: 0.05 }); },
-  laser() { noise(0.4, { type: 'bandpass', freq: 700, to: 4500, vol: 0.22, q: 2 }); tone(300, 0.35, { type: 'sawtooth', vol: 0.05, to: 1400 }); },
+  zap(i) { const f = SCALE[i % SCALE.length]; noise(0.22, { type: 'highpass', freq: 2500, vol: 0.2 }); noise(0.3, { freq: 900, to: 120, vol: 0.18 }); tone(f, 0.18, { type: 'square', vol: 0.06, to: f * 0.5 }); tone(f * 1.5, 0.12, { type: 'triangle', vol: 0.06 }); },
+  charge() { tone(220, 0.25, { type: 'sawtooth', vol: 0.06, to: 880 }); noise(0.25, { type: 'bandpass', freq: 600, to: 3000, vol: 0.12, q: 3 }); },
   chord(n) {
     if (!actx) return; const t = actx.currentTime; const base = n >= 8 ? 1.5 : n >= 5 ? 1.26 : 1;
     [523.3, 659.3, 784, 1046.5].forEach((f, i) => tone(f * base, 0.6, { type: 'triangle', vol: 0.09, at: t + i * 0.02 }));
@@ -887,100 +954,96 @@ function onDeath() {
   }
 }
 
-/* ---------- ロックオンゲージ ---------- */
+/* ---------- ロックオン（わくで あつめて かみなり） ----------
+   G.gauge が D.need まで たまると わくが 有効になり、わくの中の敵を
+   lockList に1体ずつ追加する（HPの高い敵は複数回ロック）。
+   かみなりボタンで lockList の順に 雷を つぎつぎ 落とす。 */
+const lockList = [];
+let lockTick = 0;
 function addGauge(v) {
-  if (G.gauge >= D.need) return;
+  if (G.gauge >= D.need || lockSeq) return;
   G.gauge = Math.min(D.need, G.gauge + v);
   if (G.gauge >= D.need) sfx.ready();
 }
-function doLock() {
-  if (state !== 'play' || paused || G.over || lockSeq || G.gauge < D.need) return;
-  const cands = [];
+const frame = { x: 0, y: 0, hw: 120, hh: 100, ax: 0, ay: 0 };
+function updateFrame() {
+  const s = toScreen(P.x, P.y + 0.6, -70), a = toScreen(P.x, P.y + 0.6, -90); frame.ax = a.x; frame.ay = a.y;
+  frame.hw = Math.min(D.lockR * 1.15, innerWidth * 0.22); frame.hh = Math.min(D.lockR * 0.85, innerHeight * 0.17);
+  frame.x = clamp(s.x, frame.hw + 8, innerWidth - frame.hw - 8);
+  const sh = toScreen(P.x, P.y, 0);
+  frame.y = clamp(Math.min(s.y, sh.y - frame.hh - 30), frame.hh + 70, innerHeight - frame.hh - 8);
+}
+const lockable = e => !e.dead && e.lockable && !(e.armor > 0) && !e.shielded;
+function updateLocks(dt) {
+  for (let i = lockList.length - 1; i >= 0; i--) {
+    const e = lockList[i];
+    if (!lockable(e) || e.z > -4 || !toScreen(e.x, e.y, e.z).ok) lockList.splice(i, 1);
+  }
+  if (lockSeq || G.gauge < D.need || G.over) return;
+  lockTick -= dt; if (lockTick > 0 || lockList.length >= G.maxLock) return;
+  let best = null, bd = Infinity, bestMulti = null, bdm = Infinity;
   for (const e of enemies) {
-    if (e.dead || !e.lockable || e.armor > 0 || e.shielded || e.z > -5 || e.z < -170) continue;
+    if (!lockable(e) || e.z > -8 || e.z < -155) continue;
     const s = toScreen(e.x, e.y, e.z); if (!s.ok) continue;
-    cands.push({ e, d: Math.hypot(s.x - ret.x, s.y - ret.y) });
+    const dx = s.x - frame.x, dy = s.y - frame.y;
+    if (Math.abs(dx) > frame.hw || Math.abs(dy) > frame.hh) continue;
+    const d = dx * dx + dy * dy, cnt = lockList.filter(t => t === e).length;
+    if (cnt === 0) { if (d < bd) { bd = d; best = e; } }
+    else if (e.hp > cnt * BOLT_DMG && d < bdm) { bdm = d; bestMulti = e; }
   }
-  if (!cands.length) { popup(ret.x, ret.y - 70, 'ねらえる てきが いないよ'); return; }
-  cands.sort((a, b) => a.d - b.d);
-  let pool = cands.filter(c => c.d <= D.lockR); if (!pool.length) pool = cands;
-  const targets = [];
-  for (const c of pool) { if (targets.length >= G.maxLock) break; targets.push(c.e); }
-  for (let guard = 0; guard < 20 && targets.length < G.maxLock; guard++) {
-    let added = false;
-    for (const c of pool) {
-      if (targets.length >= G.maxLock) break;
-      const cnt = targets.filter(t => t === c.e).length;
-      if (c.e.hp > cnt * LASER_DMG) { targets.push(c.e); added = true; }
-    }
-    if (!added) break;
-  }
-  G.gauge = 0; lockSeq = true;
+  const pick = best || bestMulti;
+  if (pick) { lockList.push(pick); sfx.lock(lockList.length - 1); lockTick = 0.11; }
+}
+function doThunder() {
+  if (state !== 'play' || paused || G.over || lockSeq) return;
+  if (G.gauge < D.need) { popup(frame.x, frame.y, 'チャージ ちゅう…'); return; }
+  if (!lockList.length) { popup(frame.x, frame.y, 'わくに てきを いれよう'); return; }
+  const targets = lockList.splice(0);
+  lockSeq = true; G.gauge = 0;
   const volley = { kills: 0, pending: targets.length };
-  targets.forEach((e, i) => later(i * 0.07, () => { addMark(e); sfx.lock(i); }));
-  later(targets.length * 0.07 + 0.16, () => {
-    sfx.laser();
-    targets.forEach((e, i) => later(i * 0.035, () => launchLaser(e, volley)));
-    lockSeq = false;
-  });
+  sfx.charge(); flashScreen('#fff6c8', 0.25);
+  targets.forEach((e, i) => later(0.08 + i * 0.085, () => strike(e, volley, i)));
+  later(0.12 + targets.length * 0.085, () => { lockSeq = false; });
 }
-function launchLaser(target, volley) {
-  const L = lasers.find(l => !l.on);
-  if (!L) { volley.pending--; if (volley.pending <= 0) volleyEnd(volley); return; }
-  L.on = true; L.done = false; L.t = 0; L.fade = 0; L.target = target; L.volley = volley;
-  L.p.set(P.x, P.y + 0.3, -1.5); const la = rand(0.15, Math.PI - 0.15); L.v.set(Math.cos(la) * 24, Math.sin(la) * 16, rand(-4, 3));
-  for (const t of L.trail) t.copy(L.p);
-  L.pts.material.opacity = 1; L.pts.visible = true;
-}
-function retarget(L) {
+function nearestTarget(from) {
   let best = null, bd = Infinity;
   for (const e of enemies) {
-    if (e.dead || !e.lockable || e.shielded || e.armor > 0 || e.z > -3) continue;
-    const d = L.p.distanceToSquared(_v.set(e.x, e.y, e.z)); if (d < bd) { bd = d; best = e; }
+    if (!lockable(e) || e.z > -6 || e.z < -160) continue;
+    if (!toScreen(e.x, e.y, e.z).ok) continue;
+    const d = from.distanceToSquared(_v.set(e.x, e.y, e.z)); if (d < bd) { bd = d; best = e; }
   }
   return best;
 }
-function finishLaser(L) {
-  if (L.done) return; L.done = true;
-  L.volley.pending--; if (L.volley.pending <= 0) volleyEnd(L.volley);
+function strike(e, volley, i) {
+  if (G.over || state !== 'play') { volley.pending--; return; }
+  _v2.set(P.x, P.y, -10);
+  if (!e || !lockable(e)) e = nearestTarget(_v2);
+  if (e) _v2.set(e.x + rand(-5, 5), e.y + rand(22, 30), e.z + rand(-6, 2));
+  sfx.zap(i);
+  if (!e) {
+    _v2.set(P.x + rand(-6, 6), P.y + 26, -60); _p.set(_v2.x + rand(-3, 3), -10, -60); spawnBolt(_v2, _p, 0.25, 0.25, 12, null);
+  } else {
+    _p.set(e.x, e.y, e.z);
+    const n = BPTS;
+    const B = spawnBolt(_v2, _p, 0.32, 0.32, n, e);
+    glow(_v2.x, _v2.y, _v2.z, 14, 0xfff6c8, 0.3);
+    // 枝分かれ
+    if (B) for (let k = 0; k < 2; k++) {
+      const j = (2 + Math.random() * (n - 5)) | 0, from = B.pts[j];
+      _s.subVectors(_p, _v2).normalize().multiplyScalar(rand(5, 10)).add(_w.set(rand(-6, 6), rand(-2, 2), rand(-3, 3)));
+      spawnBolt(from, _t.copy(from).add(_s), 0.13, 0.2, 7, null);
+    }
+    glow(e.x, e.y, e.z, 10, 0xfff27a, 0.3); glow(e.x, e.y, e.z, 5, 0xffffff, 0.15);
+    emit(e.x, e.y, e.z, 14, 0xffe14d, 20, 0.3, 0.45);
+    camShake = Math.max(camShake, 0.18);
+    hitEnemy(e, BOLT_DMG, 'bolt', volley);
+  }
+  volley.pending--; if (volley.pending <= 0) volleyEnd(volley);
 }
 function volleyEnd(v) {
   G.maxChain = Math.max(G.maxChain, v.kills);
   if (v.kills >= 2) {
     showChain(v.kills); sfx.chord(v.kills); hitstop = Math.max(hitstop, 0.07); camShake = Math.max(camShake, 0.2 + v.kills * 0.05);
-  }
-}
-function updateLasers(dt) {
-  const h = dt / 3;
-  for (const L of lasers) {
-    if (!L.on) continue;
-    for (let s = 0; s < 3; s++) {
-      if (!L.done) {
-        let tg = L.target;
-        if (!tg || tg.dead) { removeMark(tg); tg = L.target = retarget(L); }
-        L.t += h;
-        if (tg) {
-          const spd = Math.min(175, 50 + L.t * 170);
-          _v.set(tg.x - L.p.x, tg.y - L.p.y, tg.z - L.p.z);
-          const dist = _v.length(); _v.multiplyScalar(spd / Math.max(dist, 0.001));
-          L.v.lerp(_v, Math.min(1, h * (3 + L.t * 20)));
-          L.p.addScaledVector(L.v, h);
-          if (dist < tg.r + 0.8 || L.t > 1.6) {
-            removeMark(tg);
-            emit(tg.x, tg.y, tg.z, 8, 0x7fe3ff, 14, 0.3, 0.4); glow(tg.x, tg.y, tg.z, 5, 0x7fe3ff, 0.2);
-            hitEnemy(tg, LASER_DMG, 'laser', L.volley); finishLaser(L);
-          }
-        } else {
-          L.p.addScaledVector(L.v, h);
-          if (L.t > 1.2) finishLaser(L);
-        }
-      }
-      for (let k = LTRAIL - 1; k > 0; k--) L.trail[k].copy(L.trail[k - 1]);
-      L.trail[0].copy(L.p);
-    }
-    if (L.done) { L.fade += dt; L.pts.material.opacity = Math.max(0, 1 - L.fade / 0.3); if (L.fade > 0.3) { L.on = false; L.pts.visible = false; } }
-    for (let k = 0; k < LTRAIL; k++) { const t = L.trail[k]; L.pos[k * 3] = t.x; L.pos[k * 3 + 1] = t.y; L.pos[k * 3 + 2] = t.z; }
-    L.pts.geometry.attributes.position.needsUpdate = true;
   }
 }
 
@@ -1042,64 +1105,63 @@ function bomb() {
 }
 
 /* ---------- 入力 ---------- */
-const ret = { x: innerWidth * 0.5, y: innerHeight * 0.45 };
-let stick = null, aimPtr = null, mouseDown = false;
+let stick = null, shotPtr = null, mouseDown = false;
 const keys = {}; const apiIn = { fire: false, mx: 0, my: 0 };
-const AIM_OFFSET = 64;
-function setAim(x, y) { ret.x = clamp(x, 0, innerWidth); ret.y = clamp(y, 0, innerHeight); }
-function releaseInputs() { stick = null; aimPtr = null; mouseDown = false; $('stickBase').style.display = $('stickKnob').style.display = 'none'; }
-canvas.addEventListener('pointerdown', e => {
-  if (state !== 'play' || paused) return;
-  try { canvas.setPointerCapture(e.pointerId); } catch (_) {}
-  if (e.pointerType === 'mouse') { mouseDown = true; setAim(e.clientX, e.clientY); return; }
-  if (e.clientX < innerWidth * 0.45) {
-    stick = { id: e.pointerId, ox: e.clientX, oy: e.clientY, dx: 0, dy: 0 };
-    const b = $('stickBase'), k = $('stickKnob');
-    b.style.left = k.style.left = e.clientX + 'px'; b.style.top = k.style.top = e.clientY + 'px';
-    b.style.display = k.style.display = 'block';
-  } else { aimPtr = e.pointerId; setAim(e.clientX, e.clientY - AIM_OFFSET); }
-});
-canvas.addEventListener('pointermove', e => {
-  if (e.pointerType === 'mouse') { if (state === 'play' && !paused) setAim(e.clientX, e.clientY); return; }
-  if (stick && e.pointerId === stick.id) {
-    let dx = e.clientX - stick.ox, dy = e.clientY - stick.oy; const m = Math.hypot(dx, dy), R = 60;
-    if (m > R) { dx *= R / m; dy *= R / m; }
-    stick.dx = dx / R; stick.dy = dy / R;
-    const k = $('stickKnob'); k.style.left = (stick.ox + dx) + 'px'; k.style.top = (stick.oy + dy) + 'px';
-  } else if (e.pointerId === aimPtr) setAim(e.clientX, e.clientY - AIM_OFFSET);
-});
-function ptrEnd(e) {
-  if (e.pointerType === 'mouse') { mouseDown = false; return; }
-  if (stick && e.pointerId === stick.id) { stick = null; $('stickBase').style.display = $('stickKnob').style.display = 'none'; }
-  if (e.pointerId === aimPtr) aimPtr = null;
+const STICK_R = 62;
+function resetStickView() { $('stickKnob').style.transform = ''; }
+function releaseInputs() { stick = null; shotPtr = null; mouseDown = false; resetStickView(); $('shotbtn').classList.remove('on'); }
+function stickMove(e) {
+  const r = $('stickBase').getBoundingClientRect(); const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+  let dx = e.clientX - cx, dy = e.clientY - cy; const m = Math.hypot(dx, dy);
+  if (m > STICK_R) { dx *= STICK_R / m; dy *= STICK_R / m; }
+  const dead = 6; stick.dx = Math.abs(dx) < dead ? 0 : dx / STICK_R; stick.dy = Math.abs(dy) < dead ? 0 : dy / STICK_R;
+  $('stickKnob').style.transform = `translate(${dx}px,${dy}px)`;
 }
-canvas.addEventListener('pointerup', ptrEnd); canvas.addEventListener('pointercancel', ptrEnd);
-$('lockbtn').addEventListener('pointerdown', e => { e.preventDefault(); e.stopPropagation(); doLock(); });
+const stickEl = $('stick');
+stickEl.addEventListener('pointerdown', e => {
+  e.preventDefault(); if (state !== 'play' || paused) return;
+  try { stickEl.setPointerCapture(e.pointerId); } catch (_) {}
+  stick = { id: e.pointerId, dx: 0, dy: 0 }; stickMove(e);
+});
+stickEl.addEventListener('pointermove', e => { if (stick && e.pointerId === stick.id) stickMove(e); });
+const stickEnd = e => { if (stick && e.pointerId === stick.id) { stick = null; resetStickView(); } };
+stickEl.addEventListener('pointerup', stickEnd); stickEl.addEventListener('pointercancel', stickEnd); stickEl.addEventListener('lostpointercapture', stickEnd);
+
+const shotEl = $('shotbtn');
+shotEl.addEventListener('pointerdown', e => {
+  e.preventDefault(); if (state !== 'play' || paused) return;
+  try { shotEl.setPointerCapture(e.pointerId); } catch (_) {}
+  shotPtr = e.pointerId; shotEl.classList.add('on');
+});
+const shotEnd = e => { if (e.pointerId === shotPtr) { shotPtr = null; shotEl.classList.remove('on'); } };
+shotEl.addEventListener('pointerup', shotEnd); shotEl.addEventListener('pointercancel', shotEnd); shotEl.addEventListener('lostpointercapture', shotEnd);
+
+$('lockbtn').addEventListener('pointerdown', e => { e.preventDefault(); e.stopPropagation(); doThunder(); });
+
+canvas.addEventListener('pointerdown', e => { if (e.pointerType === 'mouse' && state === 'play' && !paused) mouseDown = true; });
+addEventListener('pointerup', e => { if (e.pointerType === 'mouse') mouseDown = false; });
 addEventListener('keydown', e => {
   keys[e.code] = true;
-  if (e.code === 'Space') { e.preventDefault(); doLock(); }
+  if (e.code === 'Space') { e.preventDefault(); if (!e.repeat) doThunder(); }
 });
 addEventListener('keyup', e => { keys[e.code] = false; });
 addEventListener('blur', releaseInputs);
 
-/* ---------- 照準 ---------- */
-const ray = new THREE.Raycaster(), ndc = new THREE.Vector2(), aimPt = new THREE.Vector3();
+/* ---------- 照準（ひこうきの 前に まっすぐ） ---------- */
+const aimPt = new THREE.Vector3();
 let aimEnemy = null;
 function computeAim() {
   aimEnemy = null; let best = D.assist * D.assist;
   for (const e of enemies) {
-    if (e.dead || e.z > -4) continue;
+    if (e.dead || e.z > -6) continue;
     const s = toScreen(e.x, e.y, e.z); if (!s.ok) continue;
-    const dx = s.x - ret.x, dy = s.y - ret.y, d = dx * dx + dy * dy;
+    const dx = s.x - frame.ax, dy = s.y - frame.ay, d = dx * dx + dy * dy;
     if (d < best) { best = d; aimEnemy = e; }
   }
   if (aimEnemy) {
     const e = aimEnemy, tt = Math.hypot(e.x - P.x, e.y - P.y, e.z) / BSPD;
     aimPt.set(e.x + e.vx * tt, e.y + e.vy * tt, e.z + e.vz * tt);
-  } else {
-    ndc.set(ret.x / innerWidth * 2 - 1, -(ret.y / innerHeight) * 2 + 1);
-    ray.setFromCamera(ndc, camera); aimPt.copy(ray.ray.origin).addScaledVector(ray.ray.direction, 95);
-  }
+  } else aimPt.set(P.x, P.y + 0.6, -90);
 }
 function shootBullet(x, y, z, yaw) {
   const b = pBullets.find(b => !b.on); if (!b) return;
@@ -1161,10 +1223,14 @@ function updateGame(dt) {
   if (G.rapidT > 0) G.rapidT -= dt;
   if (G.hitStreakT > 0) { G.hitStreakT -= dt; if (G.hitStreakT <= 0) G.hitStreak = 0; }
 
+  // ロックオンゲージ（時間でも たまる）
+  if (!lockSeq && G.gauge < D.need) addGauge(dt * D.need / D.rech);
+  updateFrame(); updateLocks(dt);
+
   // ショット
   computeAim();
   fireCd -= dt;
-  const firing = !G.over && (aimPtr !== null || mouseDown || keys.KeyZ || keys.KeyJ || apiIn.fire);
+  const firing = !G.over && (shotPtr !== null || mouseDown || keys.KeyZ || keys.KeyJ || apiIn.fire);
   if (firing && fireCd <= 0) {
     const rapid = G.rapidT > 0; fireCd = rapid ? 0.065 : 0.11; gunSide = -gunSide;
     const gx = P.x + gunSide * 0.75, gy = P.y - 0.1;
@@ -1229,7 +1295,7 @@ function updateGame(dt) {
     }
   }
 
-  updateLasers(dt);
+  updateBolts(dt);
 
   // アイテム
   for (let i = items.length - 1; i >= 0; i--) {
@@ -1281,14 +1347,19 @@ function updateCamera(dt, dtScale) {
 
 /* ---------- HUD ---------- */
 const markEls = [], popEls = [];
-for (let i = 0; i < 14; i++) { const d = document.createElement('div'); d.className = 'lockmark'; $('marks').appendChild(d); markEls.push({ el: d, e: null }); }
+for (let i = 0; i < 14; i++) { const d = document.createElement('div'); d.className = 'lockmark'; const b = document.createElement('b'); d.appendChild(b); $('marks').appendChild(d); markEls.push({ el: d, e: null, b, n: 0 }); }
 for (let i = 0; i < 18; i++) { const d = document.createElement('div'); d.className = 'popup'; $('pops').appendChild(d); popEls.push(d); }
 let popIdx = 0;
-function addMark(e) {
-  if (e.dead) return; const m = markEls.find(m => !m.e); if (!m) return;
-  m.e = e; m.el.classList.remove('show'); void m.el.offsetWidth; m.el.classList.add('show');
+function syncMarks() {
+  const cnt = new Map(); for (const e of lockList) cnt.set(e, (cnt.get(e) || 0) + 1);
+  for (const m of markEls) if (m.e && !cnt.has(m.e)) { m.e = null; m.n = 0; m.el.classList.remove('show'); }
+  for (const [e, n] of cnt) {
+    let m = markEls.find(m => m.e === e);
+    if (!m) { m = markEls.find(m => !m.e); if (!m) continue; m.e = e; m.el.classList.remove('show'); void m.el.offsetWidth; m.el.classList.add('show'); }
+    if (m.n !== n) { m.n = n; m.b.textContent = n > 1 ? '×' + n : ''; }
+    const s = toScreen(e.x, e.y, e.z); m.el.style.left = s.x + 'px'; m.el.style.top = s.y + 'px';
+  }
 }
-function removeMark(e) { if (!e) return; const m = markEls.find(m => m.e === e); if (m) { m.e = null; m.el.classList.remove('show'); } }
 function popup(x, y, text, big = false) {
   const el = popEls[popIdx]; popIdx = (popIdx + 1) % popEls.length;
   el.textContent = text; el.style.left = x + 'px'; el.style.top = y + 'px';
@@ -1321,16 +1392,17 @@ function updateHUD() {
   if (G.shield > 0) pw += `<div class="pw" style="--c:#1fb89a">シールド ×${G.shield}</div>`;
   if (G.maxLock > 8) pw += `<div class="pw" style="--c:#3a86ff">ロック さいだい ${G.maxLock}</div>`;
   if (lastHud.pw !== pw) { lastHud.pw = pw; $('powers').innerHTML = pw; }
-  const g = G.gauge / D.need, ready = g >= 1;
-  const lb = $('lockbtn'); lb.style.setProperty('--g', g.toFixed(3)); lb.classList.toggle('ready', ready);
-  setText('lockTxt', ready ? 'ロック\nオン！' : 'ためる');
-  const r = $('reticle'); r.style.left = ret.x + 'px'; r.style.top = ret.y + 'px'; r.classList.toggle('on', !!aimEnemy);
-  const lc = $('lockCircle'); lc.style.display = ready ? 'block' : 'none'; lc.style.transform = `translate(${ret.x}px,${ret.y}px)`;
-  for (const m of markEls) {
-    if (!m.e) continue;
-    if (m.e.dead) { m.e = null; m.el.classList.remove('show'); continue; }
-    const s = toScreen(m.e.x, m.e.y, m.e.z); m.el.style.left = s.x + 'px'; m.el.style.top = s.y + 'px';
-  }
+  const g = G.gauge / D.need, ready = g >= 1, n = lockList.length;
+  const lb = $('lockbtn'); lb.style.setProperty('--g', g.toFixed(3));
+  lb.classList.toggle('ready', ready && !n); lb.classList.toggle('go', ready && n > 0);
+  setText('lockTxt', !ready ? 'チャージ' : n ? 'かみなり\n×' + n : 'かみなり');
+  const lf = $('lockFrame');
+  lf.style.width = (frame.hw * 2) + 'px'; lf.style.height = (frame.hh * 2) + 'px';
+  lf.style.transform = `translate(${frame.x - frame.hw}px,${frame.y - frame.hh}px)`;
+  lf.classList.toggle('ready', ready);
+  setText('lockCount', ready ? 'ロック ' + n + ' / ' + G.maxLock : 'チャージ ' + Math.floor(g * 100) + '%');
+  const r = $('reticle'); r.style.left = frame.ax + 'px'; r.style.top = frame.ay + 'px'; r.classList.toggle('on', !!aimEnemy);
+  syncMarks();
 }
 /* ---------- 画面の流れ ---------- */
 function applyTheme(s) {
@@ -1351,8 +1423,9 @@ function clearField() {
   for (const r of rings) scene.remove(r.m); rings.length = 0;
   for (const b of pBullets) { b.on = false; b.m.visible = false; }
   for (const b of eBullets) { b.on = false; b.s.visible = false; }
-  for (const L of lasers) { L.on = false; L.pts.visible = false; }
-  for (const m of markEls) { m.e = null; m.el.classList.remove('show'); }
+  for (const B of bolts) { B.on = false; B.outer.m.visible = B.core.m.visible = false; }
+  lockList.length = 0;
+  for (const m of markEls) { m.e = null; m.n = 0; m.el.classList.remove('show'); }
   lockSeq = false;
 }
 function startStage(s) {
@@ -1367,7 +1440,6 @@ function startGame() {
   resetG(); itemBag = [];
   P.x = 0; P.y = 2; ship.visible = true; ship.rotation.set(0, 0, 0);
   state = 'play'; paused = false; hitstop = 0; slowT = 0;
-  ret.x = innerWidth * 0.5; ret.y = innerHeight * 0.42;
   resize(); startStage(0);
 }
 function finishGame(clear) {
@@ -1428,15 +1500,15 @@ document.addEventListener('visibilitychange', () => {
 /* ---------- ループ ---------- */
 let last = performance.now();
 const hook = {
-  G, enemies, items, rings, lasers, pBullets, eBullets, camera, player: P, frames: 0, elapsed: 0,
+  G, enemies, items, rings, bolts, lockList, frame, pBullets, eBullets, camera, player: P, frames: 0, elapsed: 0,
   get state() { return state; }, get paused() { return paused; }, get difficulty() { return D.key; },
   api: {
     start(d = 'normal') { D = DIFFS[d] || DIFFS.normal; ensureAudio(); $('helpOv').classList.remove('show'); $('resultOv').classList.remove('show'); startGame(); },
-    setAim(x, y) { setAim(x, y); },
     setFire(b) { apiIn.fire = !!b; },
     setMove(x, y) { apiIn.mx = x; apiIn.my = y; },
     fillGauge() { G.gauge = D.need; },
-    lock() { doLock(); },
+    lock() { doThunder(); },
+    thunder() { doThunder(); },
     bomb() { bomb(); },
     skipToBoss() { const i = tl.list.findIndex(x => x.f === spawnBoss); if (i >= 0) { tl.idx = i; G.stageTime = tl.list[i].t - 0.1; } },
     stage(s) { startStage(s); },
