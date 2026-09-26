@@ -27,11 +27,11 @@ html,body{margin:0;height:100%;overflow:hidden;touch-action:manipulation;overscr
 #bossBar{position:absolute;left:50%;top:44px;transform:translateX(-50%);width:min(56vw,520px);height:16px;border-radius:8px;background:rgba(21,48,79,.55);border:2px solid #fff;display:none;overflow:hidden}
 #bossBar i{display:block;height:100%;width:100%;background:linear-gradient(90deg,#ff4d4d,#ffbe0b);transition:width .15s}
 #qbtn{position:fixed;right:14px;top:12px;width:58px;height:58px;border-radius:50%;border:3px solid #15304f;background:#fff;font-size:30px;font-weight:700;color:#15304f;font-family:inherit;padding:0;z-index:5}
-#lockbtn{position:absolute;right:34px;bottom:170px;width:116px;height:116px;border-radius:50%;pointer-events:auto;border:none;padding:0;font-family:inherit;--g:0;background:conic-gradient(#ffd23f calc(var(--g) * 1turn),rgba(21,48,79,.55) 0);display:grid;place-items:center;touch-action:none}
+#lockbtn{position:absolute;right:34px;bottom:170px;width:116px;height:116px;border-radius:50%;pointer-events:auto;border:none;padding:0;font-family:inherit;--g:0;background:conic-gradient(#7fe3ff calc(var(--g) * 1turn),rgba(21,48,79,.55) 0);display:grid;place-items:center;touch-action:none}
 #lockbtn span{width:94px;height:94px;border-radius:50%;background:#15304f;color:#9fb3c9;display:grid;place-items:center;font-size:17px;font-weight:700;line-height:1.2;text-align:center;white-space:pre-line}
 #lockbtn.ready span{background:#3f5f8f;color:#fff}
-#lockbtn.go span{background:#ffc400;color:#15304f;animation:pulse .45s infinite alternate}
-@keyframes pulse{to{transform:scale(1.08);box-shadow:0 0 26px #ffe14d}}
+#lockbtn.go span{background:#2f7bff;color:#fff;animation:pulse .45s infinite alternate}
+@keyframes pulse{to{transform:scale(1.08);box-shadow:0 0 26px #7fe3ff}}
 #shotbtn{position:absolute;right:22px;bottom:22px;width:134px;height:134px;border-radius:50%;pointer-events:auto;border:5px solid #fff;background:#ff4d6d;color:#fff;font-family:inherit;font-size:22px;font-weight:700;padding:0;box-shadow:0 6px 0 #a3203b,0 0 0 2px #15304f;touch-action:none}
 #shotbtn.on{transform:translateY(4px);box-shadow:0 2px 0 #a3203b,0 0 0 2px #15304f;background:#ff7088}
 #stick{position:absolute;left:14px;bottom:14px;width:200px;height:200px;pointer-events:auto;touch-action:none}
@@ -42,13 +42,22 @@ html,body{margin:0;height:100%;overflow:hidden;touch-action:manipulation;overscr
 #stickBase .l{top:50%;left:6px;margin-top:-9px;border-right:12px solid #fff;border-left:0}
 #stickBase .r{top:50%;right:6px;margin-top:-9px;border-left:12px solid #fff;border-right:0}
 #stickKnob{position:absolute;left:50%;top:50%;width:70px;height:70px;margin:-35px 0 0 -35px;border-radius:50%;background:#fff;border:4px solid #15304f;box-shadow:0 4px 0 rgba(21,48,79,.4)}
-#reticle{position:absolute;left:0;top:0;width:54px;height:54px;margin:-27px 0 0 -27px;border:4px solid #fff;border-radius:50%;box-shadow:0 0 0 2px rgba(21,48,79,.6);transition:border-color .1s,transform .1s}
-#reticle::before{content:"";position:absolute;left:50%;top:50%;width:8px;height:8px;margin:-4px 0 0 -4px;border-radius:50%;background:#fff;box-shadow:0 0 0 2px rgba(21,48,79,.6)}
-#reticle.on{border-color:#ff8c1a;transform:scale(.8)}
-#lockFrame{position:absolute;left:0;top:0;border:4px dashed rgba(255,255,255,.45);border-radius:22px;transition:border-color .15s,box-shadow .15s}
-#lockFrame.ready{border:4px solid #ffd23f;box-shadow:0 0 0 2px rgba(21,48,79,.35),0 0 18px rgba(255,210,63,.6)}
-#lockFrame b{position:absolute;left:50%;top:-32px;transform:translateX(-50%);font-size:18px;color:#fff;text-shadow:0 2px 0 #15304f,0 0 6px #15304f;white-space:nowrap}
-.lockmark{position:absolute;left:0;top:0;width:44px;height:44px;margin:-22px 0 0 -22px;border:4px solid #ffc400;background:rgba(255,196,0,.2);display:none;transform:rotate(45deg);box-shadow:0 0 0 2px rgba(21,48,79,.5)}
+#reticle{position:absolute;left:0;top:0;width:88px;height:88px;margin:-44px 0 0 -44px}
+#reticle svg{width:100%;height:100%;overflow:visible;fill:none;filter:drop-shadow(0 0 1.5px rgba(21,48,79,.9))}
+#reticle .track{stroke:rgba(255,255,255,.35);stroke-width:3}
+#reticle .gauge{stroke:#7fe3ff;stroke-width:3.5;stroke-linecap:round;stroke-dasharray:169.65;stroke-dashoffset:169.65}
+#reticle .spin{animation:spin 6s linear infinite}
+#reticle .spin path{stroke:#fff;stroke-width:4;stroke-linecap:round}
+#reticle .tick{stroke:#fff;stroke-width:2.5;stroke-linecap:round}
+#reticle .dot{fill:#fff}
+#reticle.ready .spin{animation-duration:1.6s}
+#reticle.ready .spin path,#reticle.ready .tick{stroke:#aef0ff}
+#reticle.ready svg{filter:drop-shadow(0 0 1.5px rgba(21,48,79,.9)) drop-shadow(0 0 6px #5fd4ff)}
+#reticle.pulse svg{animation:rpulse .18s ease-out}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes rpulse{0%{transform:scale(1.35)}100%{transform:scale(1)}}
+#lockCount{position:absolute;left:50%;top:88px;transform:translateX(-50%);font-size:16px;color:#fff;text-shadow:0 2px 0 #15304f,0 0 5px #15304f;white-space:nowrap}
+.lockmark{position:absolute;left:0;top:0;width:44px;height:44px;margin:-22px 0 0 -22px;border:4px solid #7fe3ff;background:rgba(127,227,255,.2);display:none;transform:rotate(45deg);box-shadow:0 0 0 2px rgba(21,48,79,.5)}
 .lockmark b{position:absolute;left:34px;top:-22px;transform:rotate(-45deg);font-size:18px;color:#fff;text-shadow:0 2px 0 #15304f}
 .lockmark.show{display:block;animation:lockin .2s ease-out}
 @keyframes lockin{from{transform:rotate(45deg) scale(2.4);opacity:0}to{transform:rotate(45deg) scale(1);opacity:1}}
@@ -104,7 +113,7 @@ h3{margin:16px 0 8px;font-size:21px}
 </script>
 </head>
 <body>
-<!-- build: 2026-09-26b -->
+<!-- build: 2026-09-26c -->
 <canvas id="c"></canvas>
 
 <div id="hud" class="off">
@@ -114,8 +123,7 @@ h3{margin:16px 0 8px;font-size:21px}
     <div id="powers"></div>
     <div id="stageLbl" class="num"></div>
     <div id="bossBar"><i id="bossFill"></i></div>
-    <div id="lockFrame"><b id="lockCount"></b></div>
-    <div id="reticle"></div>
+    <div id="reticle"><svg viewBox="-40 -40 80 80"><circle class="track" r="27"/><circle class="gauge" r="27" transform="rotate(-90)"/><g class="spin"><path d="M-15.21 -32.63A36 36 0 0 1 15.21 -32.63"/><path d="M32.63 -15.21A36 36 0 0 1 32.63 15.21"/><path d="M15.21 32.63A36 36 0 0 1 -15.21 32.63"/><path d="M-32.63 15.21A36 36 0 0 1 -32.63 -15.21"/></g><path class="tick" d="M0 -19v7M0 19v-7M-19 0h7M19 0h-7"/><circle class="dot" r="2.5"/></svg><b id="lockCount"></b></div>
     <div id="marks"></div>
     <div id="stick"><div id="stickBase"><i class="u"></i><i class="d"></i><i class="l"></i><i class="r"></i></div><div id="stickKnob"></div></div>
     <button id="shotbtn" aria-label="ショット">ショット</button>
@@ -136,14 +144,13 @@ h3{margin:16px 0 8px;font-size:21px}
     <p class="lead">そらを とびながら、てきを まとめて うちおとそう！</p>
     <svg class="map" viewBox="0 0 400 230" aria-hidden="true">
       <rect x="4" y="4" width="392" height="222" rx="18" fill="#bfe6ff" stroke="#15304f" stroke-width="4"/>
-      <rect x="140" y="30" width="120" height="80" rx="12" fill="none" stroke="#e0a800" stroke-width="4"/>
-      <path d="M170 56l12-8 12 8-12 8z M214 70l12-8 12 8-12 8z" fill="#ff5a5f" stroke="#15304f" stroke-width="2"/>
-      <path d="M182 42l8 14-8 14-8-14z M226 56l8 14-8 14-8-14z" fill="none" stroke="#ffc400" stroke-width="3"/>
-      <path d="M176 6 L186 22 L176 32 L184 48" fill="none" stroke="#ffc400" stroke-width="5" stroke-linejoin="bevel"/>
-      <path d="M176 6 L186 22 L176 32 L184 48" fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="bevel"/>
-      <path d="M234 6 L222 26 L232 40 L226 62" fill="none" stroke="#ffc400" stroke-width="5" stroke-linejoin="bevel"/>
-      <path d="M234 6 L222 26 L232 40 L226 62" fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="bevel"/>
-      <text x="200" y="128" text-anchor="middle" font-size="13" font-weight="700" fill="#15304f">ロックオンの わく</text>
+            <path d="M200 146 C168 118 150 86 182 64 S220 30 244 46" fill="none" stroke="#5fb8ff" stroke-width="7" stroke-linecap="round"/>
+      <path d="M200 146 C168 118 150 86 182 64 S220 30 244 46" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="200" cy="100" r="17" fill="none" stroke="#fff" stroke-width="3"/>
+      <circle cx="200" cy="100" r="17" fill="none" stroke="#15304f" stroke-width="1" stroke-dasharray="6 5"/>
+      <circle cx="182" cy="64" r="9" fill="#ff5a5f" stroke="#15304f" stroke-width="2"/>
+      <circle cx="244" cy="46" r="9" fill="#ff5a5f" stroke="#15304f" stroke-width="2"/>
+      <text x="222" y="104" font-size="11" font-weight="700" fill="#15304f">ロックオンの わく</text>
       <path d="M200 150 l-24 20 h48z" fill="#fff" stroke="#15304f" stroke-width="3"/>
       <path d="M200 144 v-8" stroke="#fff27a" stroke-width="4"/>
       <circle cx="62" cy="168" r="42" fill="rgba(21,48,79,.25)" stroke="#fff" stroke-width="4"/>
@@ -151,8 +158,8 @@ h3{margin:16px 0 8px;font-size:21px}
       <text x="62" y="112" text-anchor="middle" font-size="15" font-weight="700" fill="#15304f">いどう</text>
       <circle cx="350" cy="182" r="32" fill="#ff4d6d" stroke="#fff" stroke-width="4"/>
       <text x="350" y="188" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">ショット</text>
-      <circle cx="350" cy="108" r="27" fill="#ffc400" stroke="#15304f" stroke-width="3"/>
-      <text x="350" y="113" text-anchor="middle" font-size="12" font-weight="700" fill="#15304f">かみなり</text>
+      <circle cx="350" cy="108" r="27" fill="#2f7bff" stroke="#15304f" stroke-width="3"/>
+      <text x="350" y="113" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">かみなり</text>
       <circle cx="370" cy="30" r="15" fill="#fff" stroke="#15304f" stroke-width="3"/>
       <text x="370" y="37" text-anchor="middle" font-size="18" font-weight="700" fill="#15304f">？</text>
     </svg>
@@ -163,15 +170,15 @@ h3{margin:16px 0 8px;font-size:21px}
       </div>
       <div class="card">
         <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="27" fill="#ff4d6d" stroke="#15304f" stroke-width="3"/><path d="M24 40l8-18 8 18" fill="none" stroke="#fff" stroke-width="5"/></svg>
-        <div><b>ショットボタン</b><br>おして いる あいだ、ひこうきの <ruby>前<rt>まえ</rt></ruby>に たまが でる</div>
+        <div><b>ショットボタン</b><br>おす たびに 1ぱつ、ひこうきの <ruby>前<rt>まえ</rt></ruby>に たまが でる</div>
       </div>
       <div class="card">
-        <svg viewBox="0 0 64 64"><rect x="8" y="10" width="48" height="44" rx="8" fill="none" stroke="#e0a800" stroke-width="4"/><path d="M32 22l10 10-10 10-10-10z" fill="none" stroke="#ffc400" stroke-width="4"/></svg>
-        <div><b>ロックオンの わく</b><br>ひこうきの <ruby>前<rt>まえ</rt></ruby>に でる わく。わくが きいろに なったら、てきを わくに いれて あつめる</div>
+        <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="20" fill="none" stroke="#7fb8d8" stroke-width="3"/><path d="M14 20A22 22 0 0 1 20 14M44 14A22 22 0 0 1 50 20M50 44A22 22 0 0 1 44 50M20 50A22 22 0 0 1 14 44" stroke="#15304f" stroke-width="4" stroke-linecap="round" fill="none"/><circle cx="32" cy="32" r="3" fill="#15304f"/></svg>
+        <div><b>ロックオンの わく</b><br>ひこうきの <ruby>前<rt>まえ</rt></ruby>の まるい わく。<ruby>青<rt>あお</rt></ruby>く <ruby>光<rt>ひか</rt></ruby>ったら てきに かさねて、ひとつずつ あつめる</div>
       </div>
       <div class="card">
-        <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="27" fill="#ffc400" stroke="#15304f" stroke-width="3"/><path d="M36 10L22 34h10l-4 20 16-26H34z" fill="#fff" stroke="#15304f" stroke-width="2.5" stroke-linejoin="round"/></svg>
-        <div><b>かみなりボタン</b><br>あつめた てきに かみなりが つぎつぎ おちる。いっしょに たおすほど <ruby>点<rt>てん</rt></ruby>が ふえる</div>
+        <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="27" fill="#2f7bff" stroke="#15304f" stroke-width="3"/><path d="M36 10L22 34h10l-4 20 16-26H34z" fill="#fff" stroke="#15304f" stroke-width="2.5" stroke-linejoin="round"/></svg>
+        <div><b>かみなりボタン</b><br>ひこうきから <ruby>青白<rt>あおじろ</rt></ruby>い いなずまが のびて、あつめた てきを じゅんばんに たおす。いっしょに たおすほど <ruby>点<rt>てん</rt></ruby>が ふえる</div>
       </div>
       <div class="card">
         <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="27" fill="none" stroke="#19c7ff" stroke-width="3" stroke-dasharray="6 5"/><path d="M32 16l14 8v16l-14 8-14-8V24z" fill="#6b7a99" stroke="#15304f" stroke-width="3"/></svg>
@@ -188,8 +195,8 @@ h3{margin:16px 0 8px;font-size:21px}
     </div>
     <h3>アイテム（<ruby>近<rt>ちか</rt></ruby>づくと すいよせられる）</h3>
     <div class="items">
-      <div class="item"><span class="chip" style="background:#3a86ff">ロック+</span>わくで あつめられる かずが ふえる</div>
-      <div class="item"><span class="chip" style="background:#ff4d4d">れんしゃ</span>しばらく ショットが はやく ひろがる</div>
+      <div class="item"><span class="chip" style="background:#3a86ff">ロック+</span>あつめられる かずが ふえる</div>
+      <div class="item"><span class="chip" style="background:#ff4d4d">ワイド</span>しばらく ショットが 3ほうこうに でる</div>
       <div class="item"><span class="chip" style="background:#1fb89a">シールド</span>2かい まもって くれる</div>
       <div class="item"><span class="chip" style="background:#f4a300">ボム</span>がめんの てきに だいダメージ</div>
       <div class="item"><span class="chip" style="background:#ff5d9e">かいふく</span>ライフが 1 ふえる</div>
@@ -237,7 +244,7 @@ h3{margin:16px 0 8px;font-size:21px}
 import * as THREE from 'three';
 
 /* =========================================================
-   スカイ ロックオン  v2026-09-26b
+   スカイ ロックオン  v2026-09-26c
    ---------------------------------------------------------
    テスト用フック：window.__G
    - 敵・アイテム・リングの位置は mesh.position を直接動かさず、
@@ -246,7 +253,7 @@ import * as THREE from 'three';
    - __G.frames / __G.elapsed はゲームループ内で毎フレーム更新される。
    ========================================================= */
 
-const VERSION = 'v2026-09-26b';
+const VERSION = 'v2026-09-26c';
 const $ = id => document.getElementById(id);
 $('ver').textContent = VERSION;
 const TAU = Math.PI * 2, UP = new THREE.Vector3(0, 1, 0);
@@ -271,9 +278,9 @@ document.addEventListener('dblclick', e => e.preventDefault());
 
 /* ---------- むずかしさ ---------- */
 const DIFFS = {
-  easy:   { key: 'easy',   name: 'やさしい',   life: Infinity, spd: 0.8,  rate: 0.45, bs: 0.62, assist: 70, lockR: 150, need: 18, rech: 3, hp: 0.75, mul: 1.0 },
-  normal: { key: 'normal', name: 'ふつう',     life: 5,        spd: 0.95, rate: 0.8,  bs: 0.85, assist: 40, lockR: 125, need: 26, rech: 4.5, hp: 1.0,  mul: 1.2 },
-  hard:   { key: 'hard',   name: 'むずかしい', life: 3,        spd: 1.12, rate: 1.35, bs: 1.12, assist: 22, lockR: 105, need: 32, rech: 6, hp: 1.3,  mul: 1.6 },
+  easy:   { key: 'easy',   name: 'やさしい',   life: Infinity, spd: 0.8,  rate: 0.45, bs: 0.62, assist: 0, lockR: 46, need: 18, rech: 3, hp: 0.75, mul: 1.0 },
+  normal: { key: 'normal', name: 'ふつう',     life: 5,        spd: 0.95, rate: 0.8,  bs: 0.85, assist: 0, lockR: 38, need: 26, rech: 4.5, hp: 1.0,  mul: 1.2 },
+  hard:   { key: 'hard',   name: 'むずかしい', life: 3,        spd: 1.12, rate: 1.35, bs: 1.12, assist: 0, lockR: 32, need: 32, rech: 6, hp: 1.3,  mul: 1.6 },
 };
 let D = DIFFS.normal;
 
@@ -500,67 +507,96 @@ const ebMat = new THREE.SpriteMaterial({ map: ballTex('#ff2f6d', '#4a0020'), tra
 const eBullets = [];
 for (let i = 0; i < 140; i++) { const s = new THREE.Sprite(ebMat); s.scale.setScalar(1.3); s.visible = false; scene.add(s); eBullets.push({ s, on: false, x: 0, y: 0, z: 0, vx: 0, vy: 0, vz: 0, life: 0 }); }
 
-/* ---------- かみなり（カメラの方を向く帯で描く） ---------- */
-const BOLT_DMG = 6, BPTS = 16;
-const bolts = [];
+/* ---------- かみなり（自機から のびる 青白い 1本の いなずま） ----------
+   ロックした敵を順番に つなぐ 曲線を、カメラの方を向く帯で描く。 */
+const BOLT_DMG = 6, CH_SEG = 18, CH_MAX = 14 * CH_SEG + 2;
 function makeRibbon(color, opacity) {
   const geo = new THREE.BufferGeometry();
-  const pos = new Float32Array(BPTS * 2 * 3); const idx = [];
-  for (let i = 0; i < BPTS - 1; i++) { const a = i * 2; idx.push(a, a + 1, a + 2, a + 1, a + 3, a + 2); }
+  const pos = new Float32Array(CH_MAX * 2 * 3); const idx = [];
+  for (let i = 0; i < CH_MAX - 1; i++) { const a = i * 2; idx.push(a, a + 1, a + 2, a + 1, a + 3, a + 2); }
   geo.setAttribute('position', new THREE.BufferAttribute(pos, 3)); geo.setIndex(idx);
   const mat = new THREE.MeshBasicMaterial({ color, transparent: true, opacity, depthWrite: false, depthTest: false, side: THREE.DoubleSide, fog: false });
   const m = new THREE.Mesh(geo, mat); m.frustumCulled = false; m.visible = false; m.renderOrder = 5; scene.add(m);
   return { m, pos, geo, base: opacity };
 }
-for (let i = 0; i < 36; i++) {
-  const pts = []; for (let k = 0; k < BPTS; k++) pts.push(new THREE.Vector3());
-  bolts.push({ on: false, life: 0, max: 0.3, jit: 0, n: BPTS, w: 0.5, a: new THREE.Vector3(), b: new THREE.Vector3(), off: new THREE.Vector3(), target: null, follow: false, pts,
-    outer: makeRibbon(0xffd23f, 0.9), core: makeRibbon(0xffffff, 1) });
-}
-const _t = new THREE.Vector3(), _w = new THREE.Vector3(), _r = new THREE.Vector3();
-function jagged(B) {
-  const n = B.n, d = _t.subVectors(B.b, B.a); const len = d.length() || 1; d.divideScalar(len);
-  const amp = Math.min(len * 0.075, 2.6);
-  B.pts[0].copy(B.a); B.pts[n - 1].copy(B.b);
-  for (let i = 1; i < n - 1; i++) {
-    const t = i / (n - 1);
-    _r.set(rand(-1, 1), rand(-1, 1), rand(-1, 1)); _r.addScaledVector(d, -_r.dot(d));
-    B.pts[i].copy(B.a).lerp(B.b, t).addScaledVector(_r, amp * (0.35 + Math.sin(t * Math.PI) * 0.65));
+const chain = {
+  on: false, nodes: [], h: 0, segT: 0.1, fade: 0, time: 0, volley: null, done: false,
+  pts: Array.from({ length: CH_MAX }, () => new THREE.Vector3()), n: 0,
+  layers: [[makeRibbon(0x2f7bff, 0.4), 2.4], [makeRibbon(0x9fe6ff, 0.95), 1], [makeRibbon(0xffffff, 1), 0.38]],
+};
+const _t = new THREE.Vector3(), _w = new THREE.Vector3(), _r = new THREE.Vector3(), _u = new THREE.Vector3(), _q = new THREE.Vector3(), _cc = new THREE.Vector3();
+function nosePos(out) { return out.set(P.x, P.y + 0.2, -1.6); }
+function startChain(targets, volley) {
+  const nodes = [{ p: nosePos(new THREE.Vector3()), e: null, hits: 0, bend: new THREE.Vector3((Math.random() < 0.5 ? -1 : 1) * 0.7, 1, 0.2).normalize() }];
+  for (const e of targets) {
+    const last = nodes[nodes.length - 1];
+    if (last.e === e) { last.hits++; continue; }
+    nodes.push({ p: new THREE.Vector3(e.x, e.y, e.z), e, hits: 1, bend: new THREE.Vector3(rand(-1, 1), rand(-0.3, 1), rand(-0.5, 0.5)).normalize() });
   }
+  Object.assign(chain, { on: true, nodes, h: 0, fade: 0, time: 0, volley, done: false });
+  volley.pending = 1;
+  for (const [R] of chain.layers) R.m.visible = true;
 }
-function ribbon(R, B, width) {
-  const n = B.n, cp = camera.position;
-  for (let i = 0; i < BPTS; i++) {
-    const k = Math.min(i, n - 1), p = B.pts[k];
-    const p0 = B.pts[Math.max(k - 1, 0)], p1 = B.pts[Math.min(k + 1, n - 1)];
-    _t.subVectors(p1, p0); _w.subVectors(cp, p); const dist = _w.length(); _r.crossVectors(_t, _w).normalize().multiplyScalar(width * clamp(dist / 14, 1, 6) * (1 - 0.35 * k / (n - 1)));
+function chainHit(i) {
+  const nd = chain.nodes[i], e = nd.e;
+  sfx.zap(i - 1);
+  glow(nd.p.x, nd.p.y, nd.p.z, 11, 0x9fe6ff, 0.3); glow(nd.p.x, nd.p.y, nd.p.z, 5, 0xffffff, 0.15);
+  emit(nd.p.x, nd.p.y, nd.p.z, 14, 0x9fe6ff, 20, 0.3, 0.45); emit(nd.p.x, nd.p.y, nd.p.z, 6, 0xffffff, 14, 0.25, 0.3);
+  camShake = Math.max(camShake, 0.16);
+  if (e && lockable(e)) hitEnemy(e, BOLT_DMG * nd.hits, 'bolt', chain.volley);
+}
+function buildChainPoints() {
+  const C = chain, last = C.nodes.length - 1, hi = Math.min(C.h, last);
+  let n = 0;
+  for (let k = 0; k < last && k < hi; k++) {
+    const A = C.nodes[k].p, B = C.nodes[k + 1].p, amount = Math.min(1, hi - k);
+    _t.subVectors(B, A); const len = _t.length() || 1; _t.divideScalar(len);
+    _cc.addVectors(A, B).multiplyScalar(0.5).addScaledVector(C.nodes[k + 1 === 1 ? 0 : k + 1].bend, len * 0.35);
+    _u.crossVectors(_t, UP); if (_u.lengthSq() < 1e-4) _u.set(1, 0, 0); _u.normalize(); _q.crossVectors(_t, _u);
+    const amp = Math.min(len * 0.07, 2.2), steps = Math.max(2, Math.ceil(CH_SEG * amount));
+    for (let j = (k === 0 ? 0 : 1); j <= steps; j++) {
+      if (n >= CH_MAX) break;
+      const t = (j / steps) * amount, it = 1 - t, env = Math.sin(Math.PI * t);
+      const P0 = C.pts[n];
+      P0.set(it * it * A.x + 2 * it * t * _cc.x + t * t * B.x, it * it * A.y + 2 * it * t * _cc.y + t * t * B.y, it * it * A.z + 2 * it * t * _cc.z + t * t * B.z);
+      const w1 = Math.sin(t * Math.PI * 3 + C.time * 16 + k * 1.7) * amp * env, w2 = Math.cos(t * Math.PI * 2.2 + C.time * 12 + k) * amp * 0.6 * env;
+      P0.addScaledVector(_u, w1 + rand(-0.12, 0.12) * amp).addScaledVector(_q, w2 + rand(-0.12, 0.12) * amp);
+      n++;
+    }
+  }
+  C.n = n;
+}
+function ribbon(R, n, width) {
+  const cp = camera.position, pts = chain.pts;
+  for (let i = 0; i < n; i++) {
+    const p = pts[i], p0 = pts[Math.max(i - 1, 0)], p1 = pts[Math.min(i + 1, n - 1)];
+    _t.subVectors(p1, p0); _w.subVectors(cp, p); const dist = _w.length();
+    _r.crossVectors(_t, _w).normalize().multiplyScalar(width * clamp(dist / 14, 1, 6));
     R.pos[i * 6] = p.x + _r.x; R.pos[i * 6 + 1] = p.y + _r.y; R.pos[i * 6 + 2] = p.z + _r.z;
     R.pos[i * 6 + 3] = p.x - _r.x; R.pos[i * 6 + 4] = p.y - _r.y; R.pos[i * 6 + 5] = p.z - _r.z;
   }
   R.geo.attributes.position.needsUpdate = true;
-  R.geo.setDrawRange(0, (n - 1) * 6);
+  R.geo.setDrawRange(0, Math.max(0, n - 1) * 6);
 }
-function spawnBolt(a, b, w, life, n, target) {
-  const B = bolts.find(x => !x.on); if (!B) return null;
-  B.on = true; B.life = B.max = life; B.jit = 0; B.w = w; B.n = n; B.a.copy(a); B.b.copy(b); B.target = target; B.follow = !!target; B.off.subVectors(a, b);
-  jagged(B); B.outer.m.visible = B.core.m.visible = true;
-  return B;
+function updateThunder(dt) {
+  const C = chain; if (!C.on) return;
+  C.time += dt;
+  nosePos(C.nodes[0].p);
+  for (let i = 1; i < C.nodes.length; i++) { const nd = C.nodes[i]; if (nd.e && !nd.e.dead) nd.p.set(nd.e.x, nd.e.y, nd.e.z); else nd.p.z += WS * 0.3 * dt; }
+  const last = C.nodes.length - 1;
+  if (!C.done) {
+    const before = Math.floor(C.h);
+    C.h = Math.min(last, C.h + dt / C.segT);
+    for (let i = before + 1; i <= Math.floor(C.h); i++) chainHit(i);
+    if (C.h >= last) { C.done = true; lockSeq = false; C.volley.pending = 0; volleyEnd(C.volley); }
+  } else C.fade += dt;
+  const alpha = C.done ? Math.max(0, 1 - C.fade / 0.35) : 1;
+  if (C.done && C.fade > 0.35) { stopChain(); return; }
+  buildChainPoints();
+  const flick = 0.75 + Math.random() * 0.25;
+  for (const [R, w] of C.layers) { R.m.material.opacity = R.base * alpha * (w > 1 ? flick : 1); ribbon(R, C.n, 0.2 * w); }
 }
-function updateBolts(dt) {
-  for (const B of bolts) {
-    if (!B.on) continue;
-    B.life -= dt;
-    if (B.life <= 0) { B.on = false; B.outer.m.visible = B.core.m.visible = false; continue; }
-    if (B.follow) {
-      if (B.target && !B.target.dead) B.b.set(B.target.x, B.target.y, B.target.z); else B.b.z += WS * 0.3 * dt;
-      B.a.copy(B.b).add(B.off);
-    } else { B.a.z += WS * 0.3 * dt; B.b.z += WS * 0.3 * dt; }
-    B.jit -= dt; if (B.jit <= 0) { B.jit = 0.035; jagged(B); }
-    const k = B.life / B.max, flick = 0.65 + Math.random() * 0.35;
-    B.outer.m.material.opacity = B.outer.base * k * flick; B.core.m.material.opacity = k;
-    ribbon(B.outer, B, B.w); ribbon(B.core, B, B.w * 0.32);
-  }
-}
+function stopChain() { chain.on = false; for (const [R] of chain.layers) R.m.visible = false; }
 
 /* ---------- 音（Web Audio） ---------- */
 let actx = null, master, sfxGain, bgmGain, noiseBuf;
@@ -601,7 +637,7 @@ const sfx = {
   boom(size = 1) { noise(0.25 + size * 0.15, { vol: 0.22 * Math.min(1.6, size), freq: 1800, to: 180 }); tone(140, 0.3 + size * 0.1, { type: 'sine', vol: 0.25, to: 40 }); },
   lock(i) { const f = SCALE[i % SCALE.length]; tone(f, 0.16, { type: 'triangle', vol: 0.14 }); tone(f * 2, 0.08, { type: 'sine', vol: 0.05 }); },
   zap(i) { const f = SCALE[i % SCALE.length]; noise(0.22, { type: 'highpass', freq: 2500, vol: 0.2 }); noise(0.3, { freq: 900, to: 120, vol: 0.18 }); tone(f, 0.18, { type: 'square', vol: 0.06, to: f * 0.5 }); tone(f * 1.5, 0.12, { type: 'triangle', vol: 0.06 }); },
-  charge() { tone(220, 0.25, { type: 'sawtooth', vol: 0.06, to: 880 }); noise(0.25, { type: 'bandpass', freq: 600, to: 3000, vol: 0.12, q: 3 }); },
+  charge() { tone(330, 0.2, { type: 'sawtooth', vol: 0.06, to: 1320 }); noise(0.3, { type: 'bandpass', freq: 900, to: 5000, vol: 0.16, q: 3 }); },
   chord(n) {
     if (!actx) return; const t = actx.currentTime; const base = n >= 8 ? 1.5 : n >= 5 ? 1.26 : 1;
     [523.3, 659.3, 784, 1046.5].forEach((f, i) => tone(f * base, 0.6, { type: 'triangle', vol: 0.09, at: t + i * 0.02 }));
@@ -965,13 +1001,9 @@ function addGauge(v) {
   G.gauge = Math.min(D.need, G.gauge + v);
   if (G.gauge >= D.need) sfx.ready();
 }
-const frame = { x: 0, y: 0, hw: 120, hh: 100, ax: 0, ay: 0 };
-function updateFrame() {
-  const s = toScreen(P.x, P.y + 0.6, -70), a = toScreen(P.x, P.y + 0.6, -90); frame.ax = a.x; frame.ay = a.y;
-  frame.hw = Math.min(D.lockR * 1.15, innerWidth * 0.22); frame.hh = Math.min(D.lockR * 0.85, innerHeight * 0.17);
-  frame.x = clamp(s.x, frame.hw + 8, innerWidth - frame.hw - 8);
-  const sh = toScreen(P.x, P.y, 0);
-  frame.y = clamp(Math.min(s.y, sh.y - frame.hh - 30), frame.hh + 70, innerHeight - frame.hh - 8);
+const frame = { x: 0, y: 0 };
+function updateFrame() {   // ロックオンの わく（照準）は ひこうきの前 z=-90 の点
+  const a = toScreen(P.x, P.y + 0.6, -90); frame.x = a.x; frame.y = a.y;
 }
 const lockable = e => !e.dead && e.lockable && !(e.armor > 0) && !e.shielded;
 function updateLocks(dt) {
@@ -985,60 +1017,23 @@ function updateLocks(dt) {
   for (const e of enemies) {
     if (!lockable(e) || e.z > -8 || e.z < -155) continue;
     const s = toScreen(e.x, e.y, e.z); if (!s.ok) continue;
-    const dx = s.x - frame.x, dy = s.y - frame.y;
-    if (Math.abs(dx) > frame.hw || Math.abs(dy) > frame.hh) continue;
-    const d = dx * dx + dy * dy, cnt = lockList.filter(t => t === e).length;
+    const dx = s.x - frame.x, dy = s.y - frame.y, d = dx * dx + dy * dy;
+    if (d > D.lockR * D.lockR) continue;
+    const cnt = lockList.filter(t => t === e).length;
     if (cnt === 0) { if (d < bd) { bd = d; best = e; } }
     else if (e.hp > cnt * BOLT_DMG && d < bdm) { bdm = d; bestMulti = e; }
   }
   const pick = best || bestMulti;
-  if (pick) { lockList.push(pick); sfx.lock(lockList.length - 1); lockTick = 0.11; }
+  if (pick) { lockList.push(pick); sfx.lock(lockList.length - 1); lockTick = 0.12; pulseReticle(); }
 }
 function doThunder() {
   if (state !== 'play' || paused || G.over || lockSeq) return;
-  if (G.gauge < D.need) { popup(frame.x, frame.y, 'チャージ ちゅう…'); return; }
-  if (!lockList.length) { popup(frame.x, frame.y, 'わくに てきを いれよう'); return; }
+  if (G.gauge < D.need) { popup(frame.x, frame.y - 60, 'チャージ ちゅう…'); return; }
+  if (!lockList.length) { popup(frame.x, frame.y - 60, 'わくを てきに かさねよう'); return; }
   const targets = lockList.splice(0);
   lockSeq = true; G.gauge = 0;
-  const volley = { kills: 0, pending: targets.length };
-  sfx.charge(); flashScreen('#fff6c8', 0.25);
-  targets.forEach((e, i) => later(0.08 + i * 0.085, () => strike(e, volley, i)));
-  later(0.12 + targets.length * 0.085, () => { lockSeq = false; });
-}
-function nearestTarget(from) {
-  let best = null, bd = Infinity;
-  for (const e of enemies) {
-    if (!lockable(e) || e.z > -6 || e.z < -160) continue;
-    if (!toScreen(e.x, e.y, e.z).ok) continue;
-    const d = from.distanceToSquared(_v.set(e.x, e.y, e.z)); if (d < bd) { bd = d; best = e; }
-  }
-  return best;
-}
-function strike(e, volley, i) {
-  if (G.over || state !== 'play') { volley.pending--; return; }
-  _v2.set(P.x, P.y, -10);
-  if (!e || !lockable(e)) e = nearestTarget(_v2);
-  if (e) _v2.set(e.x + rand(-5, 5), e.y + rand(22, 30), e.z + rand(-6, 2));
-  sfx.zap(i);
-  if (!e) {
-    _v2.set(P.x + rand(-6, 6), P.y + 26, -60); _p.set(_v2.x + rand(-3, 3), -10, -60); spawnBolt(_v2, _p, 0.25, 0.25, 12, null);
-  } else {
-    _p.set(e.x, e.y, e.z);
-    const n = BPTS;
-    const B = spawnBolt(_v2, _p, 0.32, 0.32, n, e);
-    glow(_v2.x, _v2.y, _v2.z, 14, 0xfff6c8, 0.3);
-    // 枝分かれ
-    if (B) for (let k = 0; k < 2; k++) {
-      const j = (2 + Math.random() * (n - 5)) | 0, from = B.pts[j];
-      _s.subVectors(_p, _v2).normalize().multiplyScalar(rand(5, 10)).add(_w.set(rand(-6, 6), rand(-2, 2), rand(-3, 3)));
-      spawnBolt(from, _t.copy(from).add(_s), 0.13, 0.2, 7, null);
-    }
-    glow(e.x, e.y, e.z, 10, 0xfff27a, 0.3); glow(e.x, e.y, e.z, 5, 0xffffff, 0.15);
-    emit(e.x, e.y, e.z, 14, 0xffe14d, 20, 0.3, 0.45);
-    camShake = Math.max(camShake, 0.18);
-    hitEnemy(e, BOLT_DMG, 'bolt', volley);
-  }
-  volley.pending--; if (volley.pending <= 0) volleyEnd(volley);
+  sfx.charge(); flashScreen('#dff6ff', 0.2);
+  startChain(targets, { kills: 0, pending: 1 });
 }
 function volleyEnd(v) {
   G.maxChain = Math.max(G.maxChain, v.kills);
@@ -1049,7 +1044,7 @@ function volleyEnd(v) {
 
 /* ---------- アイテム ---------- */
 const ITEM_DEF = {
-  lock: { label: 'ロック+', color: '#3a86ff' }, rapid: { label: 'れんしゃ', color: '#ff4d4d' }, shield: { label: 'シールド', color: '#1fb89a' },
+  lock: { label: 'ロック+', color: '#3a86ff' }, rapid: { label: 'ワイド', color: '#ff4d4d' }, shield: { label: 'シールド', color: '#1fb89a' },
   bomb: { label: 'ボム', color: '#f4a300' }, heal: { label: 'かいふく', color: '#ff5d9e' },
 };
 const itemTexCache = {};
@@ -1106,7 +1101,7 @@ function bomb() {
 
 /* ---------- 入力 ---------- */
 let stick = null, shotPtr = null, mouseDown = false;
-const keys = {}; const apiIn = { fire: false, mx: 0, my: 0 };
+const keys = {}; const apiIn = { fire: false, fireT: 0, mx: 0, my: 0 };
 const STICK_R = 62;
 function resetStickView() { $('stickKnob').style.transform = ''; }
 function releaseInputs() { stick = null; shotPtr = null; mouseDown = false; resetStickView(); $('shotbtn').classList.remove('on'); }
@@ -1131,37 +1126,33 @@ const shotEl = $('shotbtn');
 shotEl.addEventListener('pointerdown', e => {
   e.preventDefault(); if (state !== 'play' || paused) return;
   try { shotEl.setPointerCapture(e.pointerId); } catch (_) {}
-  shotPtr = e.pointerId; shotEl.classList.add('on');
+  shotPtr = e.pointerId; shotEl.classList.add('on'); fireOnce();
 });
 const shotEnd = e => { if (e.pointerId === shotPtr) { shotPtr = null; shotEl.classList.remove('on'); } };
 shotEl.addEventListener('pointerup', shotEnd); shotEl.addEventListener('pointercancel', shotEnd); shotEl.addEventListener('lostpointercapture', shotEnd);
 
 $('lockbtn').addEventListener('pointerdown', e => { e.preventDefault(); e.stopPropagation(); doThunder(); });
 
-canvas.addEventListener('pointerdown', e => { if (e.pointerType === 'mouse' && state === 'play' && !paused) mouseDown = true; });
+canvas.addEventListener('pointerdown', e => { if (e.pointerType === 'mouse' && state === 'play' && !paused) fireOnce(); });
 addEventListener('pointerup', e => { if (e.pointerType === 'mouse') mouseDown = false; });
 addEventListener('keydown', e => {
   keys[e.code] = true;
   if (e.code === 'Space') { e.preventDefault(); if (!e.repeat) doThunder(); }
+  if ((e.code === 'KeyZ' || e.code === 'KeyJ') && !e.repeat) fireOnce();
 });
 addEventListener('keyup', e => { keys[e.code] = false; });
 addEventListener('blur', releaseInputs);
 
-/* ---------- 照準（ひこうきの 前に まっすぐ） ---------- */
+/* ---------- ショット（おした 回数だけ 前へ まっすぐ） ---------- */
 const aimPt = new THREE.Vector3();
-let aimEnemy = null;
-function computeAim() {
-  aimEnemy = null; let best = D.assist * D.assist;
-  for (const e of enemies) {
-    if (e.dead || e.z > -6) continue;
-    const s = toScreen(e.x, e.y, e.z); if (!s.ok) continue;
-    const dx = s.x - frame.ax, dy = s.y - frame.ay, d = dx * dx + dy * dy;
-    if (d < best) { best = d; aimEnemy = e; }
-  }
-  if (aimEnemy) {
-    const e = aimEnemy, tt = Math.hypot(e.x - P.x, e.y - P.y, e.z) / BSPD;
-    aimPt.set(e.x + e.vx * tt, e.y + e.vy * tt, e.z + e.vz * tt);
-  } else aimPt.set(P.x, P.y + 0.6, -90);
+function fireOnce() {
+  if (state !== 'play' || paused || G.over || fireCd > 0) return;
+  fireCd = 0.05; gunSide = -gunSide;
+  aimPt.set(P.x, P.y + 0.6, -90);
+  const gx = P.x + gunSide * 0.75, gy = P.y - 0.1;
+  shootBullet(gx, gy, -1.2, 0);
+  if (G.rapidT > 0) { shootBullet(P.x, P.y + 0.25, -1.4, 0.09); shootBullet(P.x, P.y + 0.25, -1.4, -0.09); }
+  glow(gx, gy, -1.8, 1.1, 0xfff27a, 0.06); sfx.shot(G.hitStreak);
 }
 function shootBullet(x, y, z, yaw) {
   const b = pBullets.find(b => !b.on); if (!b) return;
@@ -1228,16 +1219,8 @@ function updateGame(dt) {
   updateFrame(); updateLocks(dt);
 
   // ショット
-  computeAim();
-  fireCd -= dt;
-  const firing = !G.over && (shotPtr !== null || mouseDown || keys.KeyZ || keys.KeyJ || apiIn.fire);
-  if (firing && fireCd <= 0) {
-    const rapid = G.rapidT > 0; fireCd = rapid ? 0.065 : 0.11; gunSide = -gunSide;
-    const gx = P.x + gunSide * 0.75, gy = P.y - 0.1;
-    shootBullet(gx, gy, -1.2, 0);
-    if (rapid) { shootBullet(P.x, P.y + 0.25, -1.4, 0.07); shootBullet(P.x, P.y + 0.25, -1.4, -0.07); }
-    glow(gx, gy, -1.8, 0.9, 0xfff27a, 0.05); sfx.shot(G.hitStreak);
-  }
+  if (fireCd > 0) fireCd -= dt;
+  if (apiIn.fire) { apiIn.fireT -= dt; if (apiIn.fireT <= 0) { apiIn.fireT = 0.15; fireOnce(); } }   // テスト用の自動連打
   for (const b of pBullets) {
     if (!b.on) continue;
     const x0 = b.x, y0 = b.y, z0 = b.z;
@@ -1295,7 +1278,7 @@ function updateGame(dt) {
     }
   }
 
-  updateBolts(dt);
+  updateThunder(dt);
 
   // アイテム
   for (let i = items.length - 1; i >= 0; i--) {
@@ -1350,6 +1333,7 @@ const markEls = [], popEls = [];
 for (let i = 0; i < 14; i++) { const d = document.createElement('div'); d.className = 'lockmark'; const b = document.createElement('b'); d.appendChild(b); $('marks').appendChild(d); markEls.push({ el: d, e: null, b, n: 0 }); }
 for (let i = 0; i < 18; i++) { const d = document.createElement('div'); d.className = 'popup'; $('pops').appendChild(d); popEls.push(d); }
 let popIdx = 0;
+function pulseReticle() { const r = $('reticle'); r.classList.remove('pulse'); void r.offsetWidth; r.classList.add('pulse'); }
 function syncMarks() {
   const cnt = new Map(); for (const e of lockList) cnt.set(e, (cnt.get(e) || 0) + 1);
   for (const m of markEls) if (m.e && !cnt.has(m.e)) { m.e = null; m.n = 0; m.el.classList.remove('show'); }
@@ -1388,7 +1372,7 @@ function updateHUD() {
   setText('lives', D.life === Infinity ? '' : '♥'.repeat(Math.max(0, G.life)) + '♡'.repeat(Math.max(0, G.maxLife - G.life)));
   setText('stageLbl', 'ステージ' + (G.stage + 1) + '　' + curTheme.title);
   let pw = '';
-  if (G.rapidT > 0) pw += `<div class="pw" style="--c:#ff4d4d">れんしゃ ${Math.ceil(G.rapidT)}</div>`;
+  if (G.rapidT > 0) pw += `<div class="pw" style="--c:#ff4d4d">ワイド ${Math.ceil(G.rapidT)}</div>`;
   if (G.shield > 0) pw += `<div class="pw" style="--c:#1fb89a">シールド ×${G.shield}</div>`;
   if (G.maxLock > 8) pw += `<div class="pw" style="--c:#3a86ff">ロック さいだい ${G.maxLock}</div>`;
   if (lastHud.pw !== pw) { lastHud.pw = pw; $('powers').innerHTML = pw; }
@@ -1396,12 +1380,9 @@ function updateHUD() {
   const lb = $('lockbtn'); lb.style.setProperty('--g', g.toFixed(3));
   lb.classList.toggle('ready', ready && !n); lb.classList.toggle('go', ready && n > 0);
   setText('lockTxt', !ready ? 'チャージ' : n ? 'かみなり\n×' + n : 'かみなり');
-  const lf = $('lockFrame');
-  lf.style.width = (frame.hw * 2) + 'px'; lf.style.height = (frame.hh * 2) + 'px';
-  lf.style.transform = `translate(${frame.x - frame.hw}px,${frame.y - frame.hh}px)`;
-  lf.classList.toggle('ready', ready);
-  setText('lockCount', ready ? 'ロック ' + n + ' / ' + G.maxLock : 'チャージ ' + Math.floor(g * 100) + '%');
-  const r = $('reticle'); r.style.left = frame.ax + 'px'; r.style.top = frame.ay + 'px'; r.classList.toggle('on', !!aimEnemy);
+  const r = $('reticle'); r.style.left = frame.x + 'px'; r.style.top = frame.y + 'px'; r.classList.toggle('ready', ready);
+  const gs = (169.65 * (1 - g)).toFixed(1); if (lastHud.gs !== gs) { lastHud.gs = gs; r.querySelector('.gauge').style.strokeDashoffset = gs; }
+  setText('lockCount', ready ? (n ? n + ' / ' + G.maxLock : '') : '');
   syncMarks();
 }
 /* ---------- 画面の流れ ---------- */
@@ -1423,7 +1404,7 @@ function clearField() {
   for (const r of rings) scene.remove(r.m); rings.length = 0;
   for (const b of pBullets) { b.on = false; b.m.visible = false; }
   for (const b of eBullets) { b.on = false; b.s.visible = false; }
-  for (const B of bolts) { B.on = false; B.outer.m.visible = B.core.m.visible = false; }
+  stopChain();
   lockList.length = 0;
   for (const m of markEls) { m.e = null; m.n = 0; m.el.classList.remove('show'); }
   lockSeq = false;
@@ -1500,10 +1481,11 @@ document.addEventListener('visibilitychange', () => {
 /* ---------- ループ ---------- */
 let last = performance.now();
 const hook = {
-  G, enemies, items, rings, bolts, lockList, frame, pBullets, eBullets, camera, player: P, frames: 0, elapsed: 0,
+  G, enemies, items, rings, chain, lockList, frame, pBullets, eBullets, camera, player: P, frames: 0, elapsed: 0,
   get state() { return state; }, get paused() { return paused; }, get difficulty() { return D.key; },
   api: {
     start(d = 'normal') { D = DIFFS[d] || DIFFS.normal; ensureAudio(); $('helpOv').classList.remove('show'); $('resultOv').classList.remove('show'); startGame(); },
+    fire() { fireOnce(); },
     setFire(b) { apiIn.fire = !!b; },
     setMove(x, y) { apiIn.mx = x; apiIn.my = y; },
     fillGauge() { G.gauge = D.need; },
