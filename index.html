@@ -27,14 +27,14 @@ html,body{margin:0;height:100%;overflow:hidden;touch-action:manipulation;overscr
 #bossBar{position:absolute;left:50%;top:44px;transform:translateX(-50%);width:min(56vw,520px);height:16px;border-radius:8px;background:rgba(21,48,79,.55);border:2px solid #fff;display:none;overflow:hidden}
 #bossBar i{display:block;height:100%;width:100%;background:linear-gradient(90deg,#ff4d4d,#ffbe0b);transition:width .15s}
 #qbtn{position:fixed;right:14px;top:12px;width:58px;height:58px;border-radius:50%;border:3px solid #15304f;background:#fff;font-size:30px;font-weight:700;color:#15304f;font-family:inherit;padding:0;z-index:5}
-#lockbtn{position:absolute;right:34px;bottom:170px;width:116px;height:116px;border-radius:50%;pointer-events:auto;border:none;padding:0;font-family:inherit;--g:0;background:conic-gradient(#7fe3ff calc(var(--g) * 1turn),rgba(21,48,79,.55) 0);display:grid;place-items:center;touch-action:none}
+#lockbtn{position:absolute;right:30px;bottom:236px;width:116px;height:116px;border-radius:50%;pointer-events:auto;border:none;padding:0;font-family:inherit;--g:0;background:conic-gradient(#7fe3ff calc(var(--g) * 1turn),rgba(21,48,79,.55) 0);display:grid;place-items:center;touch-action:none}
 #lockbtn span{width:94px;height:94px;border-radius:50%;background:#15304f;color:#9fb3c9;display:grid;place-items:center;font-size:17px;font-weight:700;line-height:1.2;text-align:center;white-space:pre-line}
 #lockbtn.ready span{background:#3f5f8f;color:#fff}
 #lockbtn.go span{background:#2f7bff;color:#fff;animation:pulse .45s infinite alternate}
 @keyframes pulse{to{transform:scale(1.08);box-shadow:0 0 26px #7fe3ff}}
-#shotbtn{position:absolute;right:22px;bottom:22px;width:134px;height:134px;border-radius:50%;pointer-events:auto;border:5px solid #fff;background:#ff4d6d;color:#fff;font-family:inherit;font-size:22px;font-weight:700;padding:0;box-shadow:0 6px 0 #a3203b,0 0 0 2px #15304f;touch-action:none}
+#shotbtn{position:absolute;right:30px;bottom:100px;width:116px;height:116px;border-radius:50%;pointer-events:auto;border:5px solid #fff;background:#ff4d6d;color:#fff;font-family:inherit;font-size:22px;font-weight:700;padding:0;box-shadow:0 6px 0 #a3203b,0 0 0 2px #15304f;touch-action:none}
 #shotbtn.on{transform:translateY(4px);box-shadow:0 2px 0 #a3203b,0 0 0 2px #15304f;background:#ff7088}
-#stick{position:absolute;left:14px;bottom:14px;width:200px;height:200px;pointer-events:auto;touch-action:none}
+#stick{position:absolute;left:14px;bottom:58px;width:200px;height:200px;pointer-events:auto;touch-action:none}
 #stickBase{position:absolute;left:50%;top:50%;width:150px;height:150px;margin:-75px 0 0 -75px;border-radius:50%;border:4px solid rgba(255,255,255,.95);background:rgba(21,48,79,.28);box-shadow:0 0 0 2px rgba(21,48,79,.4)}
 #stickBase i{position:absolute;width:0;height:0;border:9px solid transparent}
 #stickBase .u{left:50%;top:6px;margin-left:-9px;border-bottom:12px solid #fff;border-top:0}
@@ -175,7 +175,7 @@ h3{margin:16px 0 8px;font-size:21px}
       </div>
       <div class="card">
         <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="20" fill="none" stroke="#7fb8d8" stroke-width="3"/><path d="M14 20A22 22 0 0 1 20 14M44 14A22 22 0 0 1 50 20M50 44A22 22 0 0 1 44 50M20 50A22 22 0 0 1 14 44" stroke="#15304f" stroke-width="4" stroke-linecap="round" fill="none"/><circle cx="32" cy="32" r="3" fill="#15304f"/></svg>
-        <div><b>ロックオンの わく</b><br>ひこうきの <ruby>上<rt>うえ</rt></ruby>に いつも ついてくる。てきに しばらく かさねると ロック。ひとつずつ あつめよう</div>
+        <div><b>ロックオンの わく</b><br>ひこうきの <ruby>上<rt>うえ</rt></ruby>に いつも ついてくる。てきに かさねると すぐ ロック。ひとつずつ あつめよう</div>
       </div>
       <div class="card">
         <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="27" fill="#2f7bff" stroke="#15304f" stroke-width="3"/><path d="M36 10L22 34h10l-4 20 16-26H34z" fill="#fff" stroke="#15304f" stroke-width="2.5" stroke-linejoin="round"/></svg>
@@ -188,6 +188,10 @@ h3{margin:16px 0 8px;font-size:21px}
       <div class="card">
         <svg viewBox="0 0 64 64"><path d="M10 22l44-6v20l-44 6z" fill="#aab4c2" stroke="#2c3444" stroke-width="3" stroke-linejoin="round"/><path d="M32 6v4M32 52v4M50 44a22 22 0 0 1-10 10" fill="none" stroke="#ff4d6d" stroke-width="3.5" stroke-linecap="round"/><path d="M36 56l5-2-2-5" fill="none" stroke="#ff4d6d" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <div><b>てっぱん</b><br>くるくる まわりながら とんでくる。たまが きかないので よけよう</div>
+      </div>
+      <div class="card">
+        <svg viewBox="0 0 64 64"><circle cx="20" cy="40" r="9" fill="#ff2f6d" stroke="#4a0020" stroke-width="3"/><circle cx="20" cy="40" r="3.5" fill="#fff"/><circle cx="42" cy="24" r="18" fill="#ff7a1a" opacity=".35"/><circle cx="42" cy="24" r="10" fill="#ffd23f" stroke="#d63a00" stroke-width="3.5"/><circle cx="42" cy="24" r="4" fill="#fff"/></svg>
+        <div><b>オレンジに <ruby>光<rt>ひか</rt></ruby>る たま</b><br>このままだと あたる たま。<ruby>光<rt>ひか</rt></ruby>ったら うごいて よけよう</div>
       </div>
       <div class="card">
         <svg viewBox="0 0 64 64"><ellipse cx="32" cy="32" rx="24" ry="26" fill="none" stroke="#ffbe0b" stroke-width="8"/><path d="M26 32h12M32 26v12" stroke="#15304f" stroke-width="3"/></svg>
@@ -258,7 +262,7 @@ import * as THREE from 'three';
    - __G.frames / __G.elapsed はゲームループ内で毎フレーム更新される。
    ========================================================= */
 
-const VERSION = 'v2026-09-27';
+const VERSION = 'v2026-09-27b';
 const $ = id => document.getElementById(id);
 $('ver').textContent = VERSION;
 const TAU = Math.PI * 2, UP = new THREE.Vector3(0, 1, 0);
@@ -283,10 +287,10 @@ document.addEventListener('dblclick', e => e.preventDefault());
 
 /* ---------- むずかしさ ---------- */
 const DIFFS = {
-  // lockR：ロックできる はんい(px)  dwell：わくを かさねて ロックするまでの 時間  zShoot：ザコが たまを うつ 確率  plate：てっぱんの おおさ
-  easy:   { key: 'easy',   name: 'やさしい',   life: Infinity, spd: 0.85, rate: 0.55, bs: 0.72, lockR: 58, dwell: 0.16, hp: 0.8, mul: 1.0, zShoot: 0.25, plate: 0.55 },
-  normal: { key: 'normal', name: 'ふつう',     life: 5,        spd: 1.0,  rate: 1.0,  bs: 1.0,  lockR: 46, dwell: 0.28, hp: 1.0, mul: 1.2, zShoot: 0.55, plate: 1.0 },
-  hard:   { key: 'hard',   name: 'むずかしい', life: 3,        spd: 1.12, rate: 1.4,  bs: 1.2,  lockR: 38, dwell: 0.4,  hp: 1.3, mul: 1.6, zShoot: 0.85, plate: 1.35 },
+  // lockR：ロックできる はんい(px)  dwell：かさねてから ロックするまで（ほぼ すぐ）  zShoot：ザコが たまを うつ 確率  plate：てっぱんの おおさ
+  easy:   { key: 'easy',   name: 'やさしい',   life: Infinity, spd: 0.85, rate: 0.55, bs: 0.72, lockR: 58, dwell: 0.05, hp: 0.8, mul: 1.0, zShoot: 0.25, plate: 0.55 },
+  normal: { key: 'normal', name: 'ふつう',     life: 5,        spd: 1.0,  rate: 1.0,  bs: 1.0,  lockR: 46, dwell: 0.05, hp: 1.0, mul: 1.2, zShoot: 0.55, plate: 1.0 },
+  hard:   { key: 'hard',   name: 'むずかしい', life: 3,        spd: 1.12, rate: 1.4,  bs: 1.2,  lockR: 38, dwell: 0.05, hp: 1.3, mul: 1.6, zShoot: 0.85, plate: 1.35 },
 };
 let D = DIFFS.normal;
 
@@ -445,7 +449,7 @@ const shieldMesh = new THREE.Mesh(new THREE.SphereGeometry(2.1, 16, 12), new THR
 shieldMesh.visible = false; ship.add(shieldMesh);
 ship.scale.setScalar(0.85); scene.add(ship);
 const P = { x: 0, y: 2, vx: 0, vy: 0 };
-const AX = 11, AY0 = -1.5, AY1 = 9;      // 自機が うごける はんい
+const AX = 11, AY0 = -5.5, AY1 = 9;      // 自機が うごける はんい
 const EX = 26, EY0 = -5, EY1 = 16;      // 敵が ちらばる はんい
 
 /* ---------- パーティクル（1回の描画で大量に出す） ---------- */
@@ -513,7 +517,14 @@ for (let i = 0; i < 90; i++) { const m = new THREE.Mesh(bGeo, bMat); m.visible =
 /* ---------- 敵の弾 ---------- */
 const ebMat = new THREE.SpriteMaterial({ map: ballTex('#ff2f6d', '#4a0020'), transparent: true, depthWrite: false, fog: false });
 const eBullets = [];
-for (let i = 0; i < 140; i++) { const s = new THREE.Sprite(ebMat); s.scale.setScalar(1.3); s.visible = false; scene.add(s); eBullets.push({ s, on: false, x: 0, y: 0, z: 0, vx: 0, vy: 0, vz: 0, life: 0 }); }
+// あたりそうな たまは オレンジに 光って、まわりの 光の わが ドクドク する
+const ebDangerMat = new THREE.SpriteMaterial({ map: ballTex('#ffd23f', '#d63a00'), transparent: true, depthWrite: false, fog: false });
+const haloMat = () => new THREE.SpriteMaterial({ map: glowTex, color: 0xff7a1a, blending: THREE.AdditiveBlending, transparent: true, depthWrite: false, fog: false });
+for (let i = 0; i < 140; i++) {
+  const s = new THREE.Sprite(ebMat); s.scale.setScalar(1.3); s.visible = false; scene.add(s);
+  const halo = new THREE.Sprite(haloMat()); halo.visible = false; s.add(halo);
+  eBullets.push({ s, halo, danger: false, on: false, x: 0, y: 0, z: 0, vx: 0, vy: 0, vz: 0, life: 0 });
+}
 
 /* ---------- かみなり（自機から のびる 青白い 1本の いなずま＋えだ） ----------
    ロックした敵を順番に つなぐ 本線と、本線から 出る えだを、カメラの方を向く帯で描く。
@@ -1058,6 +1069,7 @@ function stageClear() {
 /* ---------- 攻撃・ダメージ ---------- */
 function fireEB(x, y, z, dx, dy, dz, spd) {
   const b = eBullets.find(b => !b.on); if (!b) return;
+  b.danger = false; b.s.material = ebMat; b.halo.visible = false;
   b.on = true; b.x = x; b.y = y; b.z = z; b.vx = dx * spd; b.vy = dy * spd; b.vz = dz * spd; b.life = 8; b.s.visible = true; b.s.position.set(x, y, z);
 }
 function ringShot(e, n) {
@@ -1450,6 +1462,14 @@ function updateGame(dt) {
     b.x += b.vx * dt; b.y += b.vy * dt; b.z += b.vz * dt; b.life -= dt;
     if (b.z > 3 || b.life <= 0) { b.on = false; b.s.visible = false; continue; }
     b.s.position.set(b.x, b.y, b.z);
+    // このまま すすむと 自機に あたるか 先読みする
+    let danger = false, tt = 0;
+    if (!G.over && b.vz > 0) {
+      tt = -b.z / b.vz;
+      if (tt > 0 && tt < 1.3) danger = Math.hypot(b.x + b.vx * tt - P.x, b.y + b.vy * tt - P.y) < 1.9;
+    }
+    if (danger !== b.danger) { b.danger = danger; b.s.material = danger ? ebDangerMat : ebMat; b.halo.visible = danger; }
+    if (danger) { const k = 1 - tt / 1.3; b.halo.scale.setScalar(2.2 + Math.abs(Math.sin(G.stageTime * (10 + k * 22))) * 1.6); b.halo.material.opacity = 0.5 + k * 0.5; }
     if (!G.over && G.invul <= 0) {
       const dx = b.x - P.x, dy = b.y - P.y, dz = b.z;
       if (dx * dx + dy * dy + dz * dz < 1.0) { b.on = false; b.s.visible = false; hurt(); }
