@@ -94,6 +94,7 @@ h3{margin:16px 0 8px;font-size:21px}
 .card b{font-size:18px}
 .items{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:8px}
 .item{display:flex;align-items:center;gap:10px;font-size:16px;line-height:1.5}
+.item .ico{flex:none;width:48px;height:48px}
 .chip{flex:none;min-width:96px;text-align:center;border-radius:12px;padding:6px 10px;color:#fff;font-weight:700;font-size:17px;border:3px solid #fff;box-shadow:0 0 0 2px #15304f}
 .diff{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
 .dbtn{min-height:84px;border-radius:18px;border:3px solid #15304f;background:#fff;font-family:inherit;font-size:24px;font-weight:700;color:#15304f;line-height:1.35;padding:6px}
@@ -113,7 +114,7 @@ h3{margin:16px 0 8px;font-size:21px}
 </script>
 </head>
 <body>
-<!-- build: 2026-09-26c -->
+<!-- build: 2026-09-27 -->
 <canvas id="c"></canvas>
 
 <div id="hud" class="off">
@@ -170,19 +171,23 @@ h3{margin:16px 0 8px;font-size:21px}
       </div>
       <div class="card">
         <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="27" fill="#ff4d6d" stroke="#15304f" stroke-width="3"/><path d="M24 40l8-18 8 18" fill="none" stroke="#fff" stroke-width="5"/></svg>
-        <div><b>ショットボタン</b><br>おす たびに 1ぱつ、ひこうきの <ruby>前<rt>まえ</rt></ruby>に たまが でる</div>
+        <div><b>ショットボタン</b><br>おす たびに 1ぱつ、わくに むかって たまが でる。じぶんで ねらって あてよう</div>
       </div>
       <div class="card">
         <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="20" fill="none" stroke="#7fb8d8" stroke-width="3"/><path d="M14 20A22 22 0 0 1 20 14M44 14A22 22 0 0 1 50 20M50 44A22 22 0 0 1 44 50M20 50A22 22 0 0 1 14 44" stroke="#15304f" stroke-width="4" stroke-linecap="round" fill="none"/><circle cx="32" cy="32" r="3" fill="#15304f"/></svg>
-        <div><b>ロックオンの わく</b><br>ひこうきの <ruby>前<rt>まえ</rt></ruby>の まるい わく。<ruby>青<rt>あお</rt></ruby>く <ruby>光<rt>ひか</rt></ruby>ったら てきに かさねて、ひとつずつ あつめる</div>
+        <div><b>ロックオンの わく</b><br>ひこうきの <ruby>上<rt>うえ</rt></ruby>に いつも ついてくる。てきに しばらく かさねると ロック。ひとつずつ あつめよう</div>
       </div>
       <div class="card">
         <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="27" fill="#2f7bff" stroke="#15304f" stroke-width="3"/><path d="M36 10L22 34h10l-4 20 16-26H34z" fill="#fff" stroke="#15304f" stroke-width="2.5" stroke-linejoin="round"/></svg>
-        <div><b>かみなりボタン</b><br>ひこうきから <ruby>青白<rt>あおじろ</rt></ruby>い いなずまが のびて、あつめた てきを じゅんばんに たおす。いっしょに たおすほど <ruby>点<rt>てん</rt></ruby>が ふえる</div>
+        <div><b>かみなりボタン</b><br>あつめた てきを いなずまが つないで こうげき。たくさん あつめるほど いなずまが つよくなり、<ruby>点<rt>てん</rt></ruby>も ふえる</div>
       </div>
       <div class="card">
         <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="27" fill="none" stroke="#19c7ff" stroke-width="3" stroke-dasharray="6 5"/><path d="M32 16l14 8v16l-14 8-14-8V24z" fill="#6b7a99" stroke="#15304f" stroke-width="3"/></svg>
         <div><b>バリアの ある てき</b><br>ショットで バリアを こわすと ロックオン できる</div>
+      </div>
+      <div class="card">
+        <svg viewBox="0 0 64 64"><path d="M10 22l44-6v20l-44 6z" fill="#aab4c2" stroke="#2c3444" stroke-width="3" stroke-linejoin="round"/><path d="M32 6v4M32 52v4M50 44a22 22 0 0 1-10 10" fill="none" stroke="#ff4d6d" stroke-width="3.5" stroke-linecap="round"/><path d="M36 56l5-2-2-5" fill="none" stroke="#ff4d6d" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div><b>てっぱん</b><br>くるくる まわりながら とんでくる。たまが きかないので よけよう</div>
       </div>
       <div class="card">
         <svg viewBox="0 0 64 64"><ellipse cx="32" cy="32" rx="24" ry="26" fill="none" stroke="#ffbe0b" stroke-width="8"/><path d="M26 32h12M32 26v12" stroke="#15304f" stroke-width="3"/></svg>
@@ -193,13 +198,13 @@ h3{margin:16px 0 8px;font-size:21px}
         <div><b><ruby>金色<rt>きんいろ</rt></ruby>の てき</b><br>たおすと アイテムが <ruby>出<rt>で</rt></ruby>る</div>
       </div>
     </div>
-    <h3>アイテム（<ruby>近<rt>ちか</rt></ruby>づくと すいよせられる）</h3>
+    <h3>アイテム（<ruby>近<rt>ちか</rt></ruby>くまで とりに いこう）</h3>
     <div class="items">
-      <div class="item"><span class="chip" style="background:#3a86ff">ロック+</span>あつめられる かずが ふえる</div>
-      <div class="item"><span class="chip" style="background:#ff4d4d">ワイド</span>しばらく ショットが 3ほうこうに でる</div>
-      <div class="item"><span class="chip" style="background:#1fb89a">シールド</span>2かい まもって くれる</div>
-      <div class="item"><span class="chip" style="background:#f4a300">ボム</span>がめんの てきに だいダメージ</div>
-      <div class="item"><span class="chip" style="background:#ff5d9e">かいふく</span>ライフが 1 ふえる</div>
+      <div class="item"><svg class="ico" viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="#3a86ff" opacity=".25"/><circle cx="24" cy="24" r="12" fill="none" stroke="#3a86ff" stroke-width="4"/><path d="M24 4v8M24 36v8M4 24h8M36 24h8" stroke="#15304f" stroke-width="3.5" stroke-linecap="round"/><circle cx="24" cy="24" r="3" fill="#15304f"/></svg><span><b>ロック+</b><br>あつめられる かずが ふえる</span></div>
+      <div class="item"><svg class="ico" viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="#ff4d4d" opacity=".25"/><path d="M24 40V16M24 40L12 18M24 40l12-22" stroke="#ff4d4d" stroke-width="4" stroke-linecap="round"/><path d="M24 8l-5 8h10zM10 11l-1 9 8-4zM38 11l1 9-8-4z" fill="#15304f"/></svg><span><b>ワイド</b><br>しばらく ショットが 3ほうこうに でる</span></div>
+      <div class="item"><svg class="ico" viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="#1fb89a" opacity=".25"/><path d="M24 6l15 9v18l-15 9-15-9V15z" fill="#1fb89a" stroke="#15304f" stroke-width="2.5"/><path d="M24 14l8 5v10l-8 5-8-5V19z" fill="#fff"/></svg><span><b>シールド</b><br>2かい まもって くれる</span></div>
+      <div class="item"><svg class="ico" viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="#f4a300" opacity=".25"/><circle cx="22" cy="28" r="13" fill="#2a2f3a"/><rect x="18" y="12" width="8" height="5" rx="1" fill="#f4a300"/><path d="M24 12q3-5 8-5" fill="none" stroke="#d9b27a" stroke-width="2.5"/><circle cx="33" cy="7" r="3.5" fill="#ffb020"/><circle cx="17" cy="23" r="3" fill="#fff" opacity=".8"/></svg><span><b>ボム</b><br>がめんの てきに だいダメージ</span></div>
+      <div class="item"><svg class="ico" viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="#ff5d9e" opacity=".25"/><path d="M24 40C8 29 8 14 17 13c4 0 6 3 7 5 1-2 3-5 7-5 9 1 9 16-7 27z" fill="#ff5d9e" stroke="#15304f" stroke-width="2.5"/></svg><span><b>かいふく</b><br>ライフが 1 ふえる</span></div>
     </div>
     <div id="diffBox">
       <h3>むずかしさを えらぶ</h3>
@@ -244,7 +249,7 @@ h3{margin:16px 0 8px;font-size:21px}
 import * as THREE from 'three';
 
 /* =========================================================
-   スカイ ロックオン  v2026-09-26c
+   スカイ ロックオン  v2026-09-27
    ---------------------------------------------------------
    テスト用フック：window.__G
    - 敵・アイテム・リングの位置は mesh.position を直接動かさず、
@@ -253,7 +258,7 @@ import * as THREE from 'three';
    - __G.frames / __G.elapsed はゲームループ内で毎フレーム更新される。
    ========================================================= */
 
-const VERSION = 'v2026-09-26c';
+const VERSION = 'v2026-09-27';
 const $ = id => document.getElementById(id);
 $('ver').textContent = VERSION;
 const TAU = Math.PI * 2, UP = new THREE.Vector3(0, 1, 0);
@@ -278,9 +283,10 @@ document.addEventListener('dblclick', e => e.preventDefault());
 
 /* ---------- むずかしさ ---------- */
 const DIFFS = {
-  easy:   { key: 'easy',   name: 'やさしい',   life: Infinity, spd: 0.8,  rate: 0.45, bs: 0.62, assist: 0, lockR: 46, need: 18, rech: 3, hp: 0.75, mul: 1.0 },
-  normal: { key: 'normal', name: 'ふつう',     life: 5,        spd: 0.95, rate: 0.8,  bs: 0.85, assist: 0, lockR: 38, need: 26, rech: 4.5, hp: 1.0,  mul: 1.2 },
-  hard:   { key: 'hard',   name: 'むずかしい', life: 3,        spd: 1.12, rate: 1.35, bs: 1.12, assist: 0, lockR: 32, need: 32, rech: 6, hp: 1.3,  mul: 1.6 },
+  // lockR：ロックできる はんい(px)  dwell：わくを かさねて ロックするまでの 時間  zShoot：ザコが たまを うつ 確率  plate：てっぱんの おおさ
+  easy:   { key: 'easy',   name: 'やさしい',   life: Infinity, spd: 0.85, rate: 0.55, bs: 0.72, lockR: 58, dwell: 0.16, hp: 0.8, mul: 1.0, zShoot: 0.25, plate: 0.55 },
+  normal: { key: 'normal', name: 'ふつう',     life: 5,        spd: 1.0,  rate: 1.0,  bs: 1.0,  lockR: 46, dwell: 0.28, hp: 1.0, mul: 1.2, zShoot: 0.55, plate: 1.0 },
+  hard:   { key: 'hard',   name: 'むずかしい', life: 3,        spd: 1.12, rate: 1.4,  bs: 1.2,  lockR: 38, dwell: 0.4,  hp: 1.3, mul: 1.6, zShoot: 0.85, plate: 1.35 },
 };
 let D = DIFFS.normal;
 
@@ -305,7 +311,7 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.75));
 const scene = new THREE.Scene();
 scene.fog = new THREE.Fog(0xc4e9ff, 70, 200);
 const camera = new THREE.PerspectiveCamera(62, 1, 0.1, 420);
-camera.position.set(0, 4, 12.5);
+camera.position.set(0, 4, 13);
 const hemi = new THREE.HemisphereLight(0xe6f6ff, 0x6a9a4a, 1.7); scene.add(hemi);
 const sun = new THREE.DirectionalLight(0xffffff, 2.2); sun.position.set(6, 20, 12); scene.add(sun);
 
@@ -439,6 +445,8 @@ const shieldMesh = new THREE.Mesh(new THREE.SphereGeometry(2.1, 16, 12), new THR
 shieldMesh.visible = false; ship.add(shieldMesh);
 ship.scale.setScalar(0.85); scene.add(ship);
 const P = { x: 0, y: 2, vx: 0, vy: 0 };
+const AX = 11, AY0 = -1.5, AY1 = 9;      // 自機が うごける はんい
+const EX = 26, EY0 = -5, EY1 = 16;      // 敵が ちらばる はんい
 
 /* ---------- パーティクル（1回の描画で大量に出す） ---------- */
 const PMAX = 600;
@@ -507,43 +515,44 @@ const ebMat = new THREE.SpriteMaterial({ map: ballTex('#ff2f6d', '#4a0020'), tra
 const eBullets = [];
 for (let i = 0; i < 140; i++) { const s = new THREE.Sprite(ebMat); s.scale.setScalar(1.3); s.visible = false; scene.add(s); eBullets.push({ s, on: false, x: 0, y: 0, z: 0, vx: 0, vy: 0, vz: 0, life: 0 }); }
 
-/* ---------- かみなり（自機から のびる 青白い 1本の いなずま） ----------
-   ロックした敵を順番に つなぐ 曲線を、カメラの方を向く帯で描く。 */
-const BOLT_DMG = 6, CH_SEG = 18, CH_MAX = 14 * CH_SEG + 2;
-function makeRibbon(color, opacity) {
+/* ---------- かみなり（自機から のびる 青白い 1本の いなずま＋えだ） ----------
+   ロックした敵を順番に つなぐ 本線と、本線から 出る えだを、カメラの方を向く帯で描く。
+   ダメージ：BOLT_BASE + 2 × ロックした数（たくさん あつめるほど 1体あたりも 強くなる） */
+const BOLT_BASE = 3, CH_SEG = 16, CH_MAX = 12 * CH_SEG + 2, BR_MAX = 9, BR_N = 16;
+function makeRibbon(color, opacity, max) {
   const geo = new THREE.BufferGeometry();
-  const pos = new Float32Array(CH_MAX * 2 * 3); const idx = [];
-  for (let i = 0; i < CH_MAX - 1; i++) { const a = i * 2; idx.push(a, a + 1, a + 2, a + 1, a + 3, a + 2); }
+  const pos = new Float32Array(max * 2 * 3); const idx = [];
+  for (let i = 0; i < max - 1; i++) { const a = i * 2; idx.push(a, a + 1, a + 2, a + 1, a + 3, a + 2); }
   geo.setAttribute('position', new THREE.BufferAttribute(pos, 3)); geo.setIndex(idx);
-  const mat = new THREE.MeshBasicMaterial({ color, transparent: true, opacity, depthWrite: false, depthTest: false, side: THREE.DoubleSide, fog: false });
+  const mat = new THREE.MeshBasicMaterial({ color, transparent: true, opacity, depthWrite: false, depthTest: false, side: THREE.DoubleSide, fog: false, blending: THREE.AdditiveBlending });
   const m = new THREE.Mesh(geo, mat); m.frustumCulled = false; m.visible = false; m.renderOrder = 5; scene.add(m);
   return { m, pos, geo, base: opacity };
 }
 const chain = {
-  on: false, nodes: [], h: 0, segT: 0.1, fade: 0, time: 0, volley: null, done: false,
-  pts: Array.from({ length: CH_MAX }, () => new THREE.Vector3()), n: 0,
-  layers: [[makeRibbon(0x2f7bff, 0.4), 2.4], [makeRibbon(0x9fe6ff, 0.95), 1], [makeRibbon(0xffffff, 1), 0.38]],
+  on: false, nodes: [], h: 0, segT: 0.09, fade: 0, time: 0, volley: null, done: false, dmg: 5, tick: 0,
+  pts: Array.from({ length: CH_MAX }, () => new THREE.Vector3()), n: 0, jit: new Float32Array(CH_MAX * 2),
+  layers: [[makeRibbon(0x1f5fff, 0.55, CH_MAX), 3.2], [makeRibbon(0x7fd8ff, 0.9, CH_MAX), 1.25], [makeRibbon(0xffffff, 1, CH_MAX), 0.42]],
 };
-const _t = new THREE.Vector3(), _w = new THREE.Vector3(), _r = new THREE.Vector3(), _u = new THREE.Vector3(), _q = new THREE.Vector3(), _cc = new THREE.Vector3();
+const branches = Array.from({ length: BR_N }, () => ({
+  pts: Array.from({ length: BR_MAX }, () => new THREE.Vector3()), n: 0, w: 1,
+  outer: makeRibbon(0x4fb4ff, 0.7, BR_MAX), core: makeRibbon(0xe8f8ff, 1, BR_MAX),
+}));
+const _t = new THREE.Vector3(), _w = new THREE.Vector3(), _r = new THREE.Vector3(), _u = new THREE.Vector3(), _q = new THREE.Vector3(), _cc = new THREE.Vector3(), _d = new THREE.Vector3();
 function nosePos(out) { return out.set(P.x, P.y + 0.2, -1.6); }
 function startChain(targets, volley) {
-  const nodes = [{ p: nosePos(new THREE.Vector3()), e: null, hits: 0, bend: new THREE.Vector3((Math.random() < 0.5 ? -1 : 1) * 0.7, 1, 0.2).normalize() }];
-  for (const e of targets) {
-    const last = nodes[nodes.length - 1];
-    if (last.e === e) { last.hits++; continue; }
-    nodes.push({ p: new THREE.Vector3(e.x, e.y, e.z), e, hits: 1, bend: new THREE.Vector3(rand(-1, 1), rand(-0.3, 1), rand(-0.5, 0.5)).normalize() });
-  }
-  Object.assign(chain, { on: true, nodes, h: 0, fade: 0, time: 0, volley, done: false });
+  const nodes = [{ p: nosePos(new THREE.Vector3()), e: null, bend: new THREE.Vector3((Math.random() < 0.5 ? -1 : 1) * 0.6, 1, -0.5).normalize() }];
+  for (const e of targets) nodes.push({ p: new THREE.Vector3(e.x, e.y, e.z), e, bend: new THREE.Vector3(rand(-1, 1), rand(-0.3, 1), rand(-0.6, 0.1)).normalize() });
+  Object.assign(chain, { on: true, nodes, h: 0, fade: 0, time: 0, volley, done: false, dmg: BOLT_BASE + 2 * targets.length, tick: 0 });
   volley.pending = 1;
   for (const [R] of chain.layers) R.m.visible = true;
 }
 function chainHit(i) {
   const nd = chain.nodes[i], e = nd.e;
   sfx.zap(i - 1);
-  glow(nd.p.x, nd.p.y, nd.p.z, 11, 0x9fe6ff, 0.3); glow(nd.p.x, nd.p.y, nd.p.z, 5, 0xffffff, 0.15);
-  emit(nd.p.x, nd.p.y, nd.p.z, 14, 0x9fe6ff, 20, 0.3, 0.45); emit(nd.p.x, nd.p.y, nd.p.z, 6, 0xffffff, 14, 0.25, 0.3);
-  camShake = Math.max(camShake, 0.16);
-  if (e && lockable(e)) hitEnemy(e, BOLT_DMG * nd.hits, 'bolt', chain.volley);
+  glow(nd.p.x, nd.p.y, nd.p.z, 13, 0x7fd8ff, 0.35); glow(nd.p.x, nd.p.y, nd.p.z, 6, 0xffffff, 0.18);
+  emit(nd.p.x, nd.p.y, nd.p.z, 16, 0x9fe6ff, 22, 0.3, 0.45); emit(nd.p.x, nd.p.y, nd.p.z, 8, 0xffffff, 16, 0.25, 0.3);
+  camShake = Math.max(camShake, 0.18);
+  if (e && lockable(e)) hitEnemy(e, chain.dmg, 'bolt', chain.volley);
 }
 function buildChainPoints() {
   const C = chain, last = C.nodes.length - 1, hi = Math.min(C.h, last);
@@ -551,32 +560,68 @@ function buildChainPoints() {
   for (let k = 0; k < last && k < hi; k++) {
     const A = C.nodes[k].p, B = C.nodes[k + 1].p, amount = Math.min(1, hi - k);
     _t.subVectors(B, A); const len = _t.length() || 1; _t.divideScalar(len);
-    _cc.addVectors(A, B).multiplyScalar(0.5).addScaledVector(C.nodes[k + 1 === 1 ? 0 : k + 1].bend, len * 0.35);
+    _cc.addVectors(A, B).multiplyScalar(0.5).addScaledVector(C.nodes[k + 1 === 1 ? 0 : k + 1].bend, len * 0.3); if (_cc.z > -6) _cc.z = -6;   // カメラに 近づきすぎない
     _u.crossVectors(_t, UP); if (_u.lengthSq() < 1e-4) _u.set(1, 0, 0); _u.normalize(); _q.crossVectors(_t, _u);
-    const amp = Math.min(len * 0.07, 2.2), steps = Math.max(2, Math.ceil(CH_SEG * amount));
+    const amp = Math.min(len * 0.06, 2.0), steps = Math.max(2, Math.ceil(CH_SEG * amount));
     for (let j = (k === 0 ? 0 : 1); j <= steps; j++) {
       if (n >= CH_MAX) break;
       const t = (j / steps) * amount, it = 1 - t, env = Math.sin(Math.PI * t);
       const P0 = C.pts[n];
       P0.set(it * it * A.x + 2 * it * t * _cc.x + t * t * B.x, it * it * A.y + 2 * it * t * _cc.y + t * t * B.y, it * it * A.z + 2 * it * t * _cc.z + t * t * B.z);
-      const w1 = Math.sin(t * Math.PI * 3 + C.time * 16 + k * 1.7) * amp * env, w2 = Math.cos(t * Math.PI * 2.2 + C.time * 12 + k) * amp * 0.6 * env;
-      P0.addScaledVector(_u, w1 + rand(-0.12, 0.12) * amp).addScaledVector(_q, w2 + rand(-0.12, 0.12) * amp);
+      const w1 = Math.sin(t * Math.PI * 3 + C.time * 14 + k * 1.7) * amp * 0.6 * env, w2 = Math.cos(t * Math.PI * 2.2 + C.time * 11 + k) * amp * 0.4 * env;
+      // ギザギザ（jit は 少しずつ 更新して、ちらつきに する）
+      P0.addScaledVector(_u, w1 + C.jit[n * 2] * amp * env).addScaledVector(_q, w2 + C.jit[n * 2 + 1] * amp * env);
       n++;
     }
   }
   C.n = n;
 }
-function ribbon(R, n, width) {
-  const cp = camera.position, pts = chain.pts;
+function ribbon(R, pts, n, width, taper) {
+  const cp = camera.position;
   for (let i = 0; i < n; i++) {
     const p = pts[i], p0 = pts[Math.max(i - 1, 0)], p1 = pts[Math.min(i + 1, n - 1)];
     _t.subVectors(p1, p0); _w.subVectors(cp, p); const dist = _w.length();
-    _r.crossVectors(_t, _w).normalize().multiplyScalar(width * clamp(dist / 14, 1, 6));
+    const tp = n > 1 ? 1 - taper * i / (n - 1) : 1;
+    _r.crossVectors(_t, _w).normalize().multiplyScalar(width * clamp(dist / 14, 1, 6) * tp);
     R.pos[i * 6] = p.x + _r.x; R.pos[i * 6 + 1] = p.y + _r.y; R.pos[i * 6 + 2] = p.z + _r.z;
     R.pos[i * 6 + 3] = p.x - _r.x; R.pos[i * 6 + 4] = p.y - _r.y; R.pos[i * 6 + 5] = p.z - _r.z;
   }
   R.geo.attributes.position.needsUpdate = true;
   R.geo.setDrawRange(0, Math.max(0, n - 1) * 6);
+}
+function genBranch(B, from, dir, len, w) {
+  const n = 4 + (Math.random() * (BR_MAX - 4) | 0); B.n = n; B.w = w;
+  _d.copy(dir).normalize(); B.pts[0].copy(from);
+  const step = len / (n - 1);
+  for (let i = 1; i < n; i++) {
+    _d.x += rand(-0.7, 0.7); _d.y += rand(-0.7, 0.7); _d.z += rand(-0.7, 0.7); _d.normalize();
+    B.pts[i].copy(B.pts[i - 1]).addScaledVector(_d, step * rand(0.6, 1.3));
+  }
+}
+function regenBranches() {
+  const C = chain, reached = Math.min(Math.floor(C.h), C.nodes.length - 1);
+  const count = Math.min(BR_N, 6 + reached * 2);
+  for (let i = 0; i < BR_N; i++) {
+    const B = branches[i];
+    if (i >= count || C.n < 3) { B.n = 0; continue; }
+    const sub = i % 3 === 2 && branches[i - 1].n > 2;
+    if (sub) {   // えだの えだ
+      const P0 = branches[i - 1], j = 1 + (Math.random() * (P0.n - 2) | 0);
+      _v.subVectors(P0.pts[j + 1], P0.pts[j]);
+      const dist = P0.pts[j].distanceTo(camera.position);
+      genBranch(B, P0.pts[j], _v, rand(1, 2.5) * clamp(dist / 16, 1, 3.5), 0.55); continue;
+    }
+    if (reached >= 1 && Math.random() < 0.35) {   // あたった 敵から とびちる えだ
+      const nd = C.nodes[1 + (Math.random() * reached | 0)];
+      const dist = nd.p.distanceTo(camera.position);
+      genBranch(B, nd.p, _v.set(rand(-1, 1), rand(-1, 1), rand(-1, 1)), rand(1.5, 3.5) * clamp(dist / 16, 1, 3.5), 0.8); continue;
+    }
+    const j = 1 + (Math.random() * (C.n - 2) | 0), p = C.pts[j];
+    _t.subVectors(C.pts[j + 1], C.pts[j - 1]).normalize();
+    _v.set(rand(-1, 1), rand(-1, 1), rand(-1, 1)).normalize().multiplyScalar(1.3).add(_t);
+    const dist = p.distanceTo(camera.position);
+    genBranch(B, p, _v, rand(1.8, 4.5) * clamp(dist / 16, 1, 3.5), 0.9);
+  }
 }
 function updateThunder(dt) {
   const C = chain; if (!C.on) return;
@@ -588,15 +633,27 @@ function updateThunder(dt) {
     const before = Math.floor(C.h);
     C.h = Math.min(last, C.h + dt / C.segT);
     for (let i = before + 1; i <= Math.floor(C.h); i++) chainHit(i);
-    if (C.h >= last) { C.done = true; lockSeq = false; C.volley.pending = 0; volleyEnd(C.volley); }
+    if (C.h >= last) { C.done = true; lockSeq = false; G.boltCd = 0.45; C.volley.pending = 0; volleyEnd(C.volley); }
   } else C.fade += dt;
-  const alpha = C.done ? Math.max(0, 1 - C.fade / 0.35) : 1;
-  if (C.done && C.fade > 0.35) { stopChain(); return; }
+  const alpha = C.done ? Math.max(0, 1 - C.fade / 0.4) : 1;
+  if (C.done && C.fade > 0.4) { stopChain(); return; }
+  C.tick -= dt;
+  const refresh = C.tick <= 0;
+  if (refresh) { C.tick = 0.045; for (let i = 0; i < C.jit.length; i++) C.jit[i] = rand(-0.4, 0.4); }
   buildChainPoints();
-  const flick = 0.75 + Math.random() * 0.25;
-  for (const [R, w] of C.layers) { R.m.material.opacity = R.base * alpha * (w > 1 ? flick : 1); ribbon(R, C.n, 0.2 * w); }
+  if (refresh) regenBranches();
+  const flick = 0.7 + Math.random() * 0.3;
+  for (const [R, w] of C.layers) { R.m.material.opacity = R.base * alpha * (w > 1 ? flick : 1); ribbon(R, C.pts, C.n, 0.2 * w, 0.25); }
+  for (const B of branches) {
+    const vis = B.n > 1; B.outer.m.visible = B.core.m.visible = vis; if (!vis) continue;
+    B.outer.m.material.opacity = 0.7 * alpha * flick; B.core.m.material.opacity = alpha;
+    ribbon(B.outer, B.pts, B.n, 0.2 * B.w, 0.85); ribbon(B.core, B.pts, B.n, 0.07 * B.w, 0.85);
+  }
 }
-function stopChain() { chain.on = false; for (const [R] of chain.layers) R.m.visible = false; }
+function stopChain() {
+  chain.on = false; for (const [R] of chain.layers) R.m.visible = false;
+  for (const B of branches) { B.n = 0; B.outer.m.visible = B.core.m.visible = false; }
+}
 
 /* ---------- 音（Web Audio） ---------- */
 let actx = null, master, sfxGain, bgmGain, noiseBuf;
@@ -631,6 +688,7 @@ let lastHitSnd = 0;
 const sfx = {
   ui() { tone(880, 0.06, { type: 'triangle', vol: 0.12 }); },
   shot(streak) { const p = 700 + Math.min(streak, 24) * 22; tone(p, 0.06, { type: 'square', vol: 0.03, to: p * 0.55 }); },
+  clang() { tone(180, 0.5, { type: 'square', vol: 0.12, to: 90 }); noise(0.4, { vol: 0.3, freq: 3000, type: 'bandpass', q: 4 }); tone(1250, 0.4, { type: 'triangle', vol: 0.08 }); },
   hit() { if (!actx || actx.currentTime - lastHitSnd < 0.03) return; lastHitSnd = actx.currentTime; tone(1800, 0.04, { type: 'triangle', vol: 0.06 }); noise(0.03, { vol: 0.05, freq: 4000, type: 'highpass' }); },
   clink() { if (!actx || actx.currentTime - lastHitSnd < 0.03) return; lastHitSnd = actx.currentTime; tone(2600, 0.06, { type: 'triangle', vol: 0.06 }); },
   brk() { noise(0.35, { vol: 0.25, freq: 3000, type: 'highpass' }); tone(1600, 0.3, { type: 'triangle', vol: 0.1, to: 400 }); },
@@ -676,7 +734,7 @@ const G = {};
 function resetG() {
   Object.assign(G, {
     score: 0, kills: 0, maxChain: 0, stage: 0, stageTime: 0, bossActive: false, boss: null,
-    life: D.life, maxLife: D.life, shield: 0, rapidT: 0, maxLock: 8, gauge: 0, invul: 0, continues: 0,
+    life: D.life, maxLife: D.life, shield: 0, rapidT: 0, maxLock: 6, boltCd: 0, invul: 0, continues: 0,
     ringStreak: 0, hitStreak: 0, hitStreakT: 0, cleared: 0, over: false,
   });
 }
@@ -764,20 +822,29 @@ function makeBossPart(s) {
 
 /* ---------- 敵の動き（内部データ e.x/e.y/e.z を動かす） ---------- */
 function pSine(e, dt) { e.z += e.spd * dt; e.x = e.bx + Math.sin(e.t * e.w + e.ph) * e.ax; e.y = e.by + Math.cos(e.t * e.w * 1.3 + e.ph) * e.ay; }
-function pCircle(e, dt) { e.z += e.spd * dt; const a = e.a0 + e.t * 1.5; e.x = e.cx + Math.cos(a) * 4; e.y = e.cy + Math.sin(a) * 3; }
-function pSwoop(e, dt) { e.z += e.spd * dt; const u = clamp(e.t / 4.5, 0, 1); e.x = e.side * (18 - 36 * u * u * (3 - 2 * u)); e.y = e.by + Math.sin(e.t * 2) * 1.5; }
-function pHover(e, dt) {
-  if (e.ph2 === 0) { e.z += e.spd * dt; e.x = e.bx; e.y = e.by; if (e.z >= e.hz) { e.z = e.hz; e.ph2 = 1; e.ht = 0; } }
-  else if (e.ph2 === 1) { e.ht += dt; e.x = e.bx + Math.sin(e.ht * 1.1) * 3; e.y = e.by + Math.sin(e.ht * 1.7); if (e.ht > e.hold) e.ph2 = 2; }
-  else { e.y += 9 * dt; e.x += (e.bx >= 0 ? 1 : -1) * 7 * dt; e.z -= 4 * dt; }
+function pCircle(e, dt) { e.z += e.spd * 0.8 * dt; const a = e.a0 + e.t * 1.6; e.x = e.cx + Math.cos(a) * 4.5; e.y = e.cy + Math.sin(a) * 3.5; e.cx += e.dcx * dt; }
+function pSwoop(e, dt) { e.z += e.spd * 0.8 * dt; const u = clamp(e.t / 4.2, 0, 1); e.x = e.side * (40 - 80 * u * u * (3 - 2 * u)); e.y = e.by + Math.sin(e.t * 2) * 2; }
+function pCross(e, dt) { e.z += e.spd * 0.3 * dt; e.x += e.dir * 15 * D.spd * dt; e.y = e.by + Math.sin(e.t * 2.2 + e.ph) * 1.6; }
+function pRise(e, dt) { e.z += e.spd * 0.35 * dt; e.vy0 += e.g * dt; e.y += e.vy0 * dt; e.x += e.dir * 4 * dt; }
+function pBehind(e, dt) {   // うしろから おいこして、ふりかえって もどってくる
+  if (e.ph2 === 0) {
+    e.z -= 42 * dt; const k = Math.min(1, dt * 1.1); e.x += (e.tx - e.x) * k; e.y += (e.ty - e.y) * k;
+    e.mesh.rotation.y = Math.PI;
+    if (e.z < -60) { e.ph2 = 1; e.bx = e.x; e.by = e.y; e.t = 0; }
+  } else { e.z += e.spd * 0.9 * dt; e.x = e.bx + Math.sin(e.t * 2) * 3; e.y = e.by + Math.sin(e.t * 1.4) * 1.5; e.mesh.rotation.y *= Math.pow(0.02, dt); }
 }
-function pCarrier(e, dt) { e.z += e.spd * 0.72 * dt; e.x = e.bx + Math.sin(e.t * 0.9) * 7; e.y = e.by + Math.sin(e.t * 1.8) * 1.5; }
+function pHover(e, dt) {
+  if (e.ph2 === 0) { e.z += e.spd * dt; e.x += (e.bx - e.x) * Math.min(1, dt * 1.5); e.y += (e.by - e.y) * Math.min(1, dt * 1.5); if (e.z >= e.hz) { e.z = e.hz; e.ph2 = 1; e.ht = 0; } }
+  else if (e.ph2 === 1) { e.ht += dt; e.x = e.bx + Math.sin(e.ht * 0.9) * 6; e.y = e.by + Math.sin(e.ht * 1.5) * 2; if (e.ht > e.hold) e.ph2 = 2; }
+  else { e.y += 10 * dt; e.x += (e.bx >= 0 ? 1 : -1) * 12 * dt; e.z -= 4 * dt; }
+}
+function pCarrier(e, dt) { e.z += e.spd * 0.55 * dt; e.x = e.bx + Math.sin(e.t * 1.1) * 12; e.y = e.by + Math.sin(e.t * 1.9) * 3; }
 function pRock(e, dt) { e.z += WS * dt; e.mesh.rotation.x += dt * e.rs; e.mesh.rotation.y += dt * e.rs * 0.7; }
 
 function addEnemy(o) {
   const e = Object.assign({
     kind: 'zako', hp: 2, armor: 0, r: 1.2, score: 100, size: 1, color: 0xff5a5f, flash: 0, t: 0,
-    x: 0, y: 0, z: -150, vx: 0, vy: 0, vz: 0, dead: false, lockable: true, shielded: false,
+    x: 0, y: 0, z: -150, vx: 0, vy: 0, vz: 0, dead: false, lockable: true, shielded: false, noHit: false,
     shootT: rand(0.8, 2.2), path: null, spd: 26 * D.spd, bx: 0, by: 0, ax: 2, ay: 1, w: 1.5, ph: 0,
   }, o);
   e.maxhp = e.hp;
@@ -787,58 +854,127 @@ function addEnemy(o) {
 }
 function withMesh(o, built) { o.mesh = built.g; const e = addEnemy(o); track(e, ...built.mats); if (built.shield) e.shieldMesh = built.shield; return e; }
 const hpOf = n => Math.max(1, Math.round(n * D.hp));
-function addZako(o) { return withMesh(Object.assign({ kind: 'zako', hp: hpOf(2), r: 1.25, score: 100, path: pSine, spd: rand(24, 29) * D.spd, canShoot: D.key === 'hard' && Math.random() < 0.3 }, o), makeZako()); }
-function addShooter(o) { return withMesh(Object.assign({ kind: 'shooter', hp: hpOf(5), r: 1.6, score: 200, size: 1.3, color: 0x8a5cf6, path: pHover, ph2: 0, hz: rand(-44, -32), hold: 6, spd: 30 * D.spd }, o), makeShooter()); }
-function addArmored(o) { return withMesh(Object.assign({ kind: 'armored', hp: hpOf(4), armor: hpOf(8), lockable: false, r: 1.7, score: 400, size: 1.5, color: 0x6b7a99, path: pHover, ph2: 0, hz: rand(-40, -30), hold: 8, spd: 26 * D.spd }, o), makeArmored()); }
-function addCarrier(o) { return withMesh(Object.assign({ kind: 'carrier', hp: hpOf(5), r: 1.5, score: 300, size: 1.3, color: 0xffc233, path: pCarrier, spd: 22 * D.spd }, o), makeCarrier()); }
+function addZako(o) { return withMesh(Object.assign({ kind: 'zako', hp: hpOf(3), r: 1.25, score: 100, path: pSine, spd: rand(24, 29) * D.spd, canShoot: Math.random() < D.zShoot }, o), makeZako()); }
+function addShooter(o) { return withMesh(Object.assign({ kind: 'shooter', hp: hpOf(7), r: 1.6, score: 250, size: 1.3, color: 0x8a5cf6, path: pHover, ph2: 0, hz: rand(-46, -32), hold: 7, spd: 30 * D.spd }, o), makeShooter()); }
+function addArmored(o) { return withMesh(Object.assign({ kind: 'armored', hp: hpOf(7), armor: hpOf(10), lockable: false, r: 1.7, score: 450, size: 1.5, color: 0x6b7a99, path: pHover, ph2: 0, hz: rand(-42, -30), hold: 9, spd: 26 * D.spd }, o), makeArmored()); }
+function addCarrier(o) { return withMesh(Object.assign({ kind: 'carrier', hp: hpOf(7), r: 1.5, score: 300, size: 1.3, color: 0xffc233, path: pCarrier, spd: 22 * D.spd }, o), makeCarrier()); }
 
-/* 編隊 */
+/* 編隊：画面の あちこち（上・下・よこ・うしろ）から 出てくる */
+const ex = (m = 0) => rand(-EX + m, EX - m), ey = () => rand(EY0 + 1, EY1 - 1);
+function awayX() { let x = ex(3); for (let i = 0; i < 4 && Math.abs(x - P.x * 1.6) < 9; i++) x = ex(3); return x; }   // 自機から はなれた ばしょ
 function spawnForm(name) {
   if (name.includes('+')) { name.split('+').forEach(n => spawnForm(n)); return; }
   const side = Math.random() < 0.5 ? -1 : 1;
   switch (name) {
-    case 'line': { const by = rand(-1, 6); for (let i = 0; i < 5; i++) later(i * 0.32, () => addZako({ bx: side * (-10 + i * 5), by, ax: 2.5, ay: 1.2, w: 1.6, ph: i * 0.7 })); break; }
-    case 'V': { const cx = rand(-5, 5), cy = rand(0, 6); for (let i = -2; i <= 2; i++) addZako({ bx: cx + i * 2.8, by: cy + Math.abs(i) * 1.3, z: -150 - Math.abs(i) * 7, ax: 0.6, ay: 0.5, w: 1.2 }); break; }
-    case 'circle': { const cx = rand(-5, 5), cy = rand(1, 5); for (let i = 0; i < 6; i++) addZako({ path: pCircle, cx, cy, a0: i / 6 * TAU, x: cx, y: cy }); break; }
-    case 'swoop': { const by = rand(-1, 5); for (let i = 0; i < 4; i++) later(i * 0.4, () => addZako({ path: pSwoop, side, by: by + i * 0.6, x: side * 18 })); break; }
-    case 'shooter': { const n = G.stage === 2 ? 3 : 2; const xs = n === 3 ? [-7, 0, 7] : [-6, 6]; xs.forEach(x => addShooter({ bx: x, by: rand(1, 7) })); break; }
-    case 'armored': { addArmored({ bx: rand(-5, 5), by: rand(1, 6) }); break; }
-    case 'carrier': { addCarrier({ bx: rand(-3, 3), by: rand(1, 6) }); later(0.6, () => spawnForm('V')); break; }
+    case 'line': {   // よこから よこぎる
+      const by = ey(), z = rand(-62, -42);
+      for (let i = 0; i < 5; i++) later(i * 0.3, () => addZako({ path: pCross, x: -side * 46, by, y: by, z, dir: side, ph: i * 0.8 }));
+      break;
+    }
+    case 'V': { const cx = awayX(), cy = ey(); for (let i = -2; i <= 2; i++) addZako({ bx: cx + i * 3, by: cy + Math.abs(i) * 1.4, z: -150 - Math.abs(i) * 7, ax: 1.2, ay: 0.8, w: 1.2 }); break; }
+    case 'circle': { const cx = awayX(), cy = ey(); const dcx = -Math.sign(cx) * rand(1, 3); for (let i = 0; i < 6; i++) addZako({ path: pCircle, cx, cy, dcx, a0: i / 6 * TAU, x: cx, y: cy }); break; }
+    case 'swoop': { const by = ey(); for (let i = 0; i < 4; i++) later(i * 0.35, () => addZako({ path: pSwoop, side, by: by + i * 0.8, x: side * 40, z: -95 })); break; }
+    case 'rise': {   // 下から とびあがる
+      const x0 = awayX(), z = rand(-65, -45);
+      for (let i = 0; i < 4; i++) later(i * 0.25, () => addZako({ path: pRise, x: x0 + i * 3 * side, y: -22, z, vy0: rand(24, 29), g: -14, dir: -side }));
+      break;
+    }
+    case 'dive': {   // 上から おりてくる
+      const x0 = awayX(), z = rand(-65, -45);
+      for (let i = 0; i < 4; i++) later(i * 0.25, () => addZako({ path: pRise, x: x0 + i * 3 * side, y: 34, z, vy0: -rand(22, 26), g: 11, dir: -side }));
+      break;
+    }
+    case 'behind': {   // うしろから おいこしてくる
+      banner('うしろに ちゅうい！');
+      for (let i = 0; i < 3; i++) later(i * 0.3, () => addZako({ path: pBehind, ph2: 0, x: side * 22, y: i % 2 ? 22 : -10, z: 16, tx: side * rand(6, 20), ty: ey(), noHit: true, canShoot: true }));
+      break;
+    }
+    case 'shooter': { const n = G.stage === 2 ? 3 : 2; for (let i = 0; i < n; i++) { const x = ex(2); addShooter({ x: x * 2.2, y: rand(-8, 26), bx: x, by: ey() }); } break; }
+    case 'armored': { const x = awayX(); addArmored({ x: x * 2, y: ey(), bx: x, by: ey() }); break; }
+    case 'carrier': { addCarrier({ bx: ex(8), by: ey() }); later(0.6, () => spawnForm(pick(['V', 'rise', 'dive']))); break; }
+    case 'plate': spawnPlateAt(P.x + rand(-2, 2), P.y + rand(-1.5, 1.5)); break;
+    case 'plates': plateWall(); break;
   }
 }
 function spawnRock() {
   const b = makeRock();
-  withMesh({ kind: 'rock', hp: hpOf(4), r: b.r, score: 50, size: 1.2, color: 0x8f7b6b, path: pRock, rs: rand(0.5, 2), x: rand(-10, 10), y: rand(-3, 8), z: -165, bx: undefined }, b);
+  withMesh({ kind: 'rock', hp: hpOf(4), r: b.r, score: 50, size: 1.2, color: 0x8f7b6b, path: pRock, rs: rand(0.5, 2), x: rand(-AX, AX), y: rand(AY0, AY1), z: -165, bx: undefined }, b);
 }
 const ringGeo = new THREE.TorusGeometry(3, 0.35, 8, 28), ringMat = lam(0xffc233, 0x7a5200);
 function spawnRing() {
-  const m = new THREE.Mesh(ringGeo, ringMat); const r = { m, x: rand(-7, 7), y: rand(-2, 7), z: -165, passed: false };
+  const m = new THREE.Mesh(ringGeo, ringMat); const r = { m, x: rand(-AX + 2, AX - 2), y: rand(AY0 + 1, AY1 - 1), z: -165, passed: false };
   m.position.set(r.x, r.y, r.z); scene.add(m); rings.push(r);
+}
+
+/* ---------- てっぱん（こわせない。よける） ----------
+   板の まんなかを とおる 水平の軸で まわる。上が こちらへ たおれてくる むき。 */
+const plates = [];
+const plateMat = new THREE.MeshPhongMaterial({ color: 0xc3ccd8, emissive: 0x262c36, specular: 0xffffff, shininess: 70, flatShading: true });
+const plateEdgeMat = new THREE.LineBasicMaterial({ color: 0x2c3444 });
+function spawnPlateAt(x, y, w = 6, h = 4.2, z = -175) {
+  if (Math.random() > D.plate && D.plate < 1) return;
+  const g = new THREE.Group();
+  const geo = new THREE.BoxGeometry(w, h, 0.4);
+  const m = new THREE.Mesh(geo, plateMat); g.add(m);
+  const edges = new THREE.LineSegments(new THREE.EdgesGeometry(geo), plateEdgeMat); g.add(edges);
+  x = clamp(x, -AX, AX); y = clamp(y, AY0, AY1);
+  g.position.set(x, y, z); scene.add(g);
+  plates.push({ g, geo, eg: edges.geometry, x, y, z, w, h, rot: rand(0, TAU), spin: rand(2.4, 3.6), spd: 30 + 8 * D.spd, hit: false });
+}
+function plateWall() {   // すきまが 1つ ある かべ
+  const horiz = Math.random() < 0.6;
+  if (horiz) { const y = clamp(P.y + rand(-2, 2), AY0, AY1), gap = (Math.random() * 5) | 0; for (let i = 0; i < 5; i++) if (i !== gap) spawnPlateAt(-AX + i * 7, y, 6.6, 4.2); }
+  else { const x = clamp(P.x + rand(-2, 2), -AX, AX), gap = (Math.random() * 4) | 0; for (let i = 0; i < 4; i++) if (i !== gap) spawnPlateAt(x, AY0 + i * 5, 5, 4.6); }
+}
+function plateLocal(pl, px, py, pz) {   // ワールド座標 → 板の 座標
+  const dx = px - pl.x, dy = py - pl.y, dz = pz - pl.z, c = Math.cos(pl.rot), sn = Math.sin(pl.rot);
+  return [dx, c * dy + sn * dz, -sn * dy + c * dz];
+}
+function updatePlates(dt) {
+  for (let i = plates.length - 1; i >= 0; i--) {
+    const pl = plates[i];
+    pl.z += pl.spd * dt; pl.rot += pl.spin * dt;
+    pl.g.position.set(pl.x, pl.y, pl.z); pl.g.rotation.x = pl.rot;
+    if (!pl.hit && !G.over && G.invul <= 0 && Math.abs(pl.z) < pl.h / 2 + 1.2) {
+      const [lx, ly, lz] = plateLocal(pl, P.x, P.y, 0);
+      if (Math.abs(lx) < pl.w / 2 + 0.7 && Math.abs(ly) < pl.h / 2 + 0.5 && Math.abs(lz) < 0.9) { pl.hit = true; sfx.clang(); hurt(); }
+    }
+    if (pl.z > 14) { scene.remove(pl.g); pl.geo.dispose(); pl.eg.dispose(); plates.splice(i, 1); }
+  }
+}
+function bulletHitsPlate(x, y, z) {
+  for (const pl of plates) {
+    if (Math.abs(z - pl.z) > pl.h / 2 + 1.5) continue;
+    const [lx, ly, lz] = plateLocal(pl, x, y, z);
+    if (Math.abs(lx) < pl.w / 2 && Math.abs(ly) < pl.h / 2 && Math.abs(lz) < 1.6) return true;
+  }
+  return false;
 }
 
 /* ---------- ステージの流れ ---------- */
 function buildTimeline(s) {
   const L = []; const at = (t, f) => L.push({ t, f });
   const A = [
-    ['line', 'V', 'circle', 'shooter', 'swoop', 'V', 'armored', 'line', 'circle', 'shooter'],
-    ['V', 'swoop', 'shooter', 'circle', 'armored', 'line', 'shooter', 'V', 'swoop', 'armored'],
-    ['circle', 'shooter', 'swoop', 'armored', 'V', 'shooter', 'line', 'armored', 'circle', 'swoop'],
+    ['line', 'V', 'rise', 'shooter', 'plate', 'swoop', 'dive', 'circle', 'plates', 'armored', 'behind', 'line+plate', 'rise+dive', 'shooter'],
+    ['swoop+plate', 'dive', 'shooter', 'behind', 'plates', 'circle+rise', 'armored', 'line+plate', 'V+dive', 'shooter+plate', 'plates', 'rise+swoop'],
+    ['behind', 'shooter+plate', 'rise+dive', 'plates', 'armored+line', 'swoop+plate', 'shooter+circle', 'plates', 'behind+V', 'armored+plate', 'dive+rise', 'plates'],
   ][s];
   const B = [
-    ['V+line', 'shooter', 'circle+swoop', 'armored', 'line', 'shooter+V', 'circle', 'armored+line', 'swoop+V', 'shooter'],
-    ['circle+line', 'armored+V', 'shooter', 'swoop+swoop', 'armored', 'V+circle', 'shooter+line', 'armored+swoop', 'circle', 'shooter+V'],
-    ['armored+circle', 'shooter+swoop', 'V+line', 'armored+shooter', 'circle+circle', 'swoop+V', 'armored+armored', 'shooter+line', 'circle+swoop', 'shooter+V'],
+    ['V+rise', 'plates', 'shooter+swoop', 'behind', 'armored+plate', 'line+dive', 'circle+plate', 'plates', 'shooter+V', 'rise+dive'],
+    ['circle+line', 'plates', 'armored+dive', 'shooter+plate', 'behind+swoop', 'plates', 'V+rise', 'armored+plate', 'line+dive', 'shooter+V'],
+    ['armored+rise', 'plates', 'shooter+behind', 'dive+plate', 'plates', 'armored+swoop', 'circle+plate', 'behind+line', 'plates', 'shooter+rise'],
   ][s];
-  let t = 4, i = 0; const stepA = 3.6 - s * 0.35;
+  let t = 3.5, i = 0; const stepA = 3.0 - s * 0.3;
   while (t < 40) { const f = A[i % A.length]; at(t, () => spawnForm(f)); t += stepA; i++; }
-  for (const ct of [14, 30]) at(ct, () => spawnForm('carrier'));
-  at(41.5, () => banner('リングを くぐれ！'));
+  for (const ct of [12, 27]) at(ct, () => spawnForm('carrier'));
+  at(41.5, () => banner('リングを くぐれ！', 'てっぱんに ちゅうい'));
   for (let t2 = 43; t2 < 62; t2 += 2.2) at(t2, spawnRing);
-  for (let t2 = 44; t2 < 62; t2 += 1.6 - s * 0.3) at(t2, spawnRock);
+  for (let t2 = 44.1; t2 < 62; t2 += 2.6 - s * 0.4) at(t2, () => spawnForm(Math.random() < 0.35 ? 'plates' : 'plate'));
+  for (let t2 = 45; t2 < 62; t2 += 3.5) at(t2, spawnRock);
   at(52, () => spawnForm('carrier'));
-  t = 64; i = 0; const stepB = 3.2 - s * 0.35;
+  t = 64; i = 0; const stepB = 2.7 - s * 0.3;
   while (t < 100) { const f = B[i % B.length]; at(t, () => spawnForm(f)); t += stepB; i++; }
-  for (const ct of [72, 88]) at(ct, () => spawnForm('carrier'));
+  for (const ct of [70, 84, 96]) at(ct, () => spawnForm('carrier'));
   at(104, spawnBoss);
   L.sort((a, b) => a.t - b.t);
   return { list: L, idx: 0 };
@@ -849,8 +985,8 @@ function spawnBoss() {
   if (G.bossActive) return;
   G.bossActive = true; banner('ボスが きた！', 'まわりの パーツから こわそう'); sfx.warn();
   const s = G.stage;
-  const B = { x: 0, y: 4, z: -185, t: 0, entered: false, parts: [], core: null, escT: 9, shootT: 3 };
-  const partHp = hpOf(20 + s * 6), coreHp = hpOf(50 + s * 20);
+  const B = { x: 0, y: 4, z: -185, t: 0, entered: false, parts: [], core: null, escT: 4, shootT: 3, ringT: 4, plateT: 5 };
+  const partHp = hpOf(30 + s * 8), coreHp = hpOf(70 + s * 25);
   const cb = makeBossCore(s);
   B.core = withMesh({ kind: 'bosscore', hp: coreHp, r: 3.8, score: 5000, size: 3, color: [0xb23a48, 0x7a4fd0, 0x3a3f5c][s], shielded: true, lockable: false, x: 0, y: 4, z: -185, bx: undefined }, cb);
   const offs = s === 0 ? [[-6.5, 0], [6.5, 0]] : s === 1 ? [[0, 0], [0, 0], [0, 0]] : [[-7.5, 0.5], [7.5, 0.5], [0, 5], [0, -4.5]];
@@ -863,26 +999,32 @@ function spawnBoss() {
 function updateBoss(dt) {
   const B = G.boss; if (!B) return; const s = G.stage;
   B.t += dt;
-  if (!B.entered) { B.z += (-52 - B.z) * Math.min(1, dt * 1.1); if (B.z > -54) B.entered = true; }
-  B.x = Math.sin(B.t * 0.45) * (5 + s); B.y = 3.5 + Math.sin(B.t * 0.7) * 2;
+  if (!B.entered) { B.z += (-46 - B.z) * Math.min(1, dt * 1.1); if (B.z > -48) B.entered = true; }
+  else B.z = -46 + Math.sin(B.t * 0.4) * 8;
+  // 画面いっぱいに 大きく うごく
+  B.x = Math.sin(B.t * 0.5) * (14 + s * 2) + Math.sin(B.t * 1.3) * 3; B.y = 5 + Math.sin(B.t * 0.75) * 7;
   const c = B.core;
   c.x = B.x; c.y = B.y; c.z = B.z; c.mesh.rotation.y = Math.sin(B.t) * 0.3; c.mesh.rotation.z = Math.sin(B.t * 0.6) * 0.15;
   if (c.shieldMesh) c.shieldMesh.rotation.y += dt * 0.8;
   B.parts.forEach((p, i) => {
-    if (s === 1) { const a = B.t * 0.8 + i * TAU / 3; p.x = B.x + Math.cos(a) * 7.5; p.y = B.y + Math.sin(a) * 5; }
+    if (s === 1) { const a = B.t * 0.9 + i * TAU / 3; p.x = B.x + Math.cos(a) * 8; p.y = B.y + Math.sin(a) * 5.5; }
     else { p.x = B.x + p.ox; p.y = B.y + p.oy + Math.sin(B.t * 2 + i) * 0.4; }
     p.z = B.z + 1.5;
   });
   if (!B.entered) return;
   for (const p of B.parts) {
     if (p.dead) continue; p.shootT -= dt;
-    if (p.shootT <= 0) { p.shootT = (2.4 - s * 0.3) / D.rate + rand(0, 0.6); aimedShot(p, s === 2 ? 3 : 1, 0.18); }
+    if (p.shootT <= 0) { p.shootT = (2.0 - s * 0.25) / D.rate + rand(0, 0.5); aimedShot(p, 3, 0.16); }
   }
+  B.ringT -= dt;   // まるく ひろがる たま
+  if (B.ringT <= 0) { B.ringT = (c.shielded ? 4.2 : 2.6) / D.rate; ringShot(c, D.key === 'easy' ? 12 : 16 + s * 4); }
   if (!c.shielded) {
     B.shootT -= dt;
-    if (B.shootT <= 0) { B.shootT = (1.9 - s * 0.25) / D.rate; aimedShot(c, D.key === 'easy' ? 3 : 5 + s, 0.16); }
+    if (B.shootT <= 0) { B.shootT = (1.6 - s * 0.2) / D.rate; aimedShot(c, D.key === 'easy' ? 3 : 5, 0.14); }
   }
-  B.escT -= dt; if (B.escT <= 0) { B.escT = 9; spawnForm(pick(['line', 'V', 'circle'])); }
+  B.plateT -= dt;   // てっぱんを なげてくる
+  if (B.plateT <= 0) { B.plateT = (s === 2 ? 5 : 6.5) / Math.max(0.6, D.rate); if (s === 2 && Math.random() < 0.5) plateWall(); else spawnPlateAt(P.x + rand(-1.5, 1.5), P.y + rand(-1, 1), 6, 4.2, B.z + 2); }
+  B.escT -= dt; if (B.escT <= 0) { B.escT = 6; spawnForm(pick(['line', 'V', 'circle', 'rise', 'dive'])); }
   let hp = 0, max = 0; for (const p of [c, ...B.parts]) { hp += Math.max(0, p.dead ? 0 : p.hp); max += p.maxhp; }
   $('bossFill').style.width = (hp / max * 100) + '%';
 }
@@ -918,9 +1060,13 @@ function fireEB(x, y, z, dx, dy, dz, spd) {
   const b = eBullets.find(b => !b.on); if (!b) return;
   b.on = true; b.x = x; b.y = y; b.z = z; b.vx = dx * spd; b.vy = dy * spd; b.vz = dz * spd; b.life = 8; b.s.visible = true; b.s.position.set(x, y, z);
 }
+function ringShot(e, n) {
+  const spd = 20 * D.bs, a0 = Math.random() * TAU;
+  for (let i = 0; i < n; i++) { const a = a0 + i / n * TAU; _v.set(Math.cos(a) * 0.24, Math.sin(a) * 0.24, 1).normalize(); fireEB(e.x, e.y, e.z + 1, _v.x, _v.y, _v.z, spd); }
+}
 function aimedShot(e, n, spread) {
   _v2.set(P.x - e.x, P.y - e.y, 0 - e.z).normalize();
-  const spd = 20 * D.bs;
+  const spd = 24 * D.bs;
   for (let i = 0; i < n; i++) {
     const a = (i - (n - 1) / 2) * spread; _v.copy(_v2).applyAxisAngle(UP, a);
     fireEB(e.x, e.y, e.z + 1, _v.x, _v.y, _v.z, spd);
@@ -990,20 +1136,20 @@ function onDeath() {
   }
 }
 
-/* ---------- ロックオン（わくで あつめて かみなり） ----------
-   G.gauge が D.need まで たまると わくが 有効になり、わくの中の敵を
-   lockList に1体ずつ追加する（HPの高い敵は複数回ロック）。
-   かみなりボタンで lockList の順に 雷を つぎつぎ 落とす。 */
+/* ---------- ロックオン（ひこうきに ついてくる わく） ----------
+   わくを 敵に D.dwell 秒 かさねると 1体 ロック（1体に 1回だけ）。
+   かみなりボタンで lockList の順に いなずまで つなぐ。 */
 const lockList = [];
-let lockTick = 0;
-function addGauge(v) {
-  if (G.gauge >= D.need || lockSeq) return;
-  G.gauge = Math.min(D.need, G.gauge + v);
-  if (G.gauge >= D.need) sfx.ready();
-}
+const lockState = { cand: null, t: 0 };
+function addGauge() {}
 const frame = { x: 0, y: 0 };
-function updateFrame() {   // ロックオンの わく（照準）は ひこうきの前 z=-90 の点
-  const a = toScreen(P.x, P.y + 0.6, -90); frame.x = a.x; frame.y = a.y;
+const ray = new THREE.Raycaster(), ndc = new THREE.Vector2(), aimPt = new THREE.Vector3();
+function updateFrame() {   // わくは ひこうきの 画面上の位置の すこし上に いつも ついてくる
+  const sh = toScreen(P.x, P.y, 0), off = clamp(innerHeight * 0.2, 95, 160);
+  frame.x = sh.x; frame.y = Math.max(76, sh.y - off);
+  // ショットの 目標点：カメラから わくを とおる 線と z=-55 の 交点
+  ndc.set(frame.x / innerWidth * 2 - 1, -(frame.y / innerHeight) * 2 + 1); ray.setFromCamera(ndc, camera);
+  const t = (-55 - ray.ray.origin.z) / ray.ray.direction.z; aimPt.copy(ray.ray.origin).addScaledVector(ray.ray.direction, t);
 }
 const lockable = e => !e.dead && e.lockable && !(e.armor > 0) && !e.shielded;
 function updateLocks(dt) {
@@ -1011,27 +1157,24 @@ function updateLocks(dt) {
     const e = lockList[i];
     if (!lockable(e) || e.z > -4 || !toScreen(e.x, e.y, e.z).ok) lockList.splice(i, 1);
   }
-  if (lockSeq || G.gauge < D.need || G.over) return;
-  lockTick -= dt; if (lockTick > 0 || lockList.length >= G.maxLock) return;
-  let best = null, bd = Infinity, bestMulti = null, bdm = Infinity;
+  if (lockSeq || G.over || lockList.length >= G.maxLock) { lockState.cand = null; lockState.t = 0; return; }
+  let best = null, bd = D.lockR * D.lockR;
   for (const e of enemies) {
-    if (!lockable(e) || e.z > -8 || e.z < -155) continue;
+    if (!lockable(e) || e.z > -8 || e.z < -150 || lockList.includes(e)) continue;
     const s = toScreen(e.x, e.y, e.z); if (!s.ok) continue;
     const dx = s.x - frame.x, dy = s.y - frame.y, d = dx * dx + dy * dy;
-    if (d > D.lockR * D.lockR) continue;
-    const cnt = lockList.filter(t => t === e).length;
-    if (cnt === 0) { if (d < bd) { bd = d; best = e; } }
-    else if (e.hp > cnt * BOLT_DMG && d < bdm) { bdm = d; bestMulti = e; }
+    if (d < bd) { bd = d; best = e; }
   }
-  const pick = best || bestMulti;
-  if (pick) { lockList.push(pick); sfx.lock(lockList.length - 1); lockTick = 0.12; pulseReticle(); }
+  if (best !== lockState.cand) { lockState.cand = best; lockState.t = 0; }
+  if (!best) return;
+  lockState.t += dt;
+  if (lockState.t >= D.dwell) { lockList.push(best); sfx.lock(lockList.length - 1); pulseReticle(); lockState.cand = null; lockState.t = 0; }
 }
 function doThunder() {
-  if (state !== 'play' || paused || G.over || lockSeq) return;
-  if (G.gauge < D.need) { popup(frame.x, frame.y - 60, 'チャージ ちゅう…'); return; }
+  if (state !== 'play' || paused || G.over || lockSeq || G.boltCd > 0) return;
   if (!lockList.length) { popup(frame.x, frame.y - 60, 'わくを てきに かさねよう'); return; }
   const targets = lockList.splice(0);
-  lockSeq = true; G.gauge = 0;
+  lockSeq = true; lockState.cand = null; lockState.t = 0;
   sfx.charge(); flashScreen('#dff6ff', 0.2);
   startChain(targets, { kills: 0, pending: 1 });
 }
@@ -1047,14 +1190,49 @@ const ITEM_DEF = {
   lock: { label: 'ロック+', color: '#3a86ff' }, rapid: { label: 'ワイド', color: '#ff4d4d' }, shield: { label: 'シールド', color: '#1fb89a' },
   bomb: { label: 'ボム', color: '#f4a300' }, heal: { label: 'かいふく', color: '#ff5d9e' },
 };
-const itemTexCache = {};
-function itemTex(type) {
-  if (itemTexCache[type]) return itemTexCache[type];
-  const d = ITEM_DEF[type], c = document.createElement('canvas'); c.width = 256; c.height = 112; const x = c.getContext('2d');
-  const r = 40; x.beginPath(); x.moveTo(r + 6, 6); x.arcTo(250, 6, 250, 106, r); x.arcTo(250, 106, 6, 106, r); x.arcTo(6, 106, 6, 6, r); x.arcTo(6, 6, 250, 6, r); x.closePath();
-  x.fillStyle = d.color; x.fill(); x.lineWidth = 8; x.strokeStyle = '#fff'; x.stroke();
-  x.fillStyle = '#fff'; x.font = "bold 50px 'BIZ UDPGothic', sans-serif"; x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillText(d.label, 128, 60);
-  return (itemTexCache[type] = canvasTex(c));
+/* アイテムの かたち（文字ではなく 形で わかるように） */
+const heartShape = (() => { const h = new THREE.Shape(); h.moveTo(0, -1); h.bezierCurveTo(-1.7, -0.1, -1.1, 1.25, 0, 0.45); h.bezierCurveTo(1.1, 1.25, 1.7, -0.1, 0, -1); return h; })();
+const ITEM_GEO = {
+  torus: new THREE.TorusGeometry(1, 0.2, 8, 28), tick: new THREE.BoxGeometry(0.24, 0.62, 0.24), dot: new THREE.SphereGeometry(0.26, 10, 8),
+  shaft: new THREE.BoxGeometry(0.26, 1.1, 0.26), head: new THREE.ConeGeometry(0.44, 0.75, 4),
+  hex: new THREE.CylinderGeometry(1.25, 1.25, 0.36, 6), hex2: new THREE.CylinderGeometry(0.8, 0.8, 0.42, 6), hex3: new THREE.CylinderGeometry(0.42, 0.42, 0.48, 6),
+  ball: new THREE.SphereGeometry(0.95, 16, 12), cap: new THREE.CylinderGeometry(0.3, 0.36, 0.3, 8), fuse: new THREE.CylinderGeometry(0.07, 0.07, 0.55, 5),
+  heart: (() => { const g = new THREE.ExtrudeGeometry(heartShape, { depth: 0.4, bevelEnabled: true, bevelThickness: 0.14, bevelSize: 0.12, bevelSegments: 2 }); g.center(); return g; })(),
+};
+function makeItemModel(type) {
+  const g = new THREE.Group(), col = new THREE.Color(ITEM_DEF[type].color);
+  const mat = lam(col, col.clone().multiplyScalar(0.35)), white = lam(0xffffff, 0x555555);
+  const add = (geo, m, x = 0, y = 0, z = 0) => { const o = new THREE.Mesh(geo, m); o.position.set(x, y, z); g.add(o); return o; };
+  switch (type) {
+    case 'lock': {   // ねらいの マーク
+      add(ITEM_GEO.torus, mat);
+      for (let i = 0; i < 4; i++) { const a = i * TAU / 4, t = add(ITEM_GEO.tick, white, Math.cos(a) * 1.3, Math.sin(a) * 1.3); t.rotation.z = a + Math.PI / 2; }
+      add(ITEM_GEO.dot, white); break;
+    }
+    case 'rapid': {   // 3ほうこうの やじるし
+      for (const a of [-0.55, 0, 0.55]) {
+        const arm = new THREE.Group(); const sh = new THREE.Mesh(ITEM_GEO.shaft, mat); sh.position.y = 0.2; const hd = new THREE.Mesh(ITEM_GEO.head, white); hd.position.y = 1.05;
+        arm.add(sh, hd); arm.rotation.z = -a; arm.position.y = -0.55; g.add(arm);
+      }
+      break;
+    }
+    case 'shield': {   // 六角形の たて
+      const a = add(ITEM_GEO.hex, mat), b = add(ITEM_GEO.hex2, white, 0, 0, 0.04), c = add(ITEM_GEO.hex3, mat, 0, 0, 0.08);
+      for (const o of [a, b, c]) o.rotation.x = Math.PI / 2; break;
+    }
+    case 'bomb': {   // ばくだん
+      add(ITEM_GEO.ball, lam(0x2a2f3a, 0x0c0e14)); add(ITEM_GEO.cap, mat, 0, 0.95, 0);
+      const f = add(ITEM_GEO.fuse, lam(0xd9b27a), 0.12, 1.28, 0); f.rotation.z = -0.45;
+      const hl = add(ITEM_GEO.dot, white, -0.36, 0.36, 0.72); hl.scale.setScalar(0.7);
+      const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: glowTex, color: 0xffb020, blending: THREE.AdditiveBlending, transparent: true, depthWrite: false, fog: false }));
+      sp.position.set(0.28, 1.58, 0); sp.scale.setScalar(1.2); sp.userData.spark = true; g.add(sp); break;
+    }
+    case 'heal': add(ITEM_GEO.heart, mat); break;
+  }
+  const halo = new THREE.Sprite(new THREE.SpriteMaterial({ map: glowTex, color: col, blending: THREE.AdditiveBlending, transparent: true, opacity: 0.8, depthWrite: false, fog: false }));
+  halo.scale.setScalar(4.6); g.add(halo);
+  g.scale.setScalar(1.25);
+  return g;
 }
 let itemBag = [];
 function nextItemType() {
@@ -1069,12 +1247,9 @@ function nextItemType() {
 }
 function dropItem(x, y, z) {
   const type = nextItemType();
-  const g = new THREE.Group();
-  const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: itemTex(type), transparent: true, depthWrite: false, fog: false }));
-  sp.scale.set(3.6, 1.58, 1); g.add(sp);
-  const wire = new THREE.Mesh(new THREE.OctahedronGeometry(1.6), new THREE.MeshBasicMaterial({ color: ITEM_DEF[type].color, wireframe: true }));
-  g.add(wire); g.position.set(x, y, z); scene.add(g);
-  items.push({ type, g, wire, x, y, z, vx: rand(-3, 3), vy: 8, vz: 4, t: 0 });
+  const g = makeItemModel(type);
+  g.position.set(x, y, z); scene.add(g);
+  items.push({ type, g, x, y, z, vx: rand(-3, 3), vy: 7, t: 0, ph: rand(0, TAU) });
 }
 function applyItem(it) {
   sfx.item();
@@ -1144,11 +1319,9 @@ addEventListener('keyup', e => { keys[e.code] = false; });
 addEventListener('blur', releaseInputs);
 
 /* ---------- ショット（おした 回数だけ 前へ まっすぐ） ---------- */
-const aimPt = new THREE.Vector3();
 function fireOnce() {
   if (state !== 'play' || paused || G.over || fireCd > 0) return;
   fireCd = 0.05; gunSide = -gunSide;
-  aimPt.set(P.x, P.y + 0.6, -90);
   const gx = P.x + gunSide * 0.75, gy = P.y - 0.1;
   shootBullet(gx, gy, -1.2, 0);
   if (G.rapidT > 0) { shootBullet(P.x, P.y + 0.25, -1.4, 0.09); shootBullet(P.x, P.y + 0.25, -1.4, -0.09); }
@@ -1201,8 +1374,8 @@ function updateGame(dt) {
     iy = (keys.KeyS || keys.ArrowDown ? 1 : 0) - (keys.KeyW || keys.ArrowUp ? 1 : 0) + apiIn.my;
   }
   if (!G.over) {
-    P.vx = clamp(ix, -1, 1) * 17; P.vy = -clamp(iy, -1, 1) * 13;
-    P.x = clamp(P.x + P.vx * dt, -10, 10); P.y = clamp(P.y + P.vy * dt, -4, 9);
+    P.vx = clamp(ix, -1, 1) * 19; P.vy = -clamp(iy, -1, 1) * 15;
+    P.x = clamp(P.x + P.vx * dt, -AX, AX); P.y = clamp(P.y + P.vy * dt, AY0, AY1);
   }
   ship.position.set(P.x, P.y, 0);
   const k = Math.min(1, dt * 10);
@@ -1214,8 +1387,8 @@ function updateGame(dt) {
   if (G.rapidT > 0) G.rapidT -= dt;
   if (G.hitStreakT > 0) { G.hitStreakT -= dt; if (G.hitStreakT <= 0) G.hitStreak = 0; }
 
-  // ロックオンゲージ（時間でも たまる）
-  if (!lockSeq && G.gauge < D.need) addGauge(dt * D.need / D.rech);
+  // ロックオン
+  if (G.boltCd > 0) G.boltCd -= dt;
   updateFrame(); updateLocks(dt);
 
   // ショット
@@ -1226,6 +1399,9 @@ function updateGame(dt) {
     const x0 = b.x, y0 = b.y, z0 = b.z;
     b.x += b.vx * dt; b.y += b.vy * dt; b.z += b.vz * dt; b.life -= dt;
     if (b.life <= 0) { b.on = false; b.m.visible = false; continue; }
+    if (plates.length && (bulletHitsPlate(b.x, b.y, b.z) || bulletHitsPlate((b.x + x0) / 2, (b.y + y0) / 2, (b.z + z0) / 2))) {
+      b.on = false; b.m.visible = false; emit(b.x, b.y, b.z, 5, 0xffffff, 12, 0.2, 0.25); sfx.clink(); continue;
+    }
     const dx = b.x - x0, dy = b.y - y0, dz = b.z - z0, dd = dx * dx + dy * dy + dz * dz;
     for (const e of enemies) {
       if (e.dead || e.z > 4) continue;
@@ -1254,14 +1430,16 @@ function updateGame(dt) {
     if (e.shieldMesh && e.kind === 'armored') e.shieldMesh.rotation.y += dt * 1.5;
     if (e.flash > 0) { e.flash -= dt; for (const m of e.mats) m.emissive.setRGB(1, 1, 1); e.flashOn = true; }
     else if (e.flashOn) { for (const m of e.mats) m.emissive.copy(m.userData.base); e.flashOn = false; }
-    if (!G.over && e.z > -110 && e.z < -12) {
-      if (e.kind === 'shooter') { e.shootT -= dt; if (e.shootT <= 0) { e.shootT = 1.7 / D.rate; aimedShot(e, 1, 0); } }
-      if (e.kind === 'armored' && e.ph2 === 1) { e.shootT -= dt; if (e.shootT <= 0) { e.shootT = 2.6 / D.rate; aimedShot(e, 3, 0.2); } }
-      if (e.kind === 'zako' && e.canShoot && e.z > -70) { e.canShoot = false; aimedShot(e, 1, 0); }
+    if (!G.over && e.z > -110 && e.z < -14 && !(e.path === pBehind && e.ph2 === 0)) {
+      if (e.kind === 'shooter' && e.ph2 === 1) { e.shootT -= dt; if (e.shootT <= 0) { e.shootT = 1.5 / D.rate; aimedShot(e, 3, 0.13); } }
+      if (e.kind === 'armored' && e.ph2 === 1) { e.shootT -= dt; if (e.shootT <= 0) { e.shootT = 2.4 / D.rate; if (Math.random() < 0.5) ringShot(e, 10); else aimedShot(e, 5, 0.15); } }
+      if (e.kind === 'carrier') { e.shootT -= dt; if (e.shootT <= 0) { e.shootT = 2.2 / D.rate; aimedShot(e, 1, 0); } }
+      if (e.kind === 'zako' && e.canShoot && e.z > -75 && e.t > 0.6) { e.canShoot = false; aimedShot(e, D.key === 'hard' ? 2 : 1, 0.08); }
     }
     if (e.kind === 'bosscore' || e.kind === 'bosspart') continue;
-    if (e.z > 5 || Math.abs(e.x) > 50 || e.y > 32 || e.y < -20) { e.dead = true; scene.remove(e.mesh); continue; }
-    if (!G.over && G.invul <= 0 && Math.abs(e.z) < e.r + 0.6 && Math.hypot(e.x - P.x, e.y - P.y) < e.r + 0.6) { hurt(); crash(e); }
+    const behind = e.path === pBehind && e.ph2 === 0;
+    if ((!behind && e.z > 5) || e.z > 20 || Math.abs(e.x) > 60 || e.y > 42 || e.y < -30) { e.dead = true; scene.remove(e.mesh); continue; }
+    if (!behind && !G.over && G.invul <= 0 && Math.abs(e.z) < e.r + 0.6 && Math.hypot(e.x - P.x, e.y - P.y) < e.r + 0.6) { hurt(); crash(e); }
   }
   updateBoss(dt);
   for (let i = enemies.length - 1; i >= 0; i--) if (enemies[i].dead) enemies.splice(i, 1);
@@ -1279,19 +1457,20 @@ function updateGame(dt) {
   }
 
   updateThunder(dt);
+  updatePlates(dt);
 
-  // アイテム
+  // アイテム（こちらへ ゆっくり ながれてくる。ちかくに いけば すこしだけ すいよせる）
   for (let i = items.length - 1; i >= 0; i--) {
     const it = items[i]; it.t += dt;
-    if (it.t < 0.5) { it.vy -= 20 * dt; }
-    else {
-      _v.set(P.x - it.x, P.y - it.y, -it.z); const d = _v.length(); const sp = Math.min(70, 12 + (it.t - 0.5) * 60);
-      _v.multiplyScalar(sp / Math.max(d, 0.001)); it.vx += (_v.x - it.vx) * Math.min(1, dt * 6); it.vy += (_v.y - it.vy) * Math.min(1, dt * 6); it.vz += (_v.z - it.vz) * Math.min(1, dt * 6);
-    }
-    it.x += it.vx * dt; it.y += it.vy * dt; it.z += it.vz * dt;
-    it.g.position.set(it.x, it.y, it.z); it.wire.rotation.x += dt * 2; it.wire.rotation.y += dt * 3;
-    if (!G.over && Math.hypot(it.x - P.x, it.y - P.y, it.z) < 2) { applyItem(it); scene.remove(it.g); items.splice(i, 1); continue; }
-    if (it.z > 14 || it.t > 8) { scene.remove(it.g); items.splice(i, 1); }
+    if (it.t < 0.7) it.vy -= 16 * dt; else { const k = Math.pow(0.08, dt); it.vx *= k; it.vy *= k; }
+    it.x = clamp(it.x + it.vx * dt, -AX - 1, AX + 1); it.y = clamp(it.y + it.vy * dt, AY0 - 1, AY1 + 1); it.z += 17 * dt;
+    const dx = P.x - it.x, dy = P.y - it.y, d = Math.hypot(dx, dy);
+    if (!G.over && it.z > -22 && d < 4.2 && d > 0.01) { const pull = (1 - d / 4.2) * 12 * dt; it.x += dx / d * pull; it.y += dy / d * pull; }
+    it.g.position.set(it.x, it.y + Math.sin(it.t * 3 + it.ph) * 0.3, it.z);
+    it.g.rotation.y = Math.sin(it.t * 2 + it.ph) * 0.7; if (it.type === 'lock') it.g.rotation.z += dt * 1.5;
+    it.g.children.forEach(c => { if (c.userData.spark) c.scale.setScalar(rand(0.9, 1.5)); });
+    if (!G.over && Math.abs(it.z) < 2.2 && d < 2.3) { applyItem(it); scene.remove(it.g); items.splice(i, 1); continue; }
+    if (it.z > 8) { scene.remove(it.g); items.splice(i, 1); }
   }
 
   // リング
@@ -1318,13 +1497,13 @@ function updateGame(dt) {
 
 function updateCamera(dt, dtScale) {
   const k = 1 - Math.pow(0.88, dtScale);
-  _v.set(ship.position.x * 0.55, ship.position.y * 0.55 + 3.2, 12.5);
+  _v.set(ship.position.x * 0.45, ship.position.y * 0.45 + 2.0, 13);
   camera.position.lerp(_v, k);
   if (camShake > 0.001) {
     camera.position.x += rand(-1, 1) * camShake * 0.5; camera.position.y += rand(-1, 1) * camShake * 0.5;
     camShake *= Math.pow(0.86, dtScale);
   }
-  camera.lookAt(ship.position.x * 0.35, ship.position.y * 0.35 + 1, -40);
+  camera.lookAt(ship.position.x * 0.25, ship.position.y * 0.25 + 1, -40);
   camera.updateMatrixWorld();
 }
 
@@ -1340,7 +1519,6 @@ function syncMarks() {
   for (const [e, n] of cnt) {
     let m = markEls.find(m => m.e === e);
     if (!m) { m = markEls.find(m => !m.e); if (!m) continue; m.e = e; m.el.classList.remove('show'); void m.el.offsetWidth; m.el.classList.add('show'); }
-    if (m.n !== n) { m.n = n; m.b.textContent = n > 1 ? '×' + n : ''; }
     const s = toScreen(e.x, e.y, e.z); m.el.style.left = s.x + 'px'; m.el.style.top = s.y + 'px';
   }
 }
@@ -1374,15 +1552,16 @@ function updateHUD() {
   let pw = '';
   if (G.rapidT > 0) pw += `<div class="pw" style="--c:#ff4d4d">ワイド ${Math.ceil(G.rapidT)}</div>`;
   if (G.shield > 0) pw += `<div class="pw" style="--c:#1fb89a">シールド ×${G.shield}</div>`;
-  if (G.maxLock > 8) pw += `<div class="pw" style="--c:#3a86ff">ロック さいだい ${G.maxLock}</div>`;
+  if (G.maxLock > 6) pw += `<div class="pw" style="--c:#3a86ff">ロック さいだい ${G.maxLock}</div>`;
   if (lastHud.pw !== pw) { lastHud.pw = pw; $('powers').innerHTML = pw; }
-  const g = G.gauge / D.need, ready = g >= 1, n = lockList.length;
-  const lb = $('lockbtn'); lb.style.setProperty('--g', g.toFixed(3));
-  lb.classList.toggle('ready', ready && !n); lb.classList.toggle('go', ready && n > 0);
-  setText('lockTxt', !ready ? 'チャージ' : n ? 'かみなり\n×' + n : 'かみなり');
-  const r = $('reticle'); r.style.left = frame.x + 'px'; r.style.top = frame.y + 'px'; r.classList.toggle('ready', ready);
+  const n = lockList.length, cd = clamp(1 - G.boltCd / 0.45, 0, 1);
+  const lb = $('lockbtn'); lb.style.setProperty('--g', (n ? 1 : cd).toFixed(3));
+  lb.classList.toggle('go', n > 0 && !lockSeq && G.boltCd <= 0);
+  setText('lockTxt', n ? 'かみなり\n×' + n : 'かみなり');
+  const r = $('reticle'); r.style.left = frame.x + 'px'; r.style.top = frame.y + 'px'; r.classList.toggle('ready', !!lockState.cand);
+  const g = lockState.cand ? lockState.t / D.dwell : 0;
   const gs = (169.65 * (1 - g)).toFixed(1); if (lastHud.gs !== gs) { lastHud.gs = gs; r.querySelector('.gauge').style.strokeDashoffset = gs; }
-  setText('lockCount', ready ? (n ? n + ' / ' + G.maxLock : '') : '');
+  setText('lockCount', n ? n + ' / ' + G.maxLock : '');
   syncMarks();
 }
 /* ---------- 画面の流れ ---------- */
@@ -1402,6 +1581,7 @@ function clearField() {
   for (const e of enemies) scene.remove(e.mesh); enemies.length = 0;
   for (const it of items) scene.remove(it.g); items.length = 0;
   for (const r of rings) scene.remove(r.m); rings.length = 0;
+  for (const pl of plates) { scene.remove(pl.g); pl.geo.dispose(); pl.eg.dispose(); } plates.length = 0;
   for (const b of pBullets) { b.on = false; b.m.visible = false; }
   for (const b of eBullets) { b.on = false; b.s.visible = false; }
   stopChain();
@@ -1481,16 +1661,17 @@ document.addEventListener('visibilitychange', () => {
 /* ---------- ループ ---------- */
 let last = performance.now();
 const hook = {
-  G, enemies, items, rings, chain, lockList, frame, pBullets, eBullets, camera, player: P, frames: 0, elapsed: 0,
+  G, enemies, items, rings, plates, chain, lockList, lockState, frame, pBullets, eBullets, camera, player: P, frames: 0, elapsed: 0,
   get state() { return state; }, get paused() { return paused; }, get difficulty() { return D.key; },
   api: {
     start(d = 'normal') { D = DIFFS[d] || DIFFS.normal; ensureAudio(); $('helpOv').classList.remove('show'); $('resultOv').classList.remove('show'); startGame(); },
     fire() { fireOnce(); },
     setFire(b) { apiIn.fire = !!b; },
     setMove(x, y) { apiIn.mx = x; apiIn.my = y; },
-    fillGauge() { G.gauge = D.need; },
     lock() { doThunder(); },
     thunder() { doThunder(); },
+    spawn(n) { spawnForm(n); },
+    drop(x, y, z, t) { if (t) itemBag.push(t); dropItem(x, y, z); },
     bomb() { bomb(); },
     skipToBoss() { const i = tl.list.findIndex(x => x.f === spawnBoss); if (i >= 0) { tl.idx = i; G.stageTime = tl.list[i].t - 0.1; } },
     stage(s) { startStage(s); },
