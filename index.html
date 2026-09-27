@@ -208,6 +208,7 @@ h3{margin:16px 0 8px;font-size:21px}
       <div class="item"><svg class="ico" viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="#ff4d4d" opacity=".25"/><path d="M24 40V16M24 40L12 18M24 40l12-22" stroke="#ff4d4d" stroke-width="4" stroke-linecap="round"/><path d="M24 8l-5 8h10zM10 11l-1 9 8-4zM38 11l1 9-8-4z" fill="#15304f"/></svg><span><b>ワイド</b><br>しばらく ショットが 3ほうこうに でる</span></div>
       <div class="item"><svg class="ico" viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="#1fb89a" opacity=".25"/><path d="M24 6l15 9v18l-15 9-15-9V15z" fill="#1fb89a" stroke="#15304f" stroke-width="2.5"/><path d="M24 14l8 5v10l-8 5-8-5V19z" fill="#fff"/></svg><span><b>シールド</b><br>2かい まもって くれる</span></div>
       <div class="item"><svg class="ico" viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="#f4a300" opacity=".25"/><circle cx="22" cy="28" r="13" fill="#2a2f3a"/><rect x="18" y="12" width="8" height="5" rx="1" fill="#f4a300"/><path d="M24 12q3-5 8-5" fill="none" stroke="#d9b27a" stroke-width="2.5"/><circle cx="33" cy="7" r="3.5" fill="#ffb020"/><circle cx="17" cy="23" r="3" fill="#fff" opacity=".8"/></svg><span><b>ボム</b><br>がめんの てきに だいダメージ</span></div>
+      <div class="item"><svg class="ico" viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="#8e5cff" opacity=".25"/><path d="M13 30l11-10 11 10" fill="none" stroke="#8e5cff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 20l11-10 11 10" fill="none" stroke="#15304f" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>スピード</b><br>ひこうきが はやく うごける（3かいまで）</span></div>
       <div class="item"><svg class="ico" viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="#ff5d9e" opacity=".25"/><path d="M24 40C8 29 8 14 17 13c4 0 6 3 7 5 1-2 3-5 7-5 9 1 9 16-7 27z" fill="#ff5d9e" stroke="#15304f" stroke-width="2.5"/></svg><span><b>かいふく</b><br>ライフが 1 ふえる</span></div>
     </div>
     <div id="diffBox">
@@ -262,7 +263,7 @@ import * as THREE from 'three';
    - __G.frames / __G.elapsed はゲームループ内で毎フレーム更新される。
    ========================================================= */
 
-const VERSION = 'v2026-09-27b';
+const VERSION = 'v2026-09-27c';
 const $ = id => document.getElementById(id);
 $('ver').textContent = VERSION;
 const TAU = Math.PI * 2, UP = new THREE.Vector3(0, 1, 0);
@@ -510,9 +511,14 @@ function updateGlows(dt) {
 
 /* ---------- 自機の弾 ---------- */
 const BSPD = 150;
-const bGeo = new THREE.BoxGeometry(0.22, 0.22, 2.6), bMat = new THREE.MeshBasicMaterial({ color: 0xfff27a, fog: false });
+const bGeo = new THREE.BoxGeometry(0.34, 0.34, 4.2), bMat = new THREE.MeshBasicMaterial({ color: 0xfffbe0, fog: false });
+const bGeo2 = new THREE.BoxGeometry(0.85, 0.85, 5.4), bMat2 = new THREE.MeshBasicMaterial({ color: 0xff8a00, transparent: true, opacity: 0.85, blending: THREE.AdditiveBlending, depthWrite: false, fog: false });
+const bGlowMat = new THREE.SpriteMaterial({ map: glowTex, color: 0xffc233, blending: THREE.AdditiveBlending, transparent: true, depthWrite: false, fog: false });
 const pBullets = [];
-for (let i = 0; i < 90; i++) { const m = new THREE.Mesh(bGeo, bMat); m.visible = false; scene.add(m); pBullets.push({ m, on: false, x: 0, y: 0, z: 0, vx: 0, vy: 0, vz: 0, life: 0 }); }
+for (let i = 0; i < 90; i++) {
+  const m = new THREE.Mesh(bGeo, bMat); m.visible = false; scene.add(m);
+  m.add(new THREE.Mesh(bGeo2, bMat2));
+  const gl = new THREE.Sprite(bGlowMat); gl.scale.setScalar(2.6); gl.position.z = -1.6; m.add(gl); pBullets.push({ m, on: false, x: 0, y: 0, z: 0, vx: 0, vy: 0, vz: 0, life: 0 }); }
 
 /* ---------- 敵の弾 ---------- */
 const ebMat = new THREE.SpriteMaterial({ map: ballTex('#ff2f6d', '#4a0020'), transparent: true, depthWrite: false, fog: false });
@@ -745,7 +751,7 @@ const G = {};
 function resetG() {
   Object.assign(G, {
     score: 0, kills: 0, maxChain: 0, stage: 0, stageTime: 0, bossActive: false, boss: null,
-    life: D.life, maxLife: D.life, shield: 0, rapidT: 0, maxLock: 6, boltCd: 0, invul: 0, continues: 0,
+    life: D.life, maxLife: D.life, shield: 0, rapidT: 0, maxLock: 6, boltCd: 0, speedLv: 0, invul: 0, continues: 0,
     ringStreak: 0, hitStreak: 0, hitStreakT: 0, cleared: 0, over: false,
   });
 }
@@ -1200,7 +1206,7 @@ function volleyEnd(v) {
 /* ---------- アイテム ---------- */
 const ITEM_DEF = {
   lock: { label: 'ロック+', color: '#3a86ff' }, rapid: { label: 'ワイド', color: '#ff4d4d' }, shield: { label: 'シールド', color: '#1fb89a' },
-  bomb: { label: 'ボム', color: '#f4a300' }, heal: { label: 'かいふく', color: '#ff5d9e' },
+  bomb: { label: 'ボム', color: '#f4a300' }, heal: { label: 'かいふく', color: '#ff5d9e' }, speed: { label: 'スピード', color: '#8e5cff' },
 };
 /* アイテムの かたち（文字ではなく 形で わかるように） */
 const heartShape = (() => { const h = new THREE.Shape(); h.moveTo(0, -1); h.bezierCurveTo(-1.7, -0.1, -1.1, 1.25, 0, 0.45); h.bezierCurveTo(1.1, 1.25, 1.7, -0.1, 0, -1); return h; })();
@@ -1209,6 +1215,8 @@ const ITEM_GEO = {
   shaft: new THREE.BoxGeometry(0.26, 1.1, 0.26), head: new THREE.ConeGeometry(0.44, 0.75, 4),
   hex: new THREE.CylinderGeometry(1.25, 1.25, 0.36, 6), hex2: new THREE.CylinderGeometry(0.8, 0.8, 0.42, 6), hex3: new THREE.CylinderGeometry(0.42, 0.42, 0.48, 6),
   ball: new THREE.SphereGeometry(0.95, 16, 12), cap: new THREE.CylinderGeometry(0.3, 0.36, 0.3, 8), fuse: new THREE.CylinderGeometry(0.07, 0.07, 0.55, 5),
+  chev: (() => { const c = new THREE.Shape(); c.moveTo(-1.05, -0.35); c.lineTo(0, 0.65); c.lineTo(1.05, -0.35); c.lineTo(0.7, -0.7); c.lineTo(0, -0.05); c.lineTo(-0.7, -0.7); c.closePath();
+    const g = new THREE.ExtrudeGeometry(c, { depth: 0.3, bevelEnabled: true, bevelThickness: 0.08, bevelSize: 0.06, bevelSegments: 1 }); g.translate(0, 0, -0.15); return g; })(),
   heart: (() => { const g = new THREE.ExtrudeGeometry(heartShape, { depth: 0.4, bevelEnabled: true, bevelThickness: 0.14, bevelSize: 0.12, bevelSegments: 2 }); g.center(); return g; })(),
 };
 function makeItemModel(type) {
@@ -1240,6 +1248,10 @@ function makeItemModel(type) {
       sp.position.set(0.28, 1.58, 0); sp.scale.setScalar(1.2); sp.userData.spark = true; g.add(sp); break;
     }
     case 'heal': add(ITEM_GEO.heart, mat); break;
+    case 'speed': {   // うえむきの 二重やじるし
+      for (const [y, m] of [[-0.5, mat], [0.45, white]]) add(ITEM_GEO.chev, m, 0, y, 0);
+      break;
+    }
   }
   const halo = new THREE.Sprite(new THREE.SpriteMaterial({ map: glowTex, color: col, blending: THREE.AdditiveBlending, transparent: true, opacity: 0.8, depthWrite: false, fog: false }));
   halo.scale.setScalar(4.6); g.add(halo);
@@ -1249,12 +1261,13 @@ function makeItemModel(type) {
 let itemBag = [];
 function nextItemType() {
   if (!itemBag.length) {
-    itemBag = ['lock', 'rapid', 'shield', 'bomb', 'rapid']; if (D.key !== 'easy') itemBag.push('heal', 'heal');
+    itemBag = ['lock', 'rapid', 'shield', 'bomb', 'rapid', 'speed', 'speed']; if (D.key !== 'easy') itemBag.push('heal', 'heal');
     itemBag.sort(() => Math.random() - 0.5);
   }
   let t = itemBag.pop();
   if (t === 'lock' && G.maxLock >= 12) t = 'bomb';
   if (t === 'heal' && G.life >= G.maxLife) t = 'shield';
+  if (t === 'speed' && G.speedLv >= 3) t = 'rapid';
   return t;
 }
 function dropItem(x, y, z) {
@@ -1272,6 +1285,7 @@ function applyItem(it) {
     case 'rapid': G.rapidT = 12; break;
     case 'shield': G.shield = 2; break;
     case 'bomb': bomb(); break;
+    case 'speed': G.speedLv = Math.min(3, G.speedLv + 1); msg = 'スピード アップ！'; break;
     case 'heal': if (D.life === Infinity) { G.score += 1000; msg = '+1000'; } else G.life = Math.min(G.maxLife, G.life + 1); break;
   }
   popup(s.x, s.y - 60, msg, true);
@@ -1337,7 +1351,7 @@ function fireOnce() {
   const gx = P.x + gunSide * 0.75, gy = P.y - 0.1;
   shootBullet(gx, gy, -1.2, 0);
   if (G.rapidT > 0) { shootBullet(P.x, P.y + 0.25, -1.4, 0.09); shootBullet(P.x, P.y + 0.25, -1.4, -0.09); }
-  glow(gx, gy, -1.8, 1.1, 0xfff27a, 0.06); sfx.shot(G.hitStreak);
+  glow(gx, gy, -2, 2.4, 0xffc233, 0.08); sfx.shot(G.hitStreak);
 }
 function shootBullet(x, y, z, yaw) {
   const b = pBullets.find(b => !b.on); if (!b) return;
@@ -1365,7 +1379,7 @@ function updateWorld(dt, dtScale) {
   }
   slGeo.attributes.position.needsUpdate = true;
   updateParticles(dt, dtScale); updateGlows(dt);
-  flame.scale.setScalar(rand(1.4, 2.1)); flame.material.opacity = rand(0.7, 1);
+  flame.scale.setScalar(rand(1.4, 2.1) * (1 + (G.speedLv || 0) * 0.25)); flame.material.opacity = rand(0.7, 1);
   if (state !== 'play') {   // タイトル中はゆらゆら飛ぶ
     const t = performance.now() / 1000; P.x = Math.sin(t * 0.5) * 4; P.y = 2 + Math.sin(t * 0.8) * 1.5;
     ship.position.set(P.x, P.y, 0); ship.rotation.z = -Math.cos(t * 0.5) * 0.35;
@@ -1386,7 +1400,7 @@ function updateGame(dt) {
     iy = (keys.KeyS || keys.ArrowDown ? 1 : 0) - (keys.KeyW || keys.ArrowUp ? 1 : 0) + apiIn.my;
   }
   if (!G.over) {
-    P.vx = clamp(ix, -1, 1) * 19; P.vy = -clamp(iy, -1, 1) * 15;
+    const sp = 1 + G.speedLv * 0.2; P.vx = clamp(ix, -1, 1) * 19 * sp; P.vy = -clamp(iy, -1, 1) * 15 * sp;
     P.x = clamp(P.x + P.vx * dt, -AX, AX); P.y = clamp(P.y + P.vy * dt, AY0, AY1);
   }
   ship.position.set(P.x, P.y, 0);
@@ -1421,7 +1435,7 @@ function updateGame(dt) {
       const cx = x0 + dx * t - e.x, cy = y0 + dy * t - e.y, cz = z0 + dz * t - e.z;
       if (cx * cx + cy * cy + cz * cz < (e.r + 0.3) * (e.r + 0.3)) {
         b.on = false; b.m.visible = false;
-        emit(x0 + dx * t, y0 + dy * t, z0 + dz * t, 3, 0xfff27a, 10, 0.22, 0.25);
+        emit(x0 + dx * t, y0 + dy * t, z0 + dz * t, 6, 0xffd24a, 14, 0.3, 0.3); glow(x0 + dx * t, y0 + dy * t, z0 + dz * t, 3.5, 0xffc233, 0.12);
         G.hitStreak++; G.hitStreakT = 0.4;
         hitEnemy(e, 1, 'shot', null); break;
       }
@@ -1572,6 +1586,7 @@ function updateHUD() {
   let pw = '';
   if (G.rapidT > 0) pw += `<div class="pw" style="--c:#ff4d4d">ワイド ${Math.ceil(G.rapidT)}</div>`;
   if (G.shield > 0) pw += `<div class="pw" style="--c:#1fb89a">シールド ×${G.shield}</div>`;
+  if (G.speedLv > 0) pw += `<div class="pw" style="--c:#8e5cff">スピード ${'▲'.repeat(G.speedLv)}</div>`;
   if (G.maxLock > 6) pw += `<div class="pw" style="--c:#3a86ff">ロック さいだい ${G.maxLock}</div>`;
   if (lastHud.pw !== pw) { lastHud.pw = pw; $('powers').innerHTML = pw; }
   const n = lockList.length, cd = clamp(1 - G.boltCd / 0.45, 0, 1);
